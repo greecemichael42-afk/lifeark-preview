@@ -408,6 +408,24 @@
   .order-form button[type=submit]{margin-top:8px;justify-content:center}
   .order-form .slots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
   @media(max-width:520px){.order-form .slots{grid-template-columns:1fr}}
+  /* ===== availability slot picker ===== */
+  .slotpick{display:flex;flex-direction:column;gap:10px}
+  .sp-tz{font-size:.78rem;color:var(--ink-mute)}
+  .sp-count{color:var(--gold);font-weight:700}
+  .sp-count.err{color:#e0894f}
+  .sp-days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
+  .sp-day{flex:0 0 auto;min-width:60px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);color:var(--ink-soft);cursor:pointer;text-align:center;transition:all .25s}
+  .sp-day:hover{border-color:var(--gold)}
+  .sp-day.active{border-color:var(--gold);background:rgba(217,182,117,.12);color:var(--gold-bright)}
+  .sp-day .dw{display:block;font-weight:700;font-size:.84rem}
+  .sp-day .dd{display:block;font-size:.72rem;color:var(--ink-mute);margin-top:2px}
+  .sp-times{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
+  .sp-slot{padding:9px 6px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03);color:var(--ink);cursor:pointer;font-size:.85rem;text-align:center;transition:all .2s;white-space:nowrap}
+  .sp-slot:hover:not(.booked):not(.sel){border-color:var(--gold)}
+  .sp-slot.sel{background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep));color:var(--navy-950);border-color:transparent;font-weight:700}
+  .sp-slot.booked{opacity:.4;cursor:not-allowed;text-decoration:line-through;background:rgba(255,255,255,.02)}
+  .sp-empty{font-size:.85rem;color:var(--ink-mute);padding:6px 0}
+  .sp-sat{font-size:.82rem;color:var(--ink-soft);background:rgba(217,182,117,.07);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
   .order-form .check{display:flex;gap:11px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);line-height:1.6;cursor:pointer;padding:4px 0}
   .order-form .check input{width:18px;height:18px;flex:0 0 auto;margin-top:2px;accent-color:var(--gold);cursor:pointer}
   /* detail modals (service explainers) */
@@ -1398,12 +1416,14 @@
             <option value="حضوري / In-person">حضوري / In-person</option>
             <option value="لست متأكدًا / Not sure">لست متأكدًا / Not sure</option>
           </select></div>
-        <div><label><span class="lead-ar">3 مواعيد مفضّلة</span><span class="lead-en">3 preferred time slots</span></label>
-          <div class="slots">
-            <input type="text" name="slot1" required placeholder="الموعد ١" />
-            <input type="text" name="slot2" placeholder="الموعد ٢" />
-            <input type="text" name="slot3" placeholder="الموعد ٣" />
-          </div></div>
+        <div><label><span class="lead-ar">اختر ميعادًا متاحًا</span><span class="lead-en">Pick an available time</span></label>
+          <div class="slotpick" id="slotPick">
+            <div class="sp-tz"><span class="lead-ar">المواعيد بتوقيت القاهرة</span><span class="lead-en">Times shown in Cairo time</span> · <span class="sp-count" id="spCount"></span></div>
+            <div class="sp-days" id="spDays"></div>
+            <div class="sp-times" id="spTimes"></div>
+            <input type="hidden" name="chosenSlot" id="chosenSlot" />
+          </div>
+          <div class="sp-sat" style="margin-top:8px"><span class="lead-ar">السبت مخصّص للجلسات الحضورية بالعيادة — للحجز الحضوري كلّمنا على واتساب.</span><span class="lead-en">Saturdays are reserved for in-person sessions at the clinic — message us on WhatsApp to book in person.</span></div></div>
         <div><label><span class="lead-ar">سبب الحجز باختصار</span><span class="lead-en">Brief reason for booking</span></label>
           <textarea name="reason" placeholder="سطر أو سطرين يكفّوا"></textarea></div>
         <div><label><span class="lead-ar">طريقة الدفع</span><span class="lead-en">Payment method</span></label>
@@ -1823,14 +1843,71 @@
     const updateFee=()=>{ const v=(sf.stype.value||''); const k=Object.keys(FEES).find(x=>v.indexOf(x)===0);
       const f=k?FEES[k]:['تُحدَّد القيمة حسب الخدمة — والدفع إلى:','The fee depends on the service — and is paid to:'];
       if(feeAr) feeAr.textContent=f[0]; if(feeEn) feeEn.textContent=f[1]; };
+
+    /* ===== availability slot picker =====
+       Weekly availability (Cairo wall-clock), 0=Sun .. 6=Sat:
+         Tue(2): 3 PM → midnight    Wed(3): 12–3 AM (Tue night) + 2–5 PM    Thu(4): 2–5 PM
+       Saturday is in-person at the clinic (handled by a note, no online slots).
+       To mark a slot taken, add 'YYYY-MM-DD HH:mm' (24h, Cairo) to BOOKED below. */
+    const AVAIL={
+      2:['15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'],
+      3:['00:00','01:00','02:00','14:00','15:00','16:00'],
+      4:['14:00','15:00','16:00']
+    };
+    const BOOKED=[];           // mark a slot taken: add 'YYYY-MM-DD HH:mm' (24h, Cairo), e.g. '2026-06-09 18:00'
+    const DAYS_AHEAD=21;
+    const AR_DOW=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+    const EN_DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const spDays=document.getElementById('spDays'), spTimes=document.getElementById('spTimes'),
+          spCount=document.getElementById('spCount'), chosen=document.getElementById('chosenSlot');
+    const pad=n=>String(n).padStart(2,'0');
+    const isEN=()=>document.body.dataset.lang==='en';
+    const fmt12=(hhmm)=>{ let [h,m]=hhmm.split(':').map(Number); const am=h<12; let h12=h%12||12;
+      const suf=isEN()?(am?'AM':'PM'):(am?'ص':'م'); return h12+(m?(':'+pad(m)):'')+' '+suf; };
+    let DAYSET=[], selDayIdx=0;
+    const buildDays=()=>{
+      const now=new Date(), out=[];
+      for(let i=0;i<DAYS_AHEAD;i++){
+        const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i), wd=d.getDay();
+        if(!AVAIL[wd]) continue;
+        const dateStr=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+        const times=AVAIL[wd].map(t=>{ const [h,m]=t.split(':').map(Number);
+          const dt=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m), key=dateStr+' '+t;
+          return {t,key,past:dt.getTime()<=now.getTime(),booked:BOOKED.indexOf(key)>=0}; })
+          .filter(x=>!x.past);
+        if(times.length) out.push({d,wd,times});
+      }
+      return out;
+    };
+    const renderTimes=()=>{ spTimes.innerHTML=''; const day=DAYSET[selDayIdx]; if(!day) return;
+      day.times.forEach(s=>{ const b=document.createElement('div');
+        b.className='sp-slot'+(s.booked?' booked':'')+(chosen.value===s.key?' sel':'');
+        b.textContent=fmt12(s.t)+(s.booked?(isEN()?' · booked':' · محجوز'):'');
+        if(!s.booked) b.addEventListener('click',()=>{ chosen.value=s.key; if(spCount) spCount.classList.remove('err'); renderTimes(); });
+        spTimes.appendChild(b); }); };
+    const renderDays=()=>{ spDays.innerHTML='';
+      let avail=0; DAYSET.forEach(dd=>avail+=dd.times.filter(t=>!t.booked).length);
+      if(spCount) spCount.textContent=isEN()?(avail+' slots available'):(avail+' ميعاد متاح');
+      if(!DAYSET.length){ spTimes.innerHTML='<div class="sp-empty">'+(isEN()?'No times available right now — message us on WhatsApp.':'لا توجد مواعيد متاحة حاليًا — كلّمنا على واتساب.')+'</div>'; return; }
+      DAYSET.forEach((dd,i)=>{ const el=document.createElement('div'); el.className='sp-day'+(i===selDayIdx?' active':'');
+        el.innerHTML='<span class="dw">'+(isEN()?EN_DOW[dd.wd]:AR_DOW[dd.wd])+'</span><span class="dd">'+dd.d.getDate()+'/'+(dd.d.getMonth()+1)+'</span>';
+        el.addEventListener('click',()=>{ selDayIdx=i; renderDays(); }); spDays.appendChild(el); });
+      renderTimes(); };
+    const refreshSlots=()=>{ DAYSET=buildDays(); selDayIdx=0; chosen.value=''; if(spCount) spCount.classList.remove('err'); renderDays(); };
+    const chosenLabel=()=>{ if(!chosen.value) return '—'; const [ds,tm]=chosen.value.split(' ');
+      const [y,mo,da]=ds.split('-').map(Number); const dt=new Date(y,mo-1,da); const wasEN=isEN();
+      const dow=wasEN?EN_DOW[dt.getDay()]:AR_DOW[dt.getDay()]; return dow+' '+da+'/'+mo+'/'+y+' — '+fmt12(tm); };
     const openS=(stype)=>{
       if(stype){ const sel=sf.stype; for(const o of sel.options){ if(o.value.indexOf(stype)===0){ sel.value=o.value; break; } } }
       updateFee();
+      refreshSlots();
       Array.from(sf.elements).forEach(el=>{ el.style.borderColor=''; });
       sView.style.display='block'; sDone.style.display='none';
       sessModal.classList.add('open'); document.body.style.overflow='hidden';
     };
     sf.stype.addEventListener('change',updateFee);
+    const _lb=document.getElementById('langBtn');
+    if(_lb) _lb.addEventListener('click',()=>{ if(sessModal.classList.contains('open')) renderDays(); });
     Array.from(sf.elements).forEach(el=>{ el.addEventListener('input',()=>{ el.style.borderColor=''; }); });
     window.lifeArkBook=openS;
     const closeS=()=>{ sessModal.classList.remove('open'); document.body.style.overflow=''; };
@@ -1849,9 +1926,9 @@
       if(!name){ bad(sf.fullname); return; }
       if(!wa){ bad(sf.whatsapp); return; }
       if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ bad(sf.email); return; }
-      if(!sf.slot1.value.trim()){ bad(sf.slot1); return; }
+      if(!chosen.value){ if(spCount){ spCount.classList.add('err'); spCount.textContent=isEN()?'Please pick a time':'اختر ميعادًا من فضلك'; } document.getElementById('slotPick').scrollIntoView({block:'center'}); return; }
       if(!sf.emergency.checked){ sf.emergency.focus(); return; }
-      const slots=[sf.slot1.value,sf.slot2.value,sf.slot3.value].map(s=>(s||'').trim()).filter(Boolean).join(' / ');
+      const slotLabel=chosenLabel();
       const msg=encodeURIComponent(
         '🌊 طلب حجز جلسة من موقع Life Ark\n'+
         '——————————————\n'+
@@ -1860,7 +1937,7 @@
         'البريد الإلكتروني: '+email+'\n'+
         'نوع الجلسة: '+sf.stype.value+'\n'+
         'شكل الجلسة: '+sf.format.value+'\n'+
-        'المواعيد المفضّلة: '+(slots||'—')+'\n'+
+        'الميعاد المطلوب: '+slotLabel+'\n'+
         'سبب الحجز: '+((sf.reason.value||'').trim()||'—')+'\n'+
         'طريقة الدفع: '+sf.method.value+'\n'+
         'رقم العملية: '+((sf.reference.value||'').trim()||'—')+'\n'+
