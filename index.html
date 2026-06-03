@@ -6,18 +6,18 @@
 <title>Life Ark — حياة تستحق أن تُعاش</title>
 <meta name="description" content="Life Ark — السفينة التي تحمل وجع الناس. مساحة عربية متخصصة في الحالات المعقّدة واضطراب الشخصية الحدية وتنظيم المشاعر والصدمة، بأدوات DBT. علاج، أكاديمية، كتب، وفكر." />
 <link rel="icon" type="image/png" href="assets/img/favicon.png" />
-<!-- Open Graph / social share. NOTE: og:image needs a LIVE absolute URL once hosted (replace https://lifeark.example with the real domain) — social scrapers can't read base64/relative paths. -->
+<!-- Open Graph / social share. Absolute URLs (social scrapers can't read relative paths). Update the host to the custom domain once it's live. -->
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ar_AR" />
 <meta property="og:site_name" content="Life Ark · لايف آرك" />
 <meta property="og:title" content="لايف آرك — حياة تستحق أن تُعاش" />
 <meta property="og:description" content="مساحة عربية متخصصة في الحالات المعقّدة واضطراب الشخصية الحدية وتنظيم المشاعر والصدمة، بأدوات DBT. علاج، أكاديمية، كتب، وفكر." />
-<meta property="og:image" content="https://lifeark.example/assets/ark-hero.jpg" />
-<meta property="og:url" content="https://lifeark.example/" />
+<meta property="og:image" content="https://greecemichael42-afk.github.io/lifeark-web/assets/img/hero-poster.jpg" />
+<meta property="og:url" content="https://greecemichael42-afk.github.io/lifeark-web/" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="لايف آرك — حياة تستحق أن تُعاش" />
 <meta name="twitter:description" content="مساحة عربية متخصصة في الحالات المعقّدة بأدوات DBT — علاج، أكاديمية، كتب، وفكر." />
-<meta name="twitter:image" content="https://lifeark.example/assets/ark-hero.jpg" />
+<meta name="twitter:image" content="https://greecemichael42-afk.github.io/lifeark-web/assets/img/hero-poster.jpg" />
 <meta name="theme-color" content="#070E1A" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -137,7 +137,7 @@
   .hero-stats .st{text-align:center;max-width:160px}
   .hero-stats .st b{display:block;font-size:1.5rem;font-weight:800;color:var(--gold-bright);font-family:var(--ar)}
   .hero-stats .st span{font-size:.84rem;color:var(--ink-mute);font-weight:300}
-  .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;color:var(--ink-mute);font-family:var(--en);font-size:.75rem;letter-spacing:.2em;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.7}
+  .scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:4;color:var(--ink-mute);font-family:var(--en);font-size:.8rem;letter-spacing:.2em;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.7}
   .scroll-cue span{width:1px;height:46px;background:linear-gradient(var(--gold),transparent);animation:cue 2.4s ease-in-out infinite}
   @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
   .hero.in .eyebrow{animation:rise .9s var(--ease) .2s forwards}
@@ -221,7 +221,7 @@
   .brief svg{width:16px;height:16px;fill:var(--gold)}
   .prog .pfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
   .prog .pfoot .price{font-weight:800;color:var(--ink);font-size:.95rem}
-  .prog .pfoot .soon{font-family:var(--ar);font-size:.78rem;color:var(--ink-mute);border:1px solid var(--line);padding:4px 11px;border-radius:30px}
+  .prog .pfoot .soon{font-family:var(--ar);font-size:.82rem;color:var(--ink-mute);border:1px solid var(--line);padding:4px 11px;border-radius:30px}
 
   /* books */
   .books{background:linear-gradient(180deg,var(--t950),var(--t900))}
@@ -229,7 +229,7 @@
   .book-cover{aspect-ratio:2/3;border-radius:12px;border:1px solid var(--line);background:linear-gradient(160deg,var(--navy-700),var(--navy-950));display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:0 36px 70px -34px rgba(0,0,0,.75)}
   .book-cover .bcimg{width:100%;height:100%;object-fit:cover;display:block}
   .book-cover .bc{text-align:center;padding:26px}
-  .book-cover .bc .bk{font-family:var(--en);font-style:italic;color:var(--gold);font-size:.78rem;letter-spacing:.14em;margin-bottom:14px}
+  .book-cover .bc .bk{font-family:var(--en);font-style:italic;color:var(--gold);font-size:.82rem;letter-spacing:.14em;margin-bottom:14px}
   .book-cover .bc .tt{font-family:var(--ar-display);color:var(--ink);font-size:1.35rem;line-height:1.6}
   .book-cover .bc .au{margin-top:16px;color:var(--gold);font-size:.85rem}
   .book-info .pt{font-family:var(--en);font-style:italic;color:var(--gold);font-size:.9rem;letter-spacing:.08em;margin-bottom:10px}
@@ -262,7 +262,7 @@
   .ep:hover .thumb .play{transform:scale(1.1);background:rgba(217,182,117,.24)}
   .ep .thumb .play svg{width:20px;height:20px;fill:var(--gold);margin-right:-3px}
   .ep .eb{padding:22px}
-  .ep .eb .pt{font-family:var(--en);font-style:italic;color:var(--gold);font-size:.78rem;letter-spacing:.06em;margin-bottom:8px}
+  .ep .eb .pt{font-family:var(--en);font-style:italic;color:var(--gold);font-size:.82rem;letter-spacing:.06em;margin-bottom:8px}
   .ep h4{font-size:1.08rem;font-weight:600;margin-bottom:8px}
   .ep p{color:var(--ink-mute);font-size:.88rem;font-weight:300}
   .salon-banner{display:block;max-width:940px;margin:0 auto 42px;border-radius:18px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(0,0,0,.7);position:relative}
@@ -404,28 +404,12 @@
   .order-form textarea{resize:vertical;min-height:64px}
   .order-form .file-ph{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px dashed var(--line);border-radius:12px;color:var(--ink-mute);font-size:.85rem;background:rgba(255,255,255,.02)}
   .order-form .file-ph svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.6;flex:0 0 auto}
-  .order-form .req-hint{font-size:.78rem;color:var(--ink-mute);margin-top:-4px}
+  .order-form .req-hint{font-size:.82rem;color:var(--ink-mute);margin-top:-4px}
   .order-form button[type=submit]{margin-top:8px;justify-content:center}
   .order-form .slots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
   @media(max-width:520px){.order-form .slots{grid-template-columns:1fr}}
-  /* ===== availability slot picker ===== */
-  .slotpick{display:flex;flex-direction:column;gap:10px}
-  .sp-tz{font-size:.78rem;color:var(--ink-mute)}
-  .sp-count{color:var(--gold);font-weight:700}
-  .sp-count.err{color:#e0894f}
-  .sp-days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}
-  .sp-day{flex:0 0 auto;min-width:60px;padding:8px 10px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);color:var(--ink-soft);cursor:pointer;text-align:center;transition:all .25s}
-  .sp-day:hover{border-color:var(--gold)}
-  .sp-day.active{border-color:var(--gold);background:rgba(217,182,117,.12);color:var(--gold-bright)}
-  .sp-day .dw{display:block;font-weight:700;font-size:.84rem}
-  .sp-day .dd{display:block;font-size:.72rem;color:var(--ink-mute);margin-top:2px}
-  .sp-times{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:8px}
-  .sp-slot{padding:9px 6px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.03);color:var(--ink);cursor:pointer;font-size:.85rem;text-align:center;transition:all .2s;white-space:nowrap}
-  .sp-slot:hover:not(.booked):not(.sel){border-color:var(--gold)}
-  .sp-slot.sel{background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep));color:var(--navy-950);border-color:transparent;font-weight:700}
-  .sp-slot.booked{opacity:.4;cursor:not-allowed;text-decoration:line-through;background:rgba(255,255,255,.02)}
-  .sp-empty{font-size:.85rem;color:var(--ink-mute);padding:6px 0}
-  .sp-sat{font-size:.82rem;color:var(--ink-soft);background:rgba(217,182,117,.07);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+  /* booking note (Cairo hours / Saturday in-person) */
+  .sp-sat{font-size:.86rem;color:var(--ink-soft);line-height:1.7;background:rgba(217,182,117,.07);border:1px solid var(--line);border-radius:10px;padding:9px 13px}
   .order-form .check{display:flex;gap:11px;align-items:flex-start;font-size:.85rem;color:var(--ink-soft);line-height:1.6;cursor:pointer;padding:4px 0}
   .order-form .check input{width:18px;height:18px;flex:0 0 auto;margin-top:2px;accent-color:var(--gold);cursor:pointer}
   /* detail modals (service explainers) */
@@ -530,7 +514,7 @@
   .art-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 26px 50px -28px rgba(217,182,117,.4)}
   .art-cap{height:118px;position:relative;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:radial-gradient(120% 120% at 50% 0,rgba(217,182,117,.18),transparent 60%),linear-gradient(135deg,var(--navy-700),var(--navy-950))}
   .art-cap > svg{width:34px;height:34px;stroke:var(--gold);fill:none;stroke-width:1.2;opacity:.85}
-  .art-cap .tag{position:absolute;top:12px;right:14px;font-size:.72rem;color:var(--gold);background:rgba(7,14,26,.55);border:1px solid var(--line);padding:4px 11px;border-radius:20px}
+  .art-cap .tag{position:absolute;top:12px;right:14px;font-size:.8rem;color:var(--gold);background:rgba(7,14,26,.55);border:1px solid var(--line);padding:4px 11px;border-radius:20px}
   .art-body{padding:20px 22px;display:flex;flex-direction:column;flex:1}
   .art-body h3{font-size:1.06rem;line-height:1.55;margin-bottom:10px;color:var(--ink)}
   .art-body p{color:var(--ink-soft);font-weight:300;font-size:.9rem;line-height:1.7;margin-bottom:16px;flex:1}
@@ -538,7 +522,7 @@
   .art-author{display:flex;align-items:center;gap:9px}
   .art-author .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(145deg,var(--gold-bright),var(--gold-deep));display:grid;place-items:center;color:var(--navy-950);font-weight:800;font-size:.82rem;font-family:var(--ar)}
   .art-author .an{font-size:.82rem;color:var(--ink-soft)}
-  .art-status{font-size:.78rem;color:var(--gold);font-weight:700}
+  .art-status{font-size:.82rem;color:var(--gold);font-weight:700}
   /* quiz / self-check */
   .quiz{padding:90px 0}
   .quiz-card{max-width:620px;margin:0 auto;background:linear-gradient(165deg,var(--navy-800),var(--navy-950));border:1px solid var(--line);border-radius:22px;padding:40px 34px;position:relative;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
@@ -966,7 +950,7 @@
     </div>
     <div class="salon-cta reveal">
       <a class="salon-poster" href="https://www.youtube.com/@%D9%81%D9%90%D9%8A%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D8%A7%D9%84%D9%8E%D8%A9" target="_blank" rel="noopener" aria-label="بوستر في الصالة — الموسم الأول على يوتيوب"><img src="assets/felsala-poster.png" alt="في الصالة — الموسم الأول · كل سبت 10 مساءً على يوتيوب" loading="lazy" /></a>
-      <a href="https://www.youtube.com/@%D9%81%D9%90%D9%8A%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D8%A7%D9%84%D9%8E%D8%A9" target="_blank" rel="noopener" class="btn btn-gold"><span class="lead-ar">شاهد كل الحلقات على يوتيوب</span><span class="lead-en">Watch All Episodes on YouTube</span></a>
+      <a href="https://www.youtube.com/@%D9%81%D9%90%D9%8A%D8%A7%D9%84%D8%B5%D9%8E%D9%91%D8%A7%D9%84%D9%8E%D8%A9" target="_blank" rel="noopener" class="btn btn-ghost"><span class="lead-ar">شاهد كل الحلقات على يوتيوب</span><span class="lead-en">Watch All Episodes on YouTube</span></a>
       <div class="salon-social">
         <a href="https://www.instagram.com/felsallah" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.facebook.com/share/18XTRaxFzw/" target="_blank" rel="noopener">Facebook</a>
@@ -1055,7 +1039,7 @@
       <div class="cred alt reveal d2"><b>EMDR</b><div class="cl"><span class="lead-ar">تدريب أساسي بالعربية · 54 + 10 ساعة</span><span class="lead-en">Basic Training in Arabic · 54 + 10 hrs</span></div></div>
       <div class="cred alt reveal d3"><b><span class="lead-ar">تدريب المتخصصين</span><span class="lead-en">Pro Training</span></b><div class="cl"><span class="lead-ar">ورش ومحاضرات للأخصائيين والأطباء النفسيين</span><span class="lead-en">Workshops &amp; lectures for clinicians</span></div></div>
     </div>
-    <div class="reveal" style="text-align:center;margin-top:38px"><button type="button" class="btn btn-gold" id="aboutBtn"><span class="lead-ar">اعرف المزيد عن مايكل</span><span class="lead-en">More About Michael</span><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;margin-right:2px"><path d="M15 6l-6 6 6 6"/></svg></button></div>
+    <div class="reveal" style="text-align:center;margin-top:38px"><button type="button" class="btn btn-ghost" id="aboutBtn"><span class="lead-ar">اعرف المزيد عن مايكل</span><span class="lead-en">More About Michael</span><svg viewBox="0 0 24 24" style="width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;margin-right:2px"><path d="M15 6l-6 6 6 6"/></svg></button></div>
   </div>
 </section>
 
@@ -1830,59 +1814,7 @@
       const f=k?FEES[k]:['تُحدَّد القيمة حسب الخدمة — والدفع إلى:','The fee depends on the service — and is paid to:'];
       if(feeAr) feeAr.textContent=f[0]; if(feeEn) feeEn.textContent=f[1]; };
 
-    /* ===== availability slot picker =====
-       Weekly availability (Cairo wall-clock), 0=Sun .. 6=Sat:
-         Tue(2): 3 PM → midnight    Wed(3): 12–3 AM (Tue night) + 2–5 PM    Thu(4): 2–5 PM
-       Saturday is in-person at the clinic (handled by a note, no online slots).
-       To mark a slot taken, add 'YYYY-MM-DD HH:mm' (24h, Cairo) to BOOKED below. */
-    const AVAIL={
-      2:['15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00'],
-      3:['00:00','01:00','02:00','14:00','15:00','16:00'],
-      4:['14:00','15:00','16:00']
-    };
-    const BOOKED=[];           // mark a slot taken: add 'YYYY-MM-DD HH:mm' (24h, Cairo), e.g. '2026-06-09 18:00'
-    const DAYS_AHEAD=21;
-    const AR_DOW=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-    const EN_DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    const spDays=document.getElementById('spDays'), spTimes=document.getElementById('spTimes'),
-          spCount=document.getElementById('spCount'), chosen=document.getElementById('chosenSlot');
-    const pad=n=>String(n).padStart(2,'0');
-    const isEN=()=>document.body.dataset.lang==='en';
-    const fmt12=(hhmm)=>{ let [h,m]=hhmm.split(':').map(Number); const am=h<12; let h12=h%12||12;
-      const suf=isEN()?(am?'AM':'PM'):(am?'ص':'م'); return h12+(m?(':'+pad(m)):'')+' '+suf; };
-    let DAYSET=[], selDayIdx=0;
-    const buildDays=()=>{
-      const now=new Date(), out=[];
-      for(let i=0;i<DAYS_AHEAD;i++){
-        const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+i), wd=d.getDay();
-        if(!AVAIL[wd]) continue;
-        const dateStr=d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
-        const times=AVAIL[wd].map(t=>{ const [h,m]=t.split(':').map(Number);
-          const dt=new Date(d.getFullYear(),d.getMonth(),d.getDate(),h,m), key=dateStr+' '+t;
-          return {t,key,past:dt.getTime()<=now.getTime(),booked:BOOKED.indexOf(key)>=0}; })
-          .filter(x=>!x.past);
-        if(times.length) out.push({d,wd,times});
-      }
-      return out;
-    };
-    const renderTimes=()=>{ spTimes.innerHTML=''; const day=DAYSET[selDayIdx]; if(!day) return;
-      day.times.forEach(s=>{ const b=document.createElement('div');
-        b.className='sp-slot'+(s.booked?' booked':'')+(chosen.value===s.key?' sel':'');
-        b.textContent=fmt12(s.t)+(s.booked?(isEN()?' · booked':' · محجوز'):'');
-        if(!s.booked) b.addEventListener('click',()=>{ chosen.value=s.key; if(spCount) spCount.classList.remove('err'); renderTimes(); });
-        spTimes.appendChild(b); }); };
-    const renderDays=()=>{ spDays.innerHTML='';
-      let avail=0; DAYSET.forEach(dd=>avail+=dd.times.filter(t=>!t.booked).length);
-      if(spCount) spCount.textContent=isEN()?(avail+' slots available'):(avail+' ميعاد متاح');
-      if(!DAYSET.length){ spTimes.innerHTML='<div class="sp-empty">'+(isEN()?'No times available right now — message us on WhatsApp.':'لا توجد مواعيد متاحة حاليًا — كلّمنا على واتساب.')+'</div>'; return; }
-      DAYSET.forEach((dd,i)=>{ const el=document.createElement('div'); el.className='sp-day'+(i===selDayIdx?' active':'');
-        el.innerHTML='<span class="dw">'+(isEN()?EN_DOW[dd.wd]:AR_DOW[dd.wd])+'</span><span class="dd">'+dd.d.getDate()+'/'+(dd.d.getMonth()+1)+'</span>';
-        el.addEventListener('click',()=>{ selDayIdx=i; renderDays(); }); spDays.appendChild(el); });
-      renderTimes(); };
-    const refreshSlots=()=>{ DAYSET=buildDays(); selDayIdx=0; chosen.value=''; if(spCount) spCount.classList.remove('err'); renderDays(); };
-    const chosenLabel=()=>{ if(!chosen.value) return '—'; const [ds,tm]=chosen.value.split(' ');
-      const [y,mo,da]=ds.split('-').map(Number); const dt=new Date(y,mo-1,da); const wasEN=isEN();
-      const dow=wasEN?EN_DOW[dt.getDay()]:AR_DOW[dt.getDay()]; return dow+' '+da+'/'+mo+'/'+y+' — '+fmt12(tm); };
+    // Scheduling (availability, slot-locking, calendar) is handled by Cal.com (see #calTrigger).
     const openS=(stype)=>{
       if(stype){ const sel=sf.stype; for(const o of sel.options){ if(o.value.indexOf(stype)===0){ sel.value=o.value; break; } } }
       updateFee();
@@ -1891,8 +1823,6 @@
       sessModal.classList.add('open'); document.body.style.overflow='hidden';
     };
     sf.stype.addEventListener('change',updateFee);
-    const _lb=document.getElementById('langBtn');
-    if(_lb) _lb.addEventListener('click',()=>{ if(sessModal.classList.contains('open') && document.getElementById('spDays')) renderDays(); });
     Array.from(sf.elements).forEach(el=>{ el.addEventListener('input',()=>{ el.style.borderColor=''; }); });
     // Booking flow: this modal (form + payment + acknowledgment) shows FIRST,
     // then openCal() opens the Cal.com calendar — prefilled with the visitor's details — to pick the time.
