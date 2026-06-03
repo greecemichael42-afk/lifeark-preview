@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Life Ark — نموذج عرض الأقسام</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Aref+Ruqaa:wght@700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070E1A; --navy-900:#0A1628; --navy-800:#0D1B2E; --navy-700:#13243B;
+    --gold:#D9B675; --gold-bright:#F0CE8E; --gold-deep:#B6913F;
+    --ink:#E8EEF6; --ink-soft:#A9B8CC; --ink-mute:#6E809A; --line:rgba(217,182,117,.22);
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Cairo',sans-serif;background:var(--navy-900);color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  .topbar{text-align:center;padding:48px 22px 14px}
+  .topbar h1{font-family:'Aref Ruqaa',serif;font-size:2rem;color:var(--gold-bright);margin-bottom:8px}
+  .topbar p{color:var(--ink-soft);font-size:1rem}
+  .divider{display:flex;align-items:center;gap:14px;margin:46px 0 26px}
+  .divider .ln{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .divider .lbl{font-weight:800;color:var(--gold);font-size:1.05rem;white-space:nowrap}
+  .divider .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:.9rem;margin-left:8px}
+  .hint{text-align:center;color:var(--ink-mute);font-size:.92rem;margin-bottom:22px}
+
+  /* ===== Version A: Accordion ===== */
+  .acc{display:flex;flex-direction:column;gap:14px}
+  .acc-item{border:1px solid var(--line);border-radius:18px;background:linear-gradient(165deg,var(--navy-800),var(--navy-950));overflow:hidden;transition:border-color .35s}
+  .acc-item.open{border-color:var(--gold)}
+  .acc-head{display:flex;align-items:center;gap:16px;padding:22px 24px;cursor:pointer;user-select:none}
+  .acc-ic{flex:0 0 auto;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(217,182,117,.1);border:1px solid var(--line)}
+  .acc-ic svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.6}
+  .acc-tt{flex:1}
+  .acc-tt .ar{font-size:1.3rem;font-weight:700;color:var(--ink)}
+  .acc-tt .en{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:1rem}
+  .acc-tt .sub{display:block;color:var(--ink-mute);font-size:.92rem;font-weight:400;margin-top:2px}
+  .acc-plus{flex:0 0 auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);font-size:1.3rem;transition:transform .4s var(--ease),background .3s}
+  .acc-item.open .acc-plus{transform:rotate(45deg);background:rgba(217,182,117,.12)}
+  .acc-body{max-height:0;opacity:0;transition:max-height .5s var(--ease),opacity .4s,padding .5s var(--ease);padding:0 24px}
+  .acc-item.open .acc-body{max-height:640px;opacity:1;padding:0 24px 26px 86px}
+  .acc-body p{color:var(--ink-soft);margin-bottom:14px;font-weight:300}
+  .acc-body ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:6px 0 18px}
+  .acc-body li{position:relative;padding-right:24px;color:var(--ink-soft);font-weight:300}
+  .acc-body li::before{content:"";position:absolute;right:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+
+  /* ===== Version B: Cover cards + panel ===== */
+  .covers{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .cover{position:relative;border:1px solid var(--line);border-radius:20px;background:linear-gradient(165deg,var(--navy-800),var(--navy-950));padding:30px 24px;cursor:pointer;transition:transform .4s var(--ease),border-color .35s,box-shadow .4s;overflow:hidden}
+  .cover::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 0,rgba(217,182,117,.1),transparent 60%);opacity:0;transition:opacity .4s}
+  .cover:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 30px 60px -30px rgba(0,0,0,.7)}
+  .cover:hover::after{opacity:1}
+  .cover .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;background:rgba(217,182,117,.1);border:1px solid var(--line);margin-bottom:18px}
+  .cover .ic svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.5}
+  .cover h3{font-size:1.25rem;color:var(--ink);margin-bottom:4px}
+  .cover .en{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:.98rem;display:block;margin-bottom:12px}
+  .cover .one{color:var(--ink-mute);font-size:.95rem;font-weight:300;line-height:1.7}
+  .cover .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;color:var(--gold);font-weight:600;font-size:.92rem}
+  .cover .go svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .3s}
+  .cover:hover .go svg{transform:translateX(-4px)}
+
+  /* modal/panel */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;background:rgba(4,9,18,.8);backdrop-filter:blur(7px)}
+  .modal.open{display:flex;animation:mf .3s var(--ease)}
+  @keyframes mf{from{opacity:0}to{opacity:1}}
+  .mcard{position:relative;width:100%;max-width:600px;min-width:0;background:linear-gradient(165deg,var(--navy-800),var(--navy-950));border:1px solid var(--gold);border-radius:22px;padding:38px 34px;box-shadow:0 50px 100px -30px rgba(0,0,0,.85);animation:mr .45s var(--ease)}
+  @keyframes mr{from{transform:translateY(26px);opacity:0}to{transform:none;opacity:1}}
+  .mcard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.6}
+  .mclose{position:absolute;top:16px;left:18px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--ink-mute);cursor:pointer;font-size:1.3rem;display:grid;place-items:center;transition:all .3s}
+  .mclose:hover{border-color:var(--gold);color:var(--gold)}
+  .mcard h3{font-size:1.6rem;color:var(--gold-bright);margin-bottom:4px}
+  .mcard .en{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--gold);font-size:1.05rem;display:block;margin-bottom:18px}
+  .mcard p{color:var(--ink-soft);margin-bottom:14px;font-weight:300}
+  .mcard ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin:6px 0 18px}
+  .mcard li{position:relative;padding-right:24px;color:var(--ink-soft);font-weight:300}
+  .mcard li::before{content:"";position:absolute;right:0;top:11px;width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Cairo';font-weight:600;padding:13px 28px;border-radius:46px;border:1px solid transparent;cursor:pointer;background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep));color:var(--navy-950);text-decoration:none;margin-top:6px}
+  footer{text-align:center;color:var(--ink-mute);font-size:.9rem;padding:50px 22px 60px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <h1>نموذج عرض الأقسام</h1>
+  <p>نفس القسم بطريقتين — جرّب الاتنين واختار اللي يريح عينك.</p>
+</div>
+
+<div class="wrap">
+
+  <!-- ===== VERSION A ===== -->
+  <div class="divider"><span class="num">١</span><span class="lbl">أكورديون — يتفتح في مكانه</span><span class="ln"></span></div>
+  <p class="hint">دوس على أي عنوان عشان يتفتح تحته في نفس الصفحة.</p>
+
+  <div class="acc">
+    <div class="acc-item">
+      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
+        <span class="acc-ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></span>
+        <span class="acc-tt"><span class="ar">العلاج الفردي</span> <span class="en">Individual Therapy</span><span class="sub">جلسات سرّية مبنية على DBT، مصمّمة حول قصتك أنت وحدك.</span></span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-body">
+        <p>في الجلسة الفردية نشتغل سوا على فهم اللي بيحصل جواك — مش بنطارد الأعراض، بنفهم جذورها. خطوة بخطوة، بنهدّي العاصفة الداخلية ونبني مهارات واقعية تقدر تستخدمها في حياتك اليومية.</p>
+        <ul>
+          <li>تقييم شامل لحالتك وأهدافك في أول جلسة.</li>
+          <li>خطة علاجية مبنية على مهارات DBT الأربعة.</li>
+          <li>جلسات أونلاين أو حضوري — 50 دقيقة لكل جلسة.</li>
+          <li>سرية تامة ومساحة آمنة بلا حكم.</li>
+        </ul>
+        <a class="btn" href="#">احجز جلستك الأولى</a>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-head" onclick="this.parentElement.classList.toggle('open')">
+        <span class="acc-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20a6 6 0 0112 0M14 20a5 5 0 017-4.6"/></svg></span>
+        <span class="acc-tt"><span class="ar">مجموعة مهارات DBT</span> <span class="en">DBT Skills Group</span><span class="sub">رحلة جماعية تتعلّم وتتدرّب فيها على المهارات.</span></span>
+        <span class="acc-plus">+</span>
+      </div>
+      <div class="acc-body">
+        <p>مجموعة أسبوعية بتتعلّم فيها مهارات تنظيم المشاعر، تحمّل الضيق، اليقظة الذهنية، والفاعلية بين الأشخاص — بأمثلة وتمارين عملية، ومع ناس بيمرّوا بنفس التحدّيات.</p>
+        <ul>
+          <li>منهج كامل بالعربية على مدار ٢٤ أسبوع.</li>
+          <li>أوراق عمل وتمارين تطبيقية كل أسبوع.</li>
+          <li>دعم بين الجلسات ومجتمع آمن.</li>
+        </ul>
+        <a class="btn" href="#">انضم للمجموعة</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ===== VERSION B ===== -->
+  <div class="divider"><span class="num">٢</span><span class="lbl">كوفرات تفتح لوحة</span><span class="ln"></span></div>
+  <p class="hint">دوس على أي كوفر عشان يفتحلك المحتوى في لوحة أنيقة.</p>
+
+  <div class="covers">
+    <div class="cover" onclick="openPanel('indiv')">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 11c0 5.5-7 10-7 10z"/></svg></span>
+      <h3>العلاج الفردي</h3><span class="en">Individual Therapy</span>
+      <p class="one">جلسات سرّية مبنية على DBT، مصمّمة حول قصتك.</p>
+      <span class="go">اعرف أكتر <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </div>
+    <div class="cover" onclick="openPanel('group')">
+      <span class="ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20a6 6 0 0112 0M14 20a5 5 0 017-4.6"/></svg></span>
+      <h3>مجموعة مهارات DBT</h3><span class="en">DBT Skills Group</span>
+      <p class="one">رحلة جماعية تتعلّم وتتدرّب فيها على المهارات.</p>
+      <span class="go">اعرف أكتر <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </div>
+    <div class="cover" onclick="openPanel('sud')">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8c3 0 4 2 7 2s4-2 7-2"/></svg></span>
+      <h3>برنامج الإدمان DBT-SUD</h3><span class="en">DBT-SUD Program</span>
+      <p class="one">مسار خاص لمن يحارب على جبهتين معًا.</p>
+      <span class="go">اعرف أكتر <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </div>
+  </div>
+
+</div>
+
+<!-- panel -->
+<div class="modal" id="panel" onclick="if(event.target===this)closePanel()">
+  <div class="mcard">
+    <button class="mclose" onclick="closePanel()">&times;</button>
+    <div id="panelBody"></div>
+  </div>
+</div>
+
+<footer>Life Ark — نموذج للمقارنة · مش الموقع الحقيقي</footer>
+
+<script>
+  var DATA={
+    indiv:{t:'العلاج الفردي',en:'Individual Therapy',
+      p:'في الجلسة الفردية نشتغل سوا على فهم اللي بيحصل جواك — مش بنطارد الأعراض، بنفهم جذورها. خطوة بخطوة، بنهدّي العاصفة الداخلية ونبني مهارات واقعية تقدر تستخدمها في حياتك اليومية.',
+      li:['تقييم شامل لحالتك وأهدافك في أول جلسة.','خطة علاجية مبنية على مهارات DBT الأربعة.','جلسات أونلاين أو حضوري — 50 دقيقة لكل جلسة.','سرية تامة ومساحة آمنة بلا حكم.'],cta:'احجز جلستك الأولى'},
+    group:{t:'مجموعة مهارات DBT',en:'DBT Skills Group',
+      p:'مجموعة أسبوعية بتتعلّم فيها مهارات تنظيم المشاعر، تحمّل الضيق، اليقظة الذهنية، والفاعلية بين الأشخاص — بأمثلة وتمارين عملية، ومع ناس بيمرّوا بنفس التحدّيات.',
+      li:['منهج كامل بالعربية على مدار ٢٤ أسبوع.','أوراق عمل وتمارين تطبيقية كل أسبوع.','دعم بين الجلسات ومجتمع آمن.'],cta:'انضم للمجموعة'},
+    sud:{t:'برنامج الإدمان DBT-SUD',en:'DBT-SUD Program',
+      p:'مسار متخصّص لمن يتعامل مع الإدمان واضطراب تنظيم المشاعر في نفس الوقت — بيدمج علاج الإدمان مع مهارات DBT في خطة واحدة متكاملة ورحيمة.',
+      li:['تقييم مزدوج للإدمان والحالة النفسية.','دمج الامتناع مع مهارات تحمّل الضيق.','متابعة فردية + جماعية حسب الحالة.'],cta:'انضم للبرنامج'}
+  };
+  function openPanel(k){
+    var d=DATA[k]; var h='<h3>'+d.t+'</h3><span class="en">'+d.en+'</span><p>'+d.p+'</p><ul>';
+    d.li.forEach(function(x){h+='<li>'+x+'</li>';}); h+='</ul><a class="btn" href="#">'+d.cta+'</a>';
+    document.getElementById('panelBody').innerHTML=h;
+    document.getElementById('panel').classList.add('open'); document.body.style.overflow='hidden';
+  }
+  function closePanel(){ document.getElementById('panel').classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') closePanel(); });
+</script>
+</body>
+</html>

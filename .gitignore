@@ -8,6 +8,7 @@
 # 2) keep the public site files
 !/.gitignore
 !/index.html
+!/demo-sections.html
 !/CNAME
 !/assets/
 
