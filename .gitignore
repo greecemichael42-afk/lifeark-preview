@@ -9,6 +9,10 @@
 !/.gitignore
 !/index.html
 !/demo-sections.html
+!/therapy.html
+!/academy.html
+!/books.html
+!/felsala.html
 !/CNAME
 !/assets/
 
@@ -21,3 +25,6 @@
 !/assets/life-ark-intake-form.pdf
 # 4) extracted page media (de-base64): ship the whole img folder
 !/assets/img/
+# 5) shared stylesheet + script (extracted from index.html)
+!/assets/css/
+!/assets/js/
