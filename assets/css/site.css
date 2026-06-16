@@ -161,7 +161,6 @@
   .world .wic{flex:0 0 auto;width:62px;height:62px;border-radius:16px;display:grid;place-items:center;background:rgba(217,182,117,.1);border:1px solid var(--line);position:relative;z-index:1}
   .world .wic svg{width:30px;height:30px;stroke:var(--gold);fill:none;stroke-width:1.3}
   .world .wbody{position:relative;z-index:1}
-  .world .wn{font-family:var(--en);font-style:italic;color:var(--gold);font-size:.8rem;letter-spacing:.1em;margin-bottom:6px}
   .world h3{font-size:1.4rem;font-weight:700;margin-bottom:8px}
   .world p{color:var(--ink-soft);font-weight:300;font-size:.96rem;margin-bottom:14px}
   .world .wgo{font-weight:600;font-size:.9rem;color:var(--gold);display:inline-flex;gap:7px;align-items:center}
