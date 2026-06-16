@@ -311,7 +311,9 @@
   /* credibility cards */
   .creds{background:linear-gradient(180deg,var(--t900),var(--t950))}
   .creds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .creds-grid.quals{grid-template-columns:repeat(3,1fr);margin-top:18px}
   .cred{padding:30px 22px;border-radius:16px;text-align:center;background:linear-gradient(180deg,rgba(27,48,80,.4),rgba(13,27,46,.3));border:1px solid var(--line);transition:transform .45s var(--ease),border-color .45s}
+  .cred.alt{padding:24px 22px;background:linear-gradient(180deg,rgba(217,182,117,.06),rgba(27,48,80,.22))}
   .cred:hover{transform:translateY(-6px);border-color:var(--gold)}
   .cred b{display:block;font-size:2rem;font-weight:900;color:var(--gold-bright);font-family:var(--ar);line-height:1.1;margin-bottom:8px}
   .cred.alt b{font-size:1.25rem}
@@ -353,7 +355,7 @@
   .faq-a div{padding:0 26px 22px;line-height:1.85}
   .faq-item.open .faq-a{max-height:360px}
   @media(max-width:900px){.creds-grid{grid-template-columns:repeat(2,1fr)}.qual-grid,.howwork ul{grid-template-columns:1fr}}
-  @media(max-width:560px){.creds-grid{grid-template-columns:1fr}}
+  @media(max-width:560px){.creds-grid,.creds-grid.quals{grid-template-columns:1fr}}
   /* subscribe / lead capture */
   .subscribe{position:relative;text-align:center;background:radial-gradient(80% 120% at 50% 0,rgba(217,182,117,.12),transparent 55%),linear-gradient(180deg,var(--t950),var(--t900));border-top:1px solid var(--line)}
   .subscribe h2{font-family:var(--ar);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:14px}
