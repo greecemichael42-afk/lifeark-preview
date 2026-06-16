@@ -377,3 +377,14 @@ const hdr=document.getElementById('hdr');
       if(!wasOpen) item.classList.add('open');
     });
   });
+
+  // ===== back button: return to the previous same-site page, else home =====
+  document.querySelectorAll('a[data-back]').forEach(a=>{
+    a.addEventListener('click',e=>{
+      let sameSite=false;
+      try{ const ref=document.referrer?new URL(document.referrer):null;
+        sameSite = !!ref && ref.origin===location.origin && ref.pathname!==location.pathname; }catch(_){}
+      if(sameSite){ e.preventDefault(); history.back(); }
+      // otherwise the anchor's href="index.html" navigates home
+    });
+  });
