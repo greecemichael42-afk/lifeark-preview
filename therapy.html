@@ -126,15 +126,29 @@
 
 <main id="main">
 
-<!-- 1) INDIVIDUAL SESSION -->
-<section class="svc sec-a" id="individual">
+<!-- THERAPY SERVICES — accordion cards (long detail folds open in place) -->
+<section class="services" id="services">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div class="kicker">01 · Individual Therapy</div>
-      <h2><span class="lead-ar">الجلسة الفردية في DBT</span><span class="lead-en">The Individual DBT Session</span></h2>
-      <p class="ar-only">ليست مجرد مساحة للكلام — بل مساحة منظّمة تساعدك على فهم ما يجري بداخلك، ولماذا تتكرّر الدوائر المؤلمة نفسها، وكيف تستخدم المهارات في اللحظات الصعبة بدلًا من الاندفاع أو الانسحاب أو إيذاء النفس.</p>
-      <p class="lead-en">Not just a space to talk — a structured space to understand what's happening inside you, why painful patterns repeat, and how to use skills in hard moments instead of impulsivity, withdrawal, or self-harm.</p>
+      <div class="kicker">Our Services</div>
+      <h2><span class="lead-ar">مسارات العلاج الأربعة</span><span class="lead-en">The Four Therapy Paths</span></h2>
+      <p><span class="lead-ar">اختر المسار الأقرب لاحتياجك — اضغط على أي خدمة لتفتح تفاصيلها الكاملة.</span><span class="lead-en">Choose the path closest to your need — tap any service to open its full details.</span></p>
     </div>
+
+    <div class="svc-accordion">
+
+    <!-- 1) INDIVIDUAL SESSION -->
+    <div class="svc-card reveal" id="individual">
+      <button type="button" class="svc-card-head" aria-expanded="false" aria-controls="body-individual">
+        <span class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/></svg></span>
+        <span class="svc-card-tt">
+          <span class="kicker">01 · Individual Therapy</span>
+          <span class="svc-card-title"><span class="lead-ar">الجلسة الفردية في DBT</span><span class="lead-en">The Individual DBT Session</span></span>
+          <span class="svc-card-sub"><span class="lead-ar">ليست مجرد مساحة للكلام — بل مساحة منظّمة تساعدك على فهم ما يجري بداخلك، ولماذا تتكرّر الدوائر المؤلمة، وكيف تستخدم المهارات في اللحظات الصعبة.</span><span class="lead-en">Not just a space to talk — a structured space to understand what's happening inside you, why painful patterns repeat, and how to use skills in hard moments.</span></span>
+        </span>
+        <span class="svc-plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-card-body" id="body-individual"><div class="svc-card-body-inner"><div class="svc-card-pad">
 
     <div class="dsec reveal">
       <h4><span class="lead-ar">كيف تسير الجلسة؟</span><span class="lead-en">How a session flows</span></h4>
@@ -161,18 +175,21 @@
     <p class="dmodal-intro reveal"><span class="lead-ar">الهدف ليس غياب الألم — بل أن تتعلّم قيادة حياتك وتعيش حياة تستحق أن تُعاش، حتى مع وجوده.</span><span class="lead-en">The goal isn't the absence of pain — it's learning to lead your life and live one worth living, even alongside it.</span></p>
 
     <div class="svc-cta reveal"><a href="#book" data-session="الجلسة الفردية" class="btn btn-gold"><span class="lead-ar">احجز جلسة فردية</span><span class="lead-en">Book an Individual Session</span></a></div>
-  </div>
-</section>
-
-<!-- 2) DBT SKILLS GROUP -->
-<section class="svc sec-b" id="group">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="kicker">02 · DBT Skills Group</div>
-      <h2><span class="lead-ar">مجموعة المهارات في DBT</span><span class="lead-en">The DBT Skills Group</span></h2>
-      <p class="ar-only">ليست جلسة فضفضة جماعية ولا مكانًا للحكم على التجارب — بل فصل تدريبي آمن تتعلّم فيه كيف تهدأ، وتفهم مشاعرك، وتطلب احتياجك بوضوح، وتقول «لا» دون ذنب، وتنجو من اللحظات الصعبة دون أن تؤذي نفسك أو علاقاتك.</p>
-      <p class="lead-en">Not a group venting session or a place for judgment — a safe training class to learn how to calm down, understand your emotions, ask clearly, say "no" without guilt, and survive hard moments without harming yourself or your relationships.</p>
+      </div></div></div>
     </div>
+
+    <!-- 2) DBT SKILLS GROUP -->
+    <div class="svc-card reveal" id="group">
+      <button type="button" class="svc-card-head" aria-expanded="false" aria-controls="body-group">
+        <span class="svc-ic"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="10" r="2.6"/><path d="M3 20a6 6 0 0112 0M14.5 20a5 5 0 016.4-4.8"/></svg></span>
+        <span class="svc-card-tt">
+          <span class="kicker">02 · DBT Skills Group</span>
+          <span class="svc-card-title"><span class="lead-ar">مجموعة المهارات في DBT</span><span class="lead-en">The DBT Skills Group</span></span>
+          <span class="svc-card-sub"><span class="lead-ar">فصل تدريبي آمن تتعلّم فيه كيف تهدأ، وتفهم مشاعرك، وتطلب احتياجك بوضوح، وتقول «لا» دون ذنب، وتنجو من اللحظات الصعبة.</span><span class="lead-en">A safe training class to learn how to calm down, understand your emotions, ask clearly, say "no" without guilt, and get through hard moments.</span></span>
+        </span>
+        <span class="svc-plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-card-body" id="body-group"><div class="svc-card-body-inner"><div class="svc-card-pad">
 
     <div class="pay-box reveal" style="text-align:right">
       <div class="pt"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg><span class="lead-ar">تفاصيل المجموعة</span><span class="lead-en">Group details</span></div>
@@ -192,12 +209,33 @@
     </div>
 
     <div class="dsec reveal">
-      <h4><span class="lead-ar">محاور المهارات الأربعة</span><span class="lead-en">The four skill modules</span></h4>
-      <div class="dlist">
-        <div class="di"><span class="num">1</span><div><div class="dt"><span class="lead-ar">اليقظة الذهنية — Mindfulness</span><span class="lead-en">Mindfulness</span></div><div class="dd"><span class="lead-ar">البوابة الأولى بين الشعور والتصرّف — ترى ما يجري بداخلك بوضوح.</span><span class="lead-en">The first gate between feeling and reacting.</span></div></div></div>
-        <div class="di"><span class="num">2</span><div><div class="dt"><span class="lead-ar">تحمّل الضيق — Distress Tolerance</span><span class="lead-en">Distress Tolerance</span></div><div class="dd"><span class="lead-ar">تعبر اللحظة الصعبة بأقل الخسائر دون أن تزيدها سوءًا.</span><span class="lead-en">Getting through a crisis with the least harm.</span></div></div></div>
-        <div class="di"><span class="num">3</span><div><div class="dt"><span class="lead-ar">تنظيم المشاعر — Emotion Regulation</span><span class="lead-en">Emotion Regulation</span></div><div class="dd"><span class="lead-ar">تفهم مشاعرك وتقلّل حدّتها بطريقة صحية — المشاعر رسائل لا عواصف.</span><span class="lead-en">Understand and soften emotions healthily — feelings as messages, not storms.</span></div></div></div>
-        <div class="di"><span class="num">4</span><div><div class="dt"><span class="lead-ar">فعالية العلاقات — Interpersonal Effectiveness</span><span class="lead-en">Interpersonal Effectiveness</span></div><div class="dd"><span class="lead-ar">تطلب ما تحتاجه، وترفض ما يؤذيك، وتحافظ على احترامك لنفسك.</span><span class="lead-en">Ask for what you need, refuse what harms you, keep your self-respect.</span></div></div></div>
+      <h4><span class="lead-ar">محاور المهارات الأربعة — تعريف أكاديمي</span><span class="lead-en">The Four Skill Modules — An Academic Briefing</span></h4>
+      <div class="modules">
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">1</span><b><span class="lead-ar">اليقظة الذهنية — Mindfulness</span><span class="lead-en">Mindfulness</span></b></div>
+          <div class="mod-def"><span class="lead-ar">الانتباه الكامل والمقصود للّحظة الحالية كما هي، دون حكم ودون هروب. هي حجر الأساس في DBT وأصل كل المهارات الأخرى، لأنها تخلق المسافة بين ما تشعر به وما تفعله — فتلاحظ قبل أن تتصرّف.</span><span class="lead-en">Full, intentional attention to the present moment as it is — without judgment or escape. It is the cornerstone of DBT and the root of every other skill, because it creates the space between what you feel and what you do.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">مهارات «ماذا» (الملاحظة، الوصف، المشاركة) و«كيف» (دون حكم، بتركيز واحد، بفاعلية)، وصولًا إلى العقل الحكيم — التوازن بين العقل العقلاني والعقل العاطفي.</span><span class="lead-en">the “what” skills (observe, describe, participate) and “how” skills (non-judgmentally, one-mindfully, effectively), leading to Wise Mind — the balance of reasonable and emotion mind.</span></div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">2</span><b><span class="lead-ar">تحمّل الضيق — Distress Tolerance</span><span class="lead-en">Distress Tolerance</span></b></div>
+          <div class="mod-def"><span class="lead-ar">مهارات النجاة من الأزمات: أن تعبر لحظة ألمٍ أو ضغطٍ شديد دون أن تتصرّف بطريقة تزيد الأمر سوءًا. هدفها ليس حلّ المشكلة، بل احتمالها بأمان حتى تمرّ العاصفة.</span><span class="lead-en">Crisis-survival skills: getting through a moment of intense pain or pressure without acting in ways that make it worse. The goal isn’t to solve the problem, but to tolerate it safely until the storm passes.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">مهارات الأزمة (TIPP، تهدئة الحواس، تشتيت الانتباه، تحسين اللحظة)، والقبول الجذري لِما لا يمكن تغييره.</span><span class="lead-en">crisis skills (TIPP, self-soothing, distraction, IMPROVE the moment) and radical acceptance of what cannot be changed.</span></div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">3</span><b><span class="lead-ar">تنظيم المشاعر — Emotion Regulation</span><span class="lead-en">Emotion Regulation</span></b></div>
+          <div class="mod-def"><span class="lead-ar">مهارات لفهم مشاعرك وتسميتها، وتقليل قابليتك للتأثّر الانفعالي، وخفض حدّة المشاعر المؤلمة وتكرارها. تقوم على مبدأ أن المشاعر معلومات لها وظيفة، لا أعداء تُقمَع.</span><span class="lead-en">Skills to understand and name your emotions, reduce emotional vulnerability, and lower the intensity and frequency of painful emotions — on the principle that emotions are functional information, not enemies to suppress.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">فهم وظيفة المشاعر، التحقّق من الحقائق، الفعل المعاكس، ومهارات تقليل الهشاشة (PLEASE) وبناء التجارب الإيجابية.</span><span class="lead-en">understanding emotions’ function, checking the facts, opposite action, reducing vulnerability (PLEASE), and building positive experiences.</span></div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">4</span><b><span class="lead-ar">فعالية العلاقات — Interpersonal Effectiveness</span><span class="lead-en">Interpersonal Effectiveness</span></b></div>
+          <div class="mod-def"><span class="lead-ar">مهارات إدارة العلاقات: أن تطلب ما تحتاجه وترفض ما لا تريده بوضوح، مع الحفاظ على العلاقة وعلى احترامك لذاتك في الوقت نفسه. توازن بين ثلاثة أهداف: تحقيق الهدف، والعلاقة، واحترام الذات.</span><span class="lead-en">Relationship skills: asking for what you need and saying no clearly, while keeping the relationship and your self-respect at the same time. It balances three goals — the objective, the relationship, and self-respect.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">DEAR MAN (لتحقيق الهدف)، وGIVE (للحفاظ على العلاقة)، وFAST (للحفاظ على احترام الذات).</span><span class="lead-en">DEAR MAN (the objective), GIVE (the relationship), and FAST (self-respect).</span></div>
+        </div>
+
       </div>
     </div>
 
@@ -216,26 +254,50 @@
     </div>
 
     <div class="svc-cta reveal"><a href="#book" data-session="مجموعة مهارات DBT" class="btn btn-gold"><span class="lead-ar">انضم لمجموعة المهارات</span><span class="lead-en">Join the Skills Group</span></a></div>
-  </div>
-</section>
-
-<!-- 3) INTENSIVE WORKSHOPS -->
-<section class="svc sec-a" id="workshops">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="kicker">03 · Intensive Workshops</div>
-      <h2><span class="lead-ar">الورش المكثّفة</span><span class="lead-en">Intensive Workshops</span></h2>
-      <p class="ar-only">تدريب عملي مكثّف على مهارات DBT على مدار أيام، يجمع التعلّم والتطبيق في مساحة واحدة. مناسب لمن يريد دفعة مركّزة وقوية في وقت قصير، سواء كان في بداية رحلته أو يريد ترسيخ ما تعلّمه.</p>
-      <p class="lead-en">Intensive, hands-on DBT skills training over several days, blending learning and practice in one space. Ideal for anyone who wants a focused, powerful boost in a short time — whether starting out or consolidating what they've learned.</p>
+      </div></div></div>
     </div>
 
+    <!-- 3) INTENSIVE WORKSHOPS -->
+    <div class="svc-card reveal" id="workshops">
+      <button type="button" class="svc-card-head" aria-expanded="false" aria-controls="body-workshops">
+        <span class="svc-ic"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>
+        <span class="svc-card-tt">
+          <span class="kicker">03 · Intensive Workshops</span>
+          <span class="svc-card-title"><span class="lead-ar">الورش المكثّفة</span><span class="lead-en">Intensive Workshops</span></span>
+          <span class="svc-card-sub"><span class="lead-ar">تدريب عملي مكثّف على مهارات DBT على مدار أيام، يجمع التعلّم والتطبيق في مساحة واحدة — دفعة مركّزة وقوية في وقت قصير.</span><span class="lead-en">Intensive, hands-on DBT skills training over several days — a focused, powerful boost in a short time.</span></span>
+        </span>
+        <span class="svc-plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-card-body" id="body-workshops"><div class="svc-card-body-inner"><div class="svc-card-pad">
+
     <div class="dsec reveal">
-      <h4><span class="lead-ar">ماذا تتعلّم؟</span><span class="lead-en">What you'll learn</span></h4>
-      <div class="dlist">
-        <div class="di"><span class="num">1</span><div><div class="dt"><span class="lead-ar">اليقظة الذهنية — Mindfulness</span><span class="lead-en">Mindfulness</span></div><div class="dd"><span class="lead-ar">الحضور في اللحظة وملاحظة ما يجري بداخلك قبل التصرّف.</span><span class="lead-en">Being present and noticing what's inside you before reacting.</span></div></div></div>
-        <div class="di"><span class="num">2</span><div><div class="dt"><span class="lead-ar">تحمّل الضيق — Distress Tolerance</span><span class="lead-en">Distress Tolerance</span></div><div class="dd"><span class="lead-ar">عبور اللحظات الصعبة بأقل الخسائر دون أن تزيدها سوءًا.</span><span class="lead-en">Getting through hard moments with the least harm.</span></div></div></div>
-        <div class="di"><span class="num">3</span><div><div class="dt"><span class="lead-ar">تنظيم المشاعر — Emotion Regulation</span><span class="lead-en">Emotion Regulation</span></div><div class="dd"><span class="lead-ar">فهم المشاعر وتقليل حدّتها بطريقة صحية.</span><span class="lead-en">Understanding emotions and softening them healthily.</span></div></div></div>
-        <div class="di"><span class="num">4</span><div><div class="dt"><span class="lead-ar">فعالية العلاقات — Interpersonal Effectiveness</span><span class="lead-en">Interpersonal Effectiveness</span></div><div class="dd"><span class="lead-ar">أن تطلب وترفض وتحافظ على احترامك لنفسك داخل علاقاتك.</span><span class="lead-en">Asking, refusing, and keeping your self-respect in relationships.</span></div></div></div>
+      <h4><span class="lead-ar">ماذا تتعلّم؟ — محاور المهارات الأربعة</span><span class="lead-en">What You'll Learn — The Four Skill Modules</span></h4>
+      <div class="modules">
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">1</span><b><span class="lead-ar">اليقظة الذهنية — Mindfulness</span><span class="lead-en">Mindfulness</span></b></div>
+          <div class="mod-def"><span class="lead-ar">الانتباه الكامل والمقصود للّحظة الحالية كما هي، دون حكم ودون هروب. هي حجر الأساس في DBT وأصل كل المهارات الأخرى، لأنها تخلق المسافة بين ما تشعر به وما تفعله — فتلاحظ قبل أن تتصرّف.</span><span class="lead-en">Full, intentional attention to the present moment as it is — without judgment or escape. It is the cornerstone of DBT and the root of every other skill, because it creates the space between what you feel and what you do.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">مهارات «ماذا» (الملاحظة، الوصف، المشاركة) و«كيف» (دون حكم، بتركيز واحد، بفاعلية)، وصولًا إلى العقل الحكيم — التوازن بين العقل العقلاني والعقل العاطفي.</span><span class="lead-en">the “what” skills (observe, describe, participate) and “how” skills (non-judgmentally, one-mindfully, effectively), leading to Wise Mind — the balance of reasonable and emotion mind.</span></div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">2</span><b><span class="lead-ar">تحمّل الضيق — Distress Tolerance</span><span class="lead-en">Distress Tolerance</span></b></div>
+          <div class="mod-def"><span class="lead-ar">مهارات النجاة من الأزمات: أن تعبر لحظة ألمٍ أو ضغطٍ شديد دون أن تتصرّف بطريقة تزيد الأمر سوءًا. هدفها ليس حلّ المشكلة، بل احتمالها بأمان حتى تمرّ العاصفة.</span><span class="lead-en">Crisis-survival skills: getting through a moment of intense pain or pressure without acting in ways that make it worse. The goal isn’t to solve the problem, but to tolerate it safely until the storm passes.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">مهارات الأزمة (TIPP، تهدئة الحواس، تشتيت الانتباه، تحسين اللحظة)، والقبول الجذري لِما لا يمكن تغييره.</span><span class="lead-en">crisis skills (TIPP, self-soothing, distraction, IMPROVE the moment) and radical acceptance of what cannot be changed.</span></div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">3</span><b><span class="lead-ar">تنظيم المشاعر — Emotion Regulation</span><span class="lead-en">Emotion Regulation</span></b></div>
+          <div class="mod-def"><span class="lead-ar">مهارات لفهم مشاعرك وتسميتها، وتقليل قابليتك للتأثّر الانفعالي، وخفض حدّة المشاعر المؤلمة وتكرارها. تقوم على مبدأ أن المشاعر معلومات لها وظيفة، لا أعداء تُقمَع.</span><span class="lead-en">Skills to understand and name your emotions, reduce emotional vulnerability, and lower the intensity and frequency of painful emotions — on the principle that emotions are functional information, not enemies to suppress.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">فهم وظيفة المشاعر، التحقّق من الحقائق، الفعل المعاكس، ومهارات تقليل الهشاشة (PLEASE) وبناء التجارب الإيجابية.</span><span class="lead-en">understanding emotions’ function, checking the facts, opposite action, reducing vulnerability (PLEASE), and building positive experiences.</span></div>
+        </div>
+
+        <div class="mod">
+          <div class="mod-h"><span class="num">4</span><b><span class="lead-ar">فعالية العلاقات — Interpersonal Effectiveness</span><span class="lead-en">Interpersonal Effectiveness</span></b></div>
+          <div class="mod-def"><span class="lead-ar">مهارات إدارة العلاقات: أن تطلب ما تحتاجه وترفض ما لا تريده بوضوح، مع الحفاظ على العلاقة وعلى احترامك لذاتك في الوقت نفسه. توازن بين ثلاثة أهداف: تحقيق الهدف، والعلاقة، واحترام الذات.</span><span class="lead-en">Relationship skills: asking for what you need and saying no clearly, while keeping the relationship and your self-respect at the same time. It balances three goals — the objective, the relationship, and self-respect.</span></div>
+          <div class="mod-incl"><span class="lbl"><span class="lead-ar">تشمل:</span><span class="lead-en">Includes:</span></span> <span class="lead-ar">DEAR MAN (لتحقيق الهدف)، وGIVE (للحفاظ على العلاقة)، وFAST (للحفاظ على احترام الذات).</span><span class="lead-en">DEAR MAN (the objective), GIVE (the relationship), and FAST (self-respect).</span></div>
+        </div>
+
       </div>
     </div>
 
@@ -256,18 +318,21 @@
     <div class="protect-note reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg><span class="ar-only">المواعيد والقيمة تُحدَّد حسب كل ورشة — تواصل معنا لمعرفة الورشة القادمة وتفاصيلها.</span><span class="lead-en">Dates and fees are set per workshop — contact us for the next workshop and its details.</span></div>
 
     <div class="svc-cta reveal"><a href="#book" data-session="الورش المكثّفة" class="btn btn-gold"><span class="lead-ar">انضم للورشة</span><span class="lead-en">Join the Workshop</span></a></div>
-  </div>
-</section>
-
-<!-- 4) DBT-SUD PROGRAM -->
-<section class="svc sec-b" id="dbt-sud">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="kicker">04 · DBT-SUD Program</div>
-      <h2><span class="lead-ar">برنامج DBT-SUD لعلاج الإدمان</span><span class="lead-en">The DBT-SUD Addiction Program</span></h2>
-      <p class="ar-only">تطبيق متخصص من DBT لمن يعانون من اضطرابات استخدام المواد، خصوصًا حين يرتبط التعاطي بمشاعر شديدة أو اندفاع أو صدمات. ننظر إلى الإدمان كسلوك له وظيفة (محاولة هروب من ألم أو تهدئة شعور) — دون أن نبرّره أو نهوّن من خطورته.</p>
-      <p class="lead-en">A specialized DBT application for substance use disorders — especially when use is tied to intense emotions, impulsivity, or trauma. We see addiction as a behavior with a function (escaping pain, soothing a feeling) — without ever excusing it or downplaying its danger.</p>
+      </div></div></div>
     </div>
+
+    <!-- 4) DBT-SUD PROGRAM -->
+    <div class="svc-card reveal" id="dbt-sud">
+      <button type="button" class="svc-card-head" aria-expanded="false" aria-controls="body-dbt-sud">
+        <span class="svc-ic"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6z"/><path d="M9.6 11.4a1.7 1.7 0 013.1-.5 1.7 1.7 0 013.1.5c0 1.7-2.4 3.1-3.1 3.6-.7-.5-3.1-1.9-3.1-3.6z"/></svg></span>
+        <span class="svc-card-tt">
+          <span class="kicker">04 · DBT-SUD Program</span>
+          <span class="svc-card-title"><span class="lead-ar">برنامج DBT-SUD لعلاج الإدمان</span><span class="lead-en">The DBT-SUD Addiction Program</span></span>
+          <span class="svc-card-sub"><span class="lead-ar">تطبيق متخصص من DBT لاضطرابات استخدام المواد، خصوصًا حين يرتبط التعاطي بمشاعر شديدة أو اندفاع أو صدمات.</span><span class="lead-en">A specialized DBT application for substance use disorders — especially when use is tied to intense emotions, impulsivity, or trauma.</span></span>
+        </span>
+        <span class="svc-plus" aria-hidden="true"></span>
+      </button>
+      <div class="svc-card-body" id="body-dbt-sud"><div class="svc-card-body-inner"><div class="svc-card-pad">
 
     <div class="dsec reveal">
       <h4><span class="lead-ar">الفكرة الأساسية — الامتناع الجدلي</span><span class="lead-en">The core idea — Dialectical Abstinence</span></h4>
@@ -313,6 +378,10 @@
     <div class="protect-note reveal"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/></svg><span class="ar-only">ملاحظة مهمة: بعض الحالات تحتاج تدخلًا طبيًا أو سحب سموم أو علاجًا دوائيًا أو متابعة نفسية متخصصة بالتوازي مع DBT-SUD — خصوصًا في حالات الاعتماد الجسدي أو خطورة الانسحاب أو وجود أفكار انتحارية. البرنامج لا يحل محل العلاج الدوائي عند الحاجة، بل يُستخدم ضمن خطة علاجية شاملة وآمنة.</span><span class="lead-en">Important: some cases need medical detox, medication, or specialized psychiatric follow-up alongside DBT-SUD — especially with physical dependence, withdrawal risk, or suicidality. The program does not replace medical care; it is used within a comprehensive, safe treatment plan.</span></div>
 
     <div class="svc-cta reveal"><a href="#book" data-session="برنامج DBT-SUD" class="btn btn-gold"><span class="lead-ar">انضم للبرنامج</span><span class="lead-en">Join the Program</span></a></div>
+      </div></div></div>
+    </div>
+
+    </div><!-- /.svc-accordion -->
   </div>
 </section>
 

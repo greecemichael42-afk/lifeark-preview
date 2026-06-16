@@ -412,6 +412,34 @@ const hdr=document.getElementById('hdr');
     });
   });
 
+  // ===== service accordion (therapy page — long sections folded into cards that open in place) =====
+  (function(){
+    const cards=[...document.querySelectorAll('.svc-card')];
+    if(!cards.length) return;
+    const HEAD_OFFSET=110;
+    const openCard=(card,scroll)=>{
+      if(!card) return;
+      card.classList.add('open');
+      const h=card.querySelector('.svc-card-head'); if(h) h.setAttribute('aria-expanded','true');
+      card.querySelectorAll('.reveal').forEach(el=>el.classList.add('in')); // ensure folded content is visible
+      if(scroll){ const y=card.getBoundingClientRect().top+scrollY-HEAD_OFFSET; scrollTo({top:y,behavior:'smooth'}); }
+    };
+    const closeCard=(card)=>{ if(!card) return; card.classList.remove('open'); const h=card.querySelector('.svc-card-head'); if(h) h.setAttribute('aria-expanded','false'); };
+    cards.forEach(card=>{
+      const head=card.querySelector('.svc-card-head'); if(!head) return;
+      head.addEventListener('click',()=>{ card.classList.contains('open')?closeCard(card):openCard(card,false); });
+    });
+    // sticky sub-nav + hero "browse the paths" links open and scroll to the matching card
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      const card=document.getElementById(a.getAttribute('href').slice(1));
+      if(card && card.classList.contains('svc-card')){
+        a.addEventListener('click',e=>{ e.preventDefault(); openCard(card,true); if(history.replaceState) history.replaceState(null,'','#'+card.id); });
+      }
+    });
+    // deep-link: open the card named in the URL hash on load
+    if(location.hash.length>1){ const c=document.getElementById(location.hash.slice(1)); if(c && c.classList.contains('svc-card')) openCard(c,true); }
+  })();
+
   // ===== back button: return to the previous same-site page, else home =====
   document.querySelectorAll('a[data-back]').forEach(a=>{
     a.addEventListener('click',e=>{
