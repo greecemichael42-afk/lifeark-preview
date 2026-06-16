@@ -74,6 +74,35 @@ const hdr=document.getElementById('hdr');
         c.addEventListener('pointermove',e=>{ const r=c.getBoundingClientRect(); c.style.setProperty('--mx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%'); c.style.setProperty('--my',((e.clientY-r.top)/r.height*100).toFixed(1)+'%'); });
       });
     }
+
+    // 5) cinematic hero departure — content lifts + fades as you scroll past, for camera-like depth
+    const hero=document.querySelector('.hero');
+    const hInner=hero&&hero.querySelector('.hero-inner');
+    const hCue=hero&&hero.querySelector('.scroll-cue');
+    if(hero && hInner && !reduce){
+      let ticking=false;
+      const upd=()=>{ ticking=false;
+        const h=hero.offsetHeight||innerHeight;
+        const y=Math.min(scrollY,h), p=y/h;
+        hInner.style.transform='translateY('+(y*0.42).toFixed(1)+'px) scale('+(1-p*0.06).toFixed(3)+')';
+        hInner.style.opacity=Math.max(0,1-p*1.35).toFixed(3);
+        if(hCue) hCue.style.opacity=Math.max(0,0.7*(1-p*2.6)).toFixed(3);
+      };
+      addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(upd); } },{passive:true});
+      upd();
+    }
+
+    // 6) 3D tilt on the world cards — they lean toward the cursor for tactile depth
+    if(fine && !reduce){
+      document.querySelectorAll('.world').forEach(c=>{
+        c.addEventListener('pointerenter',()=>{ c.style.transition='transform .12s linear,border-color .5s,box-shadow .5s'; });
+        c.addEventListener('pointermove',e=>{ const r=c.getBoundingClientRect();
+          const rx=((0.5-(e.clientY-r.top)/r.height)*11).toFixed(2), ry=(((e.clientX-r.left)/r.width-0.5)*11).toFixed(2);
+          c.style.transform='perspective(850px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-10px) scale(1.02)';
+        });
+        c.addEventListener('pointerleave',()=>{ c.style.transition=''; c.style.transform=''; });
+      });
+    }
   })();
 
   // ===== subscribe / lead capture =====

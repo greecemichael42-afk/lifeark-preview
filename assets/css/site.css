@@ -46,12 +46,17 @@
   .wband.w1{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 70'%3E%3Cpath d='M0 35 Q150 10 300 35 T600 35 T900 35 T1200 35' fill='none' stroke='%23D9B675' stroke-width='2'/%3E%3C/svg%3E");opacity:.45;animation:waveShift 16s linear infinite}
   .wband.w2{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 70'%3E%3Cpath d='M0 40 Q150 64 300 40 T600 40 T900 40 T1200 40' fill='none' stroke='%23F0CE8E' stroke-width='1.5'/%3E%3C/svg%3E");opacity:.28;animation:waveShift 24s linear infinite reverse}
   @keyframes waveShift{from{background-position:0 center}to{background-position:1200px center}}
-  .reveal{opacity:0;transform:translateY(38px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+  .reveal{opacity:0;transform:translateY(42px) scale(.984);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease)}
   .reveal.in{opacity:1;transform:none}
   .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.2s}.reveal.d3{transition-delay:.3s}.reveal.d4{transition-delay:.4s}.reveal.d5{transition-delay:.5s}.reveal.d6{transition-delay:.6s}
   .reveal.from-l{transform:translateX(-46px)}.reveal.from-r{transform:translateX(46px)}.reveal.zoom{transform:scale(.92)}
   .reveal.from-l.in,.reveal.from-r.in,.reveal.zoom.in{transform:none}
-  @media(prefers-reduced-motion:reduce){.blob,.mote,.float-a,.float-b,.spin-slow,.spin-rev,.wband,.lighthouse,.brand .logo,.mediaband .mb-bg{animation:none!important}.motes{display:none}}
+  /* cinematic focus-pull on section titles — the heading block resolves from soft to sharp */
+  .sec-head.reveal{filter:blur(16px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease),filter 1.2s var(--ease)}
+  .sec-head.reveal.in{filter:blur(0)}
+  @media(prefers-reduced-motion:reduce){.blob,.mote,.float-a,.float-b,.spin-slow,.spin-rev,.wband,.lighthouse,.brand .logo,.mediaband .mb-bg,.hero-photo,.hero-video{animation:none!important}.motes{display:none}
+    .sec-head.reveal{filter:none!important}
+    .hero .eyebrow,.hero h1,.hero .tagline,.hero p.lede,.hero-cta,.hero-stats{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;position:relative;z-index:2}
   .en-sub{display:block;font-family:var(--en);font-style:italic;color:var(--gold);letter-spacing:.04em;opacity:.85;font-weight:500}
@@ -94,8 +99,10 @@
   /* hero */
   .hero{position:relative;min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;background:linear-gradient(180deg,var(--navy-950),var(--navy-900))}
   /* cinematic Noah's Ark — static photo is the fallback, the video plays on top */
-  .hero-photo{position:absolute;inset:0;z-index:1;background-position:center center;background-size:cover;background-repeat:no-repeat}
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:1}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-position:center center;background-size:cover;background-repeat:no-repeat;animation:kenburns 34s ease-in-out infinite alternate;will-change:transform}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:1;animation:kenburns 34s ease-in-out infinite alternate;will-change:transform}
+  /* slow cinematic camera push on the hero footage (Ken Burns) */
+  @keyframes kenburns{0%{transform:scale(1.04) translate3d(0,0,0)}100%{transform:scale(1.2) translate3d(-2%,-1.6%,0)}}
   .hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:
     linear-gradient(180deg,rgba(7,14,26,.88) 0%,rgba(7,14,26,.5) 26%,rgba(7,14,26,.26) 50%,rgba(7,14,26,.46) 78%,rgba(7,14,26,.94) 100%)}
   @keyframes breathe{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
@@ -121,7 +128,7 @@
   .hero.in p.lede{animation:rise 1s var(--ease) .85s forwards}
   .hero.in .hero-cta{animation:rise 1s var(--ease) 1.05s forwards}
   .hero.in .hero-stats{animation:rise 1s var(--ease) 1.25s forwards}
-  @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes rise{from{opacity:0;transform:translateY(36px) scale(.97);filter:blur(18px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
 
   /* cinematic Noah's Ark scene at the base of the hero */
   .ark-scene{position:absolute;left:0;right:0;bottom:0;height:clamp(200px,34vh,360px);z-index:2;pointer-events:none;overflow:hidden}
@@ -578,15 +585,18 @@
     background:radial-gradient(90% 120% at 50% 0,rgba(217,182,117,.16),transparent 58%),linear-gradient(180deg,var(--navy-950),var(--navy-900))}
   /* staggered entrance for the sub-page hero — transition-based, so content
      snaps visible the moment JS adds .in even if motion is throttled/disabled */
-  .page-hero .page-hero-top,.page-hero .crumb,.page-hero .kicker,.page-hero h1,.page-hero .ph-lede,.page-hero .hero-cta{opacity:0;transform:translateY(24px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+  .page-hero .page-hero-top,.page-hero .crumb,.page-hero .kicker,.page-hero h1,.page-hero .ph-lede,.page-hero .hero-cta{opacity:0;transform:translateY(24px);transition:opacity .85s var(--ease),transform .85s var(--ease),filter .95s var(--ease)}
   .page-hero.in .page-hero-top,.page-hero.in .crumb,.page-hero.in .kicker,.page-hero.in h1,.page-hero.in .ph-lede,.page-hero.in .hero-cta{opacity:1;transform:none}
+  /* focus-pull on the sub-page title, matching the homepage hero */
+  .page-hero h1{filter:blur(14px)}
+  .page-hero.in h1{filter:blur(0)}
   .page-hero.in .page-hero-top{transition-delay:.05s}
   .page-hero.in .crumb{transition-delay:.14s}
   .page-hero.in .kicker{transition-delay:.24s}
   .page-hero.in h1{transition-delay:.34s}
   .page-hero.in .ph-lede{transition-delay:.48s}
   .page-hero.in .hero-cta{transition-delay:.62s}
-  @media(prefers-reduced-motion:reduce){.page-hero .page-hero-top,.page-hero .crumb,.page-hero .kicker,.page-hero h1,.page-hero .ph-lede,.page-hero .hero-cta{opacity:1;transform:none;transition:none}}
+  @media(prefers-reduced-motion:reduce){.page-hero .page-hero-top,.page-hero .crumb,.page-hero .kicker,.page-hero h1,.page-hero .ph-lede,.page-hero .hero-cta{opacity:1;transform:none;transition:none}.page-hero h1{filter:none!important}}
   .crumb{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:18px;font-size:.84rem;color:var(--ink-mute)}
   .crumb a{color:var(--ink-soft);transition:color .3s}
   .crumb a:hover{color:var(--gold)}
