@@ -47,6 +47,9 @@ const hdr=document.getElementById('hdr');
     document.documentElement.dir=en?'ltr':'rtl';
     body.dataset.lang=en?'en':'ar'; body.dir=en?'ltr':'rtl'; body.lang=en?'en':'ar';
     if(langBtn) langBtn.textContent=en?'AR':'EN';
+    // swap placeholders + <select> option labels that carry per-language data attributes
+    document.querySelectorAll('[data-ph-ar]').forEach(el=>{ const v=en?el.getAttribute('data-ph-en'):el.getAttribute('data-ph-ar'); if(v!=null) el.setAttribute('placeholder',v); });
+    document.querySelectorAll('option[data-ar]').forEach(o=>{ const v=en?o.getAttribute('data-en'):o.getAttribute('data-ar'); if(v!=null) o.textContent=v; });
   };
   let savedLang='ar';
   try{ savedLang=localStorage.getItem('lifeark-lang')||'ar'; }catch(_){}
@@ -192,6 +195,27 @@ const hdr=document.getElementById('hdr');
     });
   }
 
+  // ===== program details modal — 3 cards (overview) + full-detail views =====
+  const programsModal=document.getElementById('programsModal');
+  if(programsModal){
+    const overview=document.getElementById('programsOverview');
+    const detail=document.getElementById('programsDetail');
+    const fulls=programsModal.querySelectorAll('.prog-full');
+    const card=programsModal.querySelector('.modal-card');
+    const showOverview=()=>{ detail.style.display='none'; overview.style.display='block'; if(card) card.scrollTop=0; };
+    const showDetail=(key)=>{ overview.style.display='none'; detail.style.display='block'; fulls.forEach(f=>{ f.style.display=(f.getAttribute('data-prog')===key)?'block':'none'; }); if(card) card.scrollTop=0; };
+    const openP=()=>{ showOverview(); programsModal.classList.add('open'); document.body.style.overflow='hidden'; };
+    const closeP=()=>{ programsModal.classList.remove('open'); document.body.style.overflow=''; };
+    document.querySelectorAll('[data-programs]').forEach(b=>{ b.addEventListener('click',e=>{ e.preventDefault(); openP(); }); });
+    programsModal.querySelectorAll('[data-prog-detail]').forEach(b=>{ b.addEventListener('click',()=>showDetail(b.getAttribute('data-prog-detail'))); });
+    programsModal.querySelectorAll('[data-prog-back]').forEach(b=>{ b.addEventListener('click',showOverview); });
+    document.getElementById('programsClose').addEventListener('click',closeP);
+    programsModal.addEventListener('click',e=>{ if(e.target===programsModal) closeP(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape' && programsModal.classList.contains('open')) closeP(); });
+    // any register button (in a card or a detail view) -> hide this modal; the global [data-enroll] handler opens the enrollment modal
+    programsModal.querySelectorAll('[data-enroll]').forEach(b=>{ b.addEventListener('click',()=>programsModal.classList.remove('open')); });
+  }
+
   // ===== Order modal (manual payment — v1) =====
   const orderModal=document.getElementById('orderModal');
   if(orderModal){
@@ -276,27 +300,27 @@ const hdr=document.getElementById('hdr');
 
       <form class="order-form" id="sessionForm" novalidate>
         <div><label><span class="lead-ar">الاسم بالكامل</span><span class="lead-en">Full name</span></label>
-          <input type="text" name="fullname" required autocomplete="name" placeholder="الاسم بالكامل" /></div>
+          <input type="text" name="fullname" required autocomplete="name" placeholder="الاسم بالكامل" data-ph-ar="الاسم بالكامل" data-ph-en="Full name" /></div>
         <div><label><span class="lead-ar">رقم واتساب</span><span class="lead-en">WhatsApp number</span></label>
           <input type="tel" name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="+20 1XX XXX XXXX" /></div>
         <div><label><span class="lead-ar">البريد الإلكتروني</span><span class="lead-en">Email</span></label>
           <input type="email" name="email" required autocomplete="email" placeholder="example@email.com" /></div>
         <div><label><span class="lead-ar">نوع الجلسة</span><span class="lead-en">Session type</span></label>
           <select name="stype" required>
-            <option value="الجلسة الفردية / Individual Session">الجلسة الفردية / Individual Session</option>
-            <option value="مجموعة مهارات DBT / DBT Skills Group">مجموعة مهارات DBT / DBT Skills Group</option>
-            <option value="الورش المكثّفة / Intensive Workshop">الورش المكثّفة / Intensive Workshop</option>
-            <option value="برنامج DBT-SUD / DBT-SUD Program">برنامج DBT-SUD / DBT-SUD Program</option>
-            <option value="لست متأكدًا / Not sure">لست متأكدًا / Not sure</option>
+            <option value="الجلسة الفردية / Individual Session" data-ar="الجلسة الفردية" data-en="Individual Session">الجلسة الفردية</option>
+            <option value="مجموعة مهارات DBT / DBT Skills Group" data-ar="مجموعة مهارات DBT" data-en="DBT Skills Group">مجموعة مهارات DBT</option>
+            <option value="الورش المكثّفة / Intensive Workshop" data-ar="الورش المكثّفة" data-en="Intensive Workshop">الورش المكثّفة</option>
+            <option value="برنامج DBT-SUD / DBT-SUD Program" data-ar="برنامج DBT-SUD" data-en="DBT-SUD Program">برنامج DBT-SUD</option>
+            <option value="لست متأكدًا / Not sure" data-ar="لست متأكدًا" data-en="Not sure">لست متأكدًا</option>
           </select></div>
         <div><label><span class="lead-ar">شكل الجلسة</span><span class="lead-en">Format</span></label>
           <select name="format" required>
-            <option value="أونلاين / Online">أونلاين / Online</option>
-            <option value="حضوري / In-person">حضوري / In-person</option>
-            <option value="لست متأكدًا / Not sure">لست متأكدًا / Not sure</option>
+            <option value="أونلاين / Online" data-ar="أونلاين" data-en="Online">أونلاين</option>
+            <option value="حضوري / In-person" data-ar="حضوري" data-en="In-person">حضوري</option>
+            <option value="لست متأكدًا / Not sure" data-ar="لست متأكدًا" data-en="Not sure">لست متأكدًا</option>
           </select></div>
         <div><label><span class="lead-ar">سبب الحجز باختصار</span><span class="lead-en">Brief reason for booking</span></label>
-          <textarea name="reason" placeholder="سطر أو سطرين يكفّوا"></textarea></div>
+          <textarea name="reason" placeholder="سطر أو سطرين يكفّوا" data-ph-ar="سطر أو سطرين يكفّوا" data-ph-en="A line or two is enough"></textarea></div>
         <div class="sp-sat"><span class="lead-ar">📅 بعد ما تكمّل بياناتك وتضغط «اختر ميعادك واحجز»، هيفتحلك الكاليندر تختار منه اليوم والساعة وتأكّد الحجز — وبياناتك هتكون متعبّاة تلقائيًا.</span><span class="lead-en">📅 After filling your details and clicking "Pick your time & book", a calendar opens to choose the day & time and confirm — your details are prefilled automatically.</span></div>
         <div class="sp-sat" style="margin-top:8px"><span class="lead-ar">السبت مخصّص للجلسات الحضورية بالعيادة — للحجز الحضوري كلّمنا على واتساب.</span><span class="lead-en">Saturdays are reserved for in-person sessions at the clinic — message us on WhatsApp to book in person.</span></div>
 
@@ -332,6 +356,9 @@ const hdr=document.getElementById('hdr');
   </div>
 </div>`);
   }
+  // the booking modal is injected AFTER the initial applyLang() ran — re-apply the current
+  // language so its placeholders + <select> option labels swap correctly on first load.
+  applyLang(body.dataset.lang||savedLang||'ar');
   const sessModal=document.getElementById('sessionModal');
   if(sessModal){
     const sf=document.getElementById('sessionForm');

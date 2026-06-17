@@ -369,7 +369,13 @@
         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span><span class="lead-ar">المنهج الكامل لمهارات DBT الأربعة بالعربية</span><span class="lead-en">The full four-module DBT skills curriculum, in Arabic</span></span></li>
         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span><span class="lead-ar">جلسات إشراف ومناقشة حالات حيّة</span><span class="lead-en">Live supervision and case-consultation sessions</span></span></li>
         <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg><span><span class="lead-ar">أدلة وأوراق عمل تدريبية جاهزة للتطبيق</span><span class="lead-en">Ready-to-use handouts and worksheets</span></span></li>      </ul>
-      <a href="#book" class="btn btn-ghost"><span class="lead-ar">اطلب تفاصيل البرنامج</span><span class="lead-en">Request Program Details</span></a>
+      <button type="button" class="prog-teaser" data-programs aria-label="اطلب تفاصيل البرامج التدريبية">
+        <span class="pt-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2l9 5-9 5-9-5 9-5z"/><path d="M3 12l9 5 9-5M3 17l9 5 9-5"/></svg></span>
+        <span class="pt-body">
+          <span class="pt-title"><span class="lead-ar">اطلب تفاصيل البرامج التدريبية</span><span class="lead-en">See the training programs</span></span>
+        </span>
+        <span class="pt-arrow" aria-hidden="true"><span class="lead-ar">‹</span><span class="lead-en">›</span></span>
+      </button>
     </div>
     <div class="pros-card reveal d2">
       <div class="badge">Next Cohort · Cairo &amp; Online</div>
@@ -391,7 +397,7 @@
       <p class="msub"><span class="lead-ar">سيبلنا بياناتك ونرجعلك بتفاصيل الدفعة القادمة، المواعيد، والمحتوى — والمقاعد محدودة.</span><span class="lead-en">Leave your details and we'll get back with the next cohort's dates, content, and seats — places are limited.</span></p>
       <form class="order-form" id="enrollForm" novalidate>
         <div><label><span class="lead-ar">الاسم بالكامل</span><span class="lead-en">Full name</span></label>
-          <input type="text" name="fullname" required autocomplete="name" placeholder="الاسم بالكامل" /></div>
+          <input type="text" name="fullname" required autocomplete="name" placeholder="الاسم بالكامل" data-ph-ar="الاسم بالكامل" data-ph-en="Full name" /></div>
         <div class="duo">
           <div><label><span class="lead-ar">البريد الإلكتروني</span><span class="lead-en">Email</span></label>
             <input type="email" name="email" required autocomplete="email" placeholder="example@email.com" /></div>
@@ -401,36 +407,36 @@
         <div class="duo">
           <div><label><span class="lead-ar">صفتك المهنية</span><span class="lead-en">Profession</span></label>
             <select name="profession" required>
-              <option value="طبيب نفسي / Psychiatrist">طبيب نفسي / Psychiatrist</option>
-              <option value="أخصائي نفسي / Psychologist">أخصائي نفسي / Psychologist</option>
-              <option value="معالج نفسي / Psychotherapist">معالج نفسي / Psychotherapist</option>
-              <option value="أخصائي اجتماعي / Social worker">أخصائي اجتماعي / Social worker</option>
-              <option value="طالب دراسات عليا / Postgrad student">طالب دراسات عليا / Postgrad</option>
-              <option value="أخرى / Other">أخرى / Other</option>
+              <option value="طبيب نفسي / Psychiatrist" data-ar="طبيب نفسي" data-en="Psychiatrist">طبيب نفسي</option>
+              <option value="أخصائي نفسي / Psychologist" data-ar="أخصائي نفسي" data-en="Psychologist">أخصائي نفسي</option>
+              <option value="معالج نفسي / Psychotherapist" data-ar="معالج نفسي" data-en="Psychotherapist">معالج نفسي</option>
+              <option value="أخصائي اجتماعي / Social worker" data-ar="أخصائي اجتماعي" data-en="Social worker">أخصائي اجتماعي</option>
+              <option value="طالب دراسات عليا / Postgrad student" data-ar="طالب دراسات عليا" data-en="Postgrad student">طالب دراسات عليا</option>
+              <option value="أخرى / Other" data-ar="أخرى" data-en="Other">أخرى</option>
             </select></div>
           <div><label><span class="lead-ar">سنوات الخبرة</span><span class="lead-en">Experience</span></label>
             <select name="experience" required>
-              <option value="أقل من سنة / Under 1 year">أقل من سنة / Under 1 yr</option>
-              <option value="1–3 سنوات / 1–3 years">1–3 سنوات / 1–3 yrs</option>
-              <option value="3–7 سنوات / 3–7 years">3–7 سنوات / 3–7 yrs</option>
-              <option value="أكثر من 7 سنوات / 7+ years">أكثر من 7 سنوات / 7+ yrs</option>
+              <option value="أقل من سنة / Under 1 year" data-ar="أقل من سنة" data-en="Under 1 year">أقل من سنة</option>
+              <option value="1–3 سنوات / 1–3 years" data-ar="1–3 سنوات" data-en="1–3 years">1–3 سنوات</option>
+              <option value="3–7 سنوات / 3–7 years" data-ar="3–7 سنوات" data-en="3–7 years">3–7 سنوات</option>
+              <option value="أكثر من 7 سنوات / 7+ years" data-ar="أكثر من 7 سنوات" data-en="7+ years">أكثر من 7 سنوات</option>
             </select></div>
         </div>
         <div><label><span class="lead-ar">خبرتك السابقة مع DBT</span><span class="lead-en">Prior DBT experience</span></label>
           <select name="dbt_level" required>
-            <option value="لا توجد خبرة سابقة / None">لا توجد خبرة سابقة / None</option>
-            <option value="قرأت أو اطّلعت عنه / Read about it">قرأت أو اطّلعت عنه / Read about it</option>
-            <option value="حضرت تدريبًا قبل كده / Attended a training">حضرت تدريبًا قبل كده / Attended a training</option>
-            <option value="بطبّقه حاليًا مع حالات / Currently practicing">بطبّقه حاليًا مع حالات / Practicing</option>
+            <option value="لا توجد خبرة سابقة / None" data-ar="لا توجد خبرة سابقة" data-en="None">لا توجد خبرة سابقة</option>
+            <option value="قرأت أو اطّلعت عنه / Read about it" data-ar="قرأت أو اطّلعت عنه" data-en="Read about it">قرأت أو اطّلعت عنه</option>
+            <option value="حضرت تدريبًا قبل كده / Attended a training" data-ar="حضرت تدريبًا قبل كده" data-en="Attended a training">حضرت تدريبًا قبل كده</option>
+            <option value="بطبّقه حاليًا مع حالات / Currently practicing" data-ar="بطبّقه حاليًا مع حالات" data-en="Currently practicing">بطبّقه حاليًا مع حالات</option>
           </select></div>
         <div><label><span class="lead-ar">الشكل المفضّل للتدريب</span><span class="lead-en">Preferred format</span></label>
           <select name="format" required>
-            <option value="حضوري — القاهرة / In-person (Cairo)">حضوري — القاهرة / In-person</option>
-            <option value="أونلاين / Online">أونلاين / Online</option>
-            <option value="أيٌّ منهما / Either">أيٌّ منهما يناسبني / Either</option>
+            <option value="حضوري — القاهرة / In-person (Cairo)" data-ar="حضوري — القاهرة" data-en="In-person (Cairo)">حضوري — القاهرة</option>
+            <option value="أونلاين / Online" data-ar="أونلاين" data-en="Online">أونلاين</option>
+            <option value="أيٌّ منهما / Either" data-ar="أيٌّ منهما يناسبني" data-en="Either works">أيٌّ منهما يناسبني</option>
           </select></div>
         <div><label><span class="lead-ar">هدفك من التدريب</span><span class="lead-en">Your goal</span></label>
-          <textarea name="goal" placeholder="إيه اللي تحب توصله من التدريب؟ (اختياري)"></textarea></div>
+          <textarea name="goal" placeholder="إيه اللي تحب توصله من التدريب؟ (اختياري)" data-ph-ar="إيه اللي تحب توصله من التدريب؟ (اختياري)" data-ph-en="What do you hope to get from the training? (optional)"></textarea></div>
         <button class="btn btn-gold" type="submit"><span class="lead-ar">أرسل التسجيل</span><span class="lead-en">Submit registration</span></button>
         <p class="req-hint ar-only">هنبعتلك تفاصيل الدفعة القادمة على الإيميل والواتساب.</p>
         <p class="req-hint lead-en">We'll send the next cohort's details to your email and WhatsApp.</p>
@@ -442,6 +448,184 @@
       <p class="ar-only">وصلنا طلبك. هنتواصل معاك قريب بكل تفاصيل تدريب DBT للمتخصصين — الدفعة القادمة، المواعيد، والمحتوى.</p>
       <p class="lead-en">We've got your request. We'll reach out soon with the full DBT professional-training details — next cohort, schedule, and content.</p>
     </div>
+  </div>
+</div>
+
+<!-- PROGRAM DETAILS MODAL — 3 training tracks (overview + full-detail views) -->
+<div class="modal" id="programsModal" role="dialog" aria-modal="true" aria-labelledby="programsTitle">
+  <div class="modal-card modal-wide">
+    <button type="button" class="modal-close" id="programsClose" aria-label="إغلاق">&times;</button>
+
+    <div id="programsOverview">
+      <div class="kicker">DBT Professional Training</div>
+      <h3 id="programsTitle"><span class="lead-ar">تفاصيل برامج التدريب</span><span class="lead-en">Training Program Details</span></h3>
+      <p class="msub"><span class="lead-ar">ثلاثة مسارات تدريبية للمتخصصين — اختر اللي يناسب ممارستك، وادخل على «التفاصيل الكاملة» لكل مسار.</span><span class="lead-en">Three professional training tracks — choose what fits your practice, and open the full details of each.</span></p>
+      <div class="prog-cards">
+
+        <div class="prog-card">
+          <div class="prog-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0116 0"/></svg></div>
+          <h4><span class="lead-ar">تدريب DBT الفردي</span><span class="lead-en">Individual DBT</span></h4>
+          <p class="prog-tag"><span class="lead-ar">تقديم DBT كعلاج متكامل — من صياغة الحالة لخطة العلاج وإدارة الأزمات.</span><span class="lead-en">Deliver DBT as a complete treatment — from case formulation to treatment planning and crisis management.</span></p>
+          <ul>
+            <li><span class="lead-ar">بنية الجلسة الفردية وتسلسل الأهداف العلاجية</span><span class="lead-en">Structuring the individual session &amp; target hierarchies</span></li>
+            <li><span class="lead-ar">تحليل السلسلة، حل المشكلات، والتحقق</span><span class="lead-en">Chain analysis, problem-solving &amp; validation</span></li>
+            <li><span class="lead-ar">مراحل العلاج الأربعة من الأمان إلى المعنى</span><span class="lead-en">The four stages — from safety to meaning</span></li>
+            <li><span class="lead-ar">مخاطر الانتحار وبروتوكول الأزمات</span><span class="lead-en">Suicide risk &amp; the crisis protocol</span></li>
+          </ul>
+          <div class="prog-actions">
+            <button type="button" class="prog-more" data-prog-detail="individual"><span class="lead-ar">لمعرفة تفاصيل أكثر ›</span><span class="lead-en">Full details ›</span></button>
+            <button type="button" class="btn btn-gold btn-sm" data-enroll><span class="lead-ar">سجّل اهتمامك</span><span class="lead-en">Register interest</span></button>
+          </div>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg></div>
+          <h4><span class="lead-ar">تدريب مهارات DBT</span><span class="lead-en">DBT Skills</span></h4>
+          <p class="prog-tag"><span class="lead-ar">تتعلّم الوحدات الأربعة وتقدر تدرّبها وتدير جروب المهارات.</span><span class="lead-en">Master the four modules and learn to teach them and run a skills group.</span></p>
+          <ul>
+            <li><span class="lead-ar">اليقظة الذهنية وتحمّل الضيق</span><span class="lead-en">Mindfulness &amp; Distress Tolerance</span></li>
+            <li><span class="lead-ar">تنظيم المشاعر وفعالية العلاقات</span><span class="lead-en">Emotion Regulation &amp; Interpersonal Effectiveness</span></li>
+            <li><span class="lead-ar">بنية الجروب والتدريب العملي والواجبات</span><span class="lead-en">Group structure, hands-on practice &amp; homework</span></li>
+            <li><span class="lead-ar">تعميم المهارات في الحياة اليومية</span><span class="lead-en">Generalizing skills to daily life</span></li>
+          </ul>
+          <div class="prog-actions">
+            <button type="button" class="prog-more" data-prog-detail="skills"><span class="lead-ar">لمعرفة تفاصيل أكثر ›</span><span class="lead-en">Full details ›</span></button>
+            <button type="button" class="btn btn-gold btn-sm" data-enroll><span class="lead-ar">سجّل اهتمامك</span><span class="lead-en">Register interest</span></button>
+          </div>
+        </div>
+
+        <div class="prog-card">
+          <div class="prog-ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg></div>
+          <h4><span class="lead-ar">تدريب DBT-SUD</span><span class="lead-en">DBT-SUD</span></h4>
+          <p class="prog-tag"><span class="lead-ar">تطبيق DBT المتخصص لاضطرابات استخدام المواد والإدمان.</span><span class="lead-en">The specialized DBT application for substance-use disorders.</span></p>
+          <ul>
+            <li><span class="lead-ar">الامتناع الجدلي والتعامل مع الزلّات</span><span class="lead-en">Dialectical abstinence &amp; handling slips</span></li>
+            <li><span class="lead-ar">حالات العقل: الإدمان · النظيف · الصافي</span><span class="lead-en">States of mind: Addict · Clean · Clear</span></li>
+            <li><span class="lead-ar">الرغبة الشديدة، المحفزات، وحرق الجسور</span><span class="lead-en">Cravings, triggers &amp; burning bridges</span></li>
+            <li><span class="lead-ar">وحدات التدريب الثمانية</span><span class="lead-en">The eight training modules</span></li>
+          </ul>
+          <div class="prog-actions">
+            <button type="button" class="prog-more" data-prog-detail="sud"><span class="lead-ar">لمعرفة تفاصيل أكثر ›</span><span class="lead-en">Full details ›</span></button>
+            <button type="button" class="btn btn-gold btn-sm" data-enroll><span class="lead-ar">سجّل اهتمامك</span><span class="lead-en">Register interest</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="programsDetail" style="display:none">
+      <button type="button" class="prog-back" data-prog-back><span class="lead-ar">‹ رجوع لكل البرامج</span><span class="lead-en">‹ Back to all programs</span></button>
+
+      <div class="prog-full" data-prog="individual" style="display:none">
+        <div class="kicker">Individual DBT</div>
+        <h3><span class="lead-ar">تدريب العلاج الجدلي السلوكي الفردي</span><span class="lead-en">Individual DBT</span></h3>
+        <p class="msub"><span class="lead-ar">الجلسة الفردية مش مجرد مساحة كلام — لكنها مساحة منظمة تساعد الشخص يفهم اللي بيحصل جواه، ويعرف ليه بيكرّر نفس الدوائر المؤلمة، ويتعلّم يستخدم المهارات في اللحظات الصعبة بدل الاندفاع أو الانسحاب أو إيذاء النفس.</span><span class="lead-en">The individual session is not just a space to talk — it is a structured space that helps a person understand what's happening inside, why they repeat the same painful cycles, and how to use skills in hard moments instead of impulsivity, withdrawal, or self-harm.</span></p>
+        <div class="pf-block">
+          <h4><span class="lead-ar">بنية الجلسة الفردية</span><span class="lead-en">How the individual session is structured</span></h4>
+          <ol>
+            <li><span class="lead-ar"><b>مراجعة الأسبوع وبطاقة المتابعة (Diary Card):</b> المشاعر الشديدة، الاندفاعات، الغضب، إيذاء النفس، الأفكار الانتحارية، استخدام المواد، ومشاكل العلاقات.</span><span class="lead-en"><b>Week review &amp; Diary Card:</b> intense emotions, urges, anger, self-harm, suicidal thoughts, substance use &amp; relationship problems.</span></li>
+            <li><span class="lead-ar"><b>تحديد أولوية الجلسة:</b> السلوكيات المهددة للحياة ← المعطّلة للعلاج ← المضعِفة لجودة الحياة ← بناء مهارات جديدة.</span><span class="lead-en"><b>Setting the session priority:</b> life-threatening → therapy-interfering → quality-of-life behaviors → building new skills.</span></li>
+            <li><span class="lead-ar"><b>تحليل السلوك (Chain Analysis):</b> تفكيك السلوك خطوة بخطوة — اللي حصل قبله، الفكرة، الشعور، الإحساس الجسدي، ولحظة الاندفاع. الهدف الفهم مش اللوم.</span><span class="lead-en"><b>Chain analysis:</b> unpacking the behavior step by step — antecedents, thought, feeling, body sensation, the moment of impulse. The goal is understanding, not blame.</span></li>
+            <li><span class="lead-ar"><b>بناء بدائل وحلول عملية:</b> أنهي مهارة مناسبة للحظة دي — تهدئة جسدية، تنظيم مشاعر، مهارة علاقات، أو خطة أمان.</span><span class="lead-en"><b>Building practical alternatives:</b> which skill fits this moment — physical soothing, emotion regulation, an interpersonal skill, or a safety plan.</span></li>
+            <li><span class="lead-ar"><b>تطبيق المهارات على الواقع:</b> واجب أو تدريب أسبوعي واضح ينقل المهارة من الجلسة للحياة.</span><span class="lead-en"><b>Applying skills to real life:</b> a clear weekly assignment that carries the skill from the session into daily life.</span></li>
+            <li><span class="lead-ar"><b>إنهاء الجلسة بخطة واضحة:</b> تلخيص الفهم، المهارة اللي هتُستخدم، والخطة العملية للجلسة الجاية.</span><span class="lead-en"><b>Ending with a clear plan:</b> summarizing the insight, the skill to use, and the plan until the next session.</span></li>
+          </ol>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">مراحل العلاج الأربعة في DBT</span><span class="lead-en">The four stages of DBT treatment</span></h4>
+          <ol>
+            <li><span class="lead-ar"><b>من فقدان السيطرة إلى السيطرة السلوكية:</b> الأمان والاستقرار أولًا — تقليل السلوكيات المهددة للحياة والمعطّلة للعلاج والمدمّرة لجودة الحياة، وبناء مهارات بديلة.</span><span class="lead-en"><b>From loss of control to behavioral control:</b> safety first — reducing life-threatening, therapy-interfering &amp; quality-of-life-destroying behaviors, and building alternative skills.</span></li>
+            <li><span class="lead-ar"><b>من المعاناة الصامتة إلى اختبار المشاعر بوعي:</b> الاقتراب الآمن من الصدمة والخزي والألم المخزّن، وتقليل التجنب العاطفي.</span><span class="lead-en"><b>From silent suffering to experiencing emotion with awareness:</b> safely approaching trauma, shame &amp; stored pain, and reducing emotional avoidance.</span></li>
+            <li><span class="lead-ar"><b>بناء حياة تستحق أن تُعاش:</b> العلاقات، احترام الذات، القيم، الأهداف الواقعية، والمعنى الشخصي.</span><span class="lead-en"><b>Building a life worth living:</b> relationships, self-respect, values, realistic goals &amp; personal meaning.</span></li>
+            <li><span class="lead-ar"><b>المعنى والامتلاء والاتصال الأعمق:</b> مرحلة اختيارية لمن يبحث عن معنى أعمق، حرية داخلية، وسلام.</span><span class="lead-en"><b>Meaning, fulfillment &amp; deeper connection:</b> an optional stage for those seeking deeper meaning, inner freedom &amp; peace.</span></li>
+          </ol>
+        </div>
+        <button type="button" class="btn btn-gold" data-enroll style="justify-content:center"><span class="lead-ar">سجّل اهتمامك في التدريب الفردي</span><span class="lead-en">Register your interest</span></button>
+      </div>
+
+      <div class="prog-full" data-prog="skills" style="display:none">
+        <div class="kicker">DBT Skills</div>
+        <h3><span class="lead-ar">تدريب مهارات DBT</span><span class="lead-en">DBT Skills Training</span></h3>
+        <p class="msub"><span class="lead-ar">جروب المهارات مساحة تدريبية منظمة (مش فضفضة جماعية ولا مكان للحكم) — أشبه بفصل تدريبي آمن يتعلّم فيه الشخص يهدأ، يفهم مشاعره، يطلب احتياجاته بوضوح، يقول «لا» بدون ذنب، وينجو من اللحظات الصعبة دون ما يؤذي نفسه أو علاقاته.</span><span class="lead-en">The skills group is a structured training space — not a venting circle and not a place for judgment. It's a safe class where a person learns to settle, understand their feelings, ask for what they need clearly, say "no" without guilt, and survive hard moments without harming themselves or their relationships.</span></p>
+        <div class="pf-block">
+          <h4><span class="lead-ar">ما الذي يحدث داخل الجروب؟</span><span class="lead-en">What happens inside the group</span></h4>
+          <ol>
+            <li><span class="lead-ar"><b>تمرين يقظة ذهنية</b> في البداية — الرجوع للحظة الحالية بدل الانجراف مع الأفكار والمشاعر.</span><span class="lead-en"><b>A mindfulness exercise</b> to begin — returning to the present instead of being swept away by thoughts and feelings.</span></li>
+            <li><span class="lead-ar"><b>مراجعة الواجب الأسبوعي:</b> إيه اللي نجح، إيه اللي كان صعب، وإمتى احتاج الشخص المهارة.</span><span class="lead-en"><b>Reviewing the weekly homework:</b> what worked, what was hard, and when the skill was needed.</span></li>
+            <li><span class="lead-ar"><b>تعليم مهارة جديدة</b> بطريقة عملية مبسّطة — مش معلومة نظرية، لكن «إزاي أستخدمها وأنا غضبان أو مرفوض؟».</span><span class="lead-en"><b>Teaching a new skill</b> in a simple, practical way — not theory, but "how do I use it when I'm angry or rejected?"</span></li>
+            <li><span class="lead-ar"><b>أمثلة وتمارين عملية:</b> مواقف واقعية، تمارين كتابة، ومواقف تمثيلية.</span><span class="lead-en"><b>Examples &amp; practical exercises:</b> real situations, writing tasks &amp; role-plays.</span></li>
+            <li><span class="lead-ar"><b>واجب أسبوعي للتطبيق</b> ينقل المهارة من الجلسة للبيت، ومن الفهم للفعل.</span><span class="lead-en"><b>A weekly assignment</b> that carries the skill from the session home, from understanding to action.</span></li>
+          </ol>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">المحاور الأربعة</span><span class="lead-en">The four skill modules</span></h4>
+          <ul>
+            <li><span class="lead-ar"><b>اليقظة الذهنية:</b> الحضور في اللحظة وملاحظة الأفكار والمشاعر دون الاندفاع وراءها — البوابة الأولى بين الشعور والتصرف.</span><span class="lead-en"><b>Mindfulness:</b> being present and noticing thoughts &amp; feelings without acting on them — the first gateway between feeling and action.</span></li>
+            <li><span class="lead-ar"><b>تحمّل الضيق:</b> عبور اللحظات الصعبة دون ما نزيدها سوءًا — «أنا أتألم، لكني مش محتاج أدمّر نفسي عشان أهرب من الألم».</span><span class="lead-en"><b>Distress Tolerance:</b> getting through hard moments without making them worse — "I'm in pain, but I don't need to destroy myself to escape it."</span></li>
+            <li><span class="lead-ar"><b>تنظيم المشاعر:</b> فهم المشاعر، تقليل حدّتها، وتغيير ما يمكن تغييره بطريقة صحية — تصبح المشاعر رسائل تُفهم لا عواصف تقود الحياة.</span><span class="lead-en"><b>Emotion Regulation:</b> understanding emotions, lowering their intensity, and changing what can be changed — emotions become messages to read, not storms that run your life.</span></li>
+            <li><span class="lead-ar"><b>فعالية العلاقات:</b> أطلب اللي محتاجه، أرفض اللي يؤذيني، أحافظ على احترامي لنفسي، وأبني علاقة دون ما أختفي فيها أو أحارب طول الوقت.</span><span class="lead-en"><b>Interpersonal Effectiveness:</b> ask for what you need, refuse what harms you, keep your self-respect, and build relationships without disappearing or constantly fighting.</span></li>
+          </ul>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">لمن يناسب جروب المهارات؟</span><span class="lead-en">Who the skills group suits</span></h4>
+          <ul>
+            <li><span class="lead-ar">مشاعر شديدة وصعبة السيطرة، أو اندفاع في الكلام والقرارات والعلاقات.</span><span class="lead-en">Intense, hard-to-control emotions, or impulsivity in words, decisions &amp; relationships.</span></li>
+            <li><span class="lead-ar">إيذاء النفس أو أفكار انتحارية (مع ضرورة متابعة فردية مناسبة عند وجود خطورة).</span><span class="lead-en">Self-harm or suicidal thoughts (with appropriate individual follow-up when risk is present).</span></li>
+            <li><span class="lead-ar">علاقات متوترة أو خوف شديد من الهجر، غضب شديد أو انفجارات عاطفية.</span><span class="lead-en">Tense relationships or intense fear of abandonment, severe anger or emotional outbursts.</span></li>
+            <li><span class="lead-ar">شعور مزمن بالفراغ أو الخزي، أو صعوبة في تنظيم الحياة اليومية.</span><span class="lead-en">Chronic emptiness or shame, or difficulty organizing daily life.</span></li>
+            <li><span class="lead-ar">إدمان أو سلوكيات هروبية ضمن خطة علاجية مناسبة.</span><span class="lead-en">Addiction or escape behaviors, within a suitable treatment plan.</span></li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-gold" data-enroll style="justify-content:center"><span class="lead-ar">سجّل اهتمامك في تدريب المهارات</span><span class="lead-en">Register your interest</span></button>
+      </div>
+
+      <div class="prog-full" data-prog="sud" style="display:none">
+        <div class="kicker">DBT-SUD</div>
+        <h3><span class="lead-ar">برنامج DBT-SUD لعلاج الإدمان</span><span class="lead-en">DBT for Substance Use Disorders</span></h3>
+        <p class="msub"><span class="lead-ar">تطبيق متخصص من DBT للأشخاص اللي عندهم اضطرابات استخدام المواد، خصوصًا لما التعاطي مرتبط بمشاعر شديدة، اندفاع، صدمات، أو صعوبة مزمنة في تنظيم الانفعال. بنفهم الإدمان كسلوك له وظيفة — مش «ضعف إرادة» — بس من غير ما نبرّره أو نخفّف من خطورته.</span><span class="lead-en">A specialized DBT application for people with substance-use disorders — especially when use is tied to intense emotions, impulsivity, trauma, or chronic emotion dysregulation. We understand addiction as a behavior with a function — not "weak willpower" — without ever excusing it or downplaying its danger.</span></p>
+        <div class="pf-block">
+          <h4><span class="lead-ar">الفكرة الأساسية: الامتناع الجدلي</span><span class="lead-en">The core idea: Dialectical Abstinence</span></h4>
+          <p><span class="lead-ar">الجمع بين التزام قوي بالامتناع الكامل، واستعداد واقعي للتعامل مع الزلّة لو حصلت — من غير انهيار ولا جلد ذات، ومن غير ما الزلّة تتحوّل لانتكاسة كاملة. السؤال وقتها مش «ليه فشلت؟» بل «إيه اللي حصل؟ وإيه المهارة اللي غابت؟ وإزاي نرجع بسرعة لطريق التعافي؟».</span><span class="lead-en">Holding a strong commitment to full abstinence together with a realistic readiness to handle a slip if it happens — without collapse or self-blame, and without letting a slip become a full relapse. The question is not "why did you fail?" but "what happened? which skill was missing? and how do we return to recovery fast?"</span></p>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">وحدات التدريب الثمانية</span><span class="lead-en">The eight training modules</span></h4>
+          <ol>
+            <li><span class="lead-ar">تعريف DBT-SUD واختلافه عن DBT القياسي.</span><span class="lead-en">Defining DBT-SUD and how it differs from standard DBT.</span></li>
+            <li><span class="lead-ar">اتخاذ القرار: إمتى نطبّق DBT-SUD.</span><span class="lead-en">Deciding when to implement DBT-SUD.</span></li>
+            <li><span class="lead-ar">نموذج العلاج ومرحلة ما قبل العلاج.</span><span class="lead-en">The treatment model &amp; the pre-treatment stage.</span></li>
+            <li><span class="lead-ar">مستهدفات العلاج وطريق العقل الصافي.</span><span class="lead-en">Treatment targets &amp; the path to Clear Mind.</span></li>
+            <li><span class="lead-ar">استراتيجيات التعلّق والعلاجات المساعدة وفحوصات الكشف عن المواد.</span><span class="lead-en">Attachment strategies, auxiliary treatments &amp; drug screening.</span></li>
+            <li><span class="lead-ar">التدريب على المهارات السبع للتعامل مع أزمة الإدمان.</span><span class="lead-en">Skills training: seven skills for the addiction crisis.</span></li>
+            <li><span class="lead-ar">تحليل السلسلة والاستراتيجيات الأسلوبية والتصديق.</span><span class="lead-en">Chain analysis, stylistic strategies &amp; validation.</span></li>
+            <li><span class="lead-ar">معالجة السلوكيات المتداخلة مع العلاج (بما فيها الكذب).</span><span class="lead-en">Managing therapy-interfering behaviors (including lying).</span></li>
+          </ol>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">حالات العقل في الإدمان</span><span class="lead-en">States of mind in addiction</span></h4>
+          <ul>
+            <li><span class="lead-ar"><b>عقل الإدمان (Addict Mind):</b> التفكير والسلوك تحت تأثير الرغبة، والعقل يبرّر («مرة واحدة مش هتفرق»، «محدش هيعرف»).</span><span class="lead-en"><b>Addict Mind:</b> thinking and behavior under the pull of craving, with the mind justifying ("one time won't matter", "no one will know").</span></li>
+            <li><span class="lead-ar"><b>العقل النظيف (Clean Mind):</b> امتناع لكن بثقة زائدة تنسى خطورة الطريق («أنا بقيت أقوى من الإدمان»).</span><span class="lead-en"><b>Clean Mind:</b> abstinent but over-confident, forgetting how risky the path is ("I'm stronger than addiction now").</span></li>
+            <li><span class="lead-ar"><b>العقل الصافي (Clear Mind):</b> الهدف — ممتنع لكن يقظ، متعافٍ لكن غير مغرور، يقطع طرق التعاطي ويبني طرقًا جديدة للحياة.</span><span class="lead-en"><b>Clear Mind:</b> the goal — abstinent yet alert, recovering yet not arrogant; closing routes to use and building new routes to life.</span></li>
+          </ul>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">مهارات خاصة بالإدمان</span><span class="lead-en">Addiction-specific skills</span></h4>
+          <ul>
+            <li><span class="lead-ar"><b>حرق الجسور:</b> تصعيب الوصول للتعاطي (الابتعاد عن الأماكن، قطع مصادر المادة، إخبار أشخاص داعمين).</span><span class="lead-en"><b>Burning Bridges:</b> making access to use harder (avoiding places, cutting supply sources, telling supportive people).</span></li>
+            <li><span class="lead-ar"><b>بناء جسور جديدة:</b> أماكن آمنة، أشخاص داعمون، أنشطة بديلة، ومصادر متعة غير مؤذية.</span><span class="lead-en"><b>Building New Bridges:</b> safe places, supportive people, alternative activities &amp; non-harmful sources of pleasure.</span></li>
+            <li><span class="lead-ar"><b>التعزيز المجتمعي والتمرد البديل:</b> بيئة تجعل الامتناع أكثر مكافأة، وإعادة توجيه روح التمرد بأمان.</span><span class="lead-en"><b>Community Reinforcement &amp; Alternate Rebellion:</b> an environment that rewards abstinence, and redirecting rebellion safely.</span></li>
+            <li><span class="lead-ar"><b>الإنكار التكيّفي:</b> التركيز على الامتناع «اللحظة دي، النهاردة» بدل حمل العمر كله مرة واحدة.</span><span class="lead-en"><b>Adaptive Denial:</b> focusing on abstaining "right now, today" instead of carrying a lifetime all at once.</span></li>
+          </ul>
+        </div>
+        <div class="pf-block">
+          <h4><span class="lead-ar">لمن يناسب DBT-SUD؟</span><span class="lead-en">Who DBT-SUD suits</span></h4>
+          <p><span class="lead-ar">الأشخاص اللي عندهم اضطراب استخدام مواد مع واحد أو أكثر من: مشاعر شديدة، اندفاع، تاريخ إيذاء نفس أو أفكار انتحارية، اضطراب الشخصية الحدية أو سمات قريبة، علاقات غير مستقرة، صدمات، أو انتكاسات متكررة رغم المحاولات السابقة.</span><span class="lead-en">People with a substance-use disorder plus one or more of: intense emotions, impulsivity, a history of self-harm or suicidal thoughts, BPD or related traits, unstable relationships, trauma, or repeated relapses despite previous attempts.</span></p>
+        </div>
+        <p class="pf-note"><span class="lead-ar"><b>ملاحظة مهمة:</b> بعض الحالات تحتاج تدخّلًا طبيًا أو سحب سموم أو علاجًا دوائيًا بالتوازي — DBT-SUD لا يحل محل الطب، لكنه برنامج علاجي سلوكي مهاري ضمن خطة شاملة وآمنة.</span><span class="lead-en"><b>Important note:</b> some cases need parallel medical detox or medication — DBT-SUD does not replace medical care; it is a behavioral-skills program within a comprehensive, safe plan.</span></p>
+        <button type="button" class="btn btn-gold" data-enroll style="justify-content:center"><span class="lead-ar">سجّل اهتمامك في DBT-SUD</span><span class="lead-en">Register your interest</span></button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -518,8 +702,8 @@
     <p class="ar-only">اشترك لتصلك مهارة عملية كل فترة، وأول خبر بكل كتاب جديد أو حلقة جديدة من «في الصالة». بلا إزعاج، وبلا رسائل مزعجة.</p>
     <p class="lead-en">Subscribe for a practical skill now and then, plus first word on every new book and «Fel Sala» episode. No clutter, no spam.</p>
     <form class="sub-form" id="subForm" novalidate>
-      <input type="text" name="name" autocomplete="name" placeholder="اسمك (اختياري)" aria-label="الاسم" />
-      <input type="email" name="email" required autocomplete="email" placeholder="بريدك الإلكتروني" aria-label="البريد الإلكتروني" />
+      <input type="text" name="name" autocomplete="name" placeholder="اسمك (اختياري)" data-ph-ar="اسمك (اختياري)" data-ph-en="Your name (optional)" aria-label="الاسم" />
+      <input type="email" name="email" required autocomplete="email" placeholder="بريدك الإلكتروني" data-ph-ar="بريدك الإلكتروني" data-ph-en="Your email" aria-label="البريد الإلكتروني" />
       <button class="btn btn-gold" type="submit"><span class="lead-ar">اشترك</span><span class="lead-en">Subscribe</span></button>
     </form>
     <p class="sub-done" id="subDone"><span class="lead-ar">تم! وصلنا اشتراكك — أهلًا بك على المركب 🌊</span><span class="lead-en">Done! You're aboard 🌊</span></p>
