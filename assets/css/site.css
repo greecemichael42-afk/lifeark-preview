@@ -367,6 +367,8 @@
   .sub-form button{flex:0 0 auto;cursor:pointer}
   .sub-note{font-size:.82rem;color:var(--ink-mute);margin-top:14px}
   .sub-done{color:var(--gold-bright);font-weight:600;font-size:1.15rem;padding:16px;display:none}
+  .order-form .duo{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  @media(max-width:520px){.order-form .duo{grid-template-columns:1fr}}
   /* order modal */
   .modal{position:fixed;inset:0;z-index:200;display:none;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;background:rgba(4,9,18,.78);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px)}
   .modal.open{display:flex;animation:mfade .35s var(--ease)}

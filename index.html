@@ -376,10 +376,74 @@
       <div class="price"><span class="lead-ar">التسجيل مفتوح</span><span class="lead-en">Enrollment Open</span></div>
       <div class="meta ar-only">١٢ أسبوع · حضوري وأونلاين · مقاعد محدودة</div>
       <div class="meta lead-en">12 weeks · In-person &amp; online · Limited seats</div>
-      <a href="#book" class="btn btn-gold" style="width:100%;justify-content:center"><span class="lead-ar">سجّل اهتمامك</span><span class="lead-en">Register Interest</span></a>
+      <button type="button" class="btn btn-gold" data-enroll style="width:100%;justify-content:center"><span class="lead-ar">سجّل اهتمامك</span><span class="lead-en">Register Interest</span></button>
     </div>
   </div>
 </section>
+
+<!-- PROFESSIONALS ENROLLMENT MODAL -->
+<div class="modal" id="enrollModal" role="dialog" aria-modal="true" aria-labelledby="enrollTitle">
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="enrollClose" aria-label="إغلاق">&times;</button>
+    <div id="enrollView">
+      <div class="kicker">DBT Professional Training</div>
+      <h3 id="enrollTitle"><span class="lead-ar">سجّل اهتمامك بتدريب DBT</span><span class="lead-en">Register your interest — DBT Training</span></h3>
+      <p class="msub"><span class="lead-ar">سيبلنا بياناتك ونرجعلك بتفاصيل الدفعة القادمة، المواعيد، والمحتوى — والمقاعد محدودة.</span><span class="lead-en">Leave your details and we'll get back with the next cohort's dates, content, and seats — places are limited.</span></p>
+      <form class="order-form" id="enrollForm" novalidate>
+        <div><label><span class="lead-ar">الاسم بالكامل</span><span class="lead-en">Full name</span></label>
+          <input type="text" name="fullname" required autocomplete="name" placeholder="الاسم بالكامل" /></div>
+        <div class="duo">
+          <div><label><span class="lead-ar">البريد الإلكتروني</span><span class="lead-en">Email</span></label>
+            <input type="email" name="email" required autocomplete="email" placeholder="example@email.com" /></div>
+          <div><label><span class="lead-ar">رقم واتساب</span><span class="lead-en">WhatsApp</span></label>
+            <input type="tel" name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="+20 1XX XXX XXXX" /></div>
+        </div>
+        <div class="duo">
+          <div><label><span class="lead-ar">صفتك المهنية</span><span class="lead-en">Profession</span></label>
+            <select name="profession" required>
+              <option value="طبيب نفسي / Psychiatrist">طبيب نفسي / Psychiatrist</option>
+              <option value="أخصائي نفسي / Psychologist">أخصائي نفسي / Psychologist</option>
+              <option value="معالج نفسي / Psychotherapist">معالج نفسي / Psychotherapist</option>
+              <option value="أخصائي اجتماعي / Social worker">أخصائي اجتماعي / Social worker</option>
+              <option value="طالب دراسات عليا / Postgrad student">طالب دراسات عليا / Postgrad</option>
+              <option value="أخرى / Other">أخرى / Other</option>
+            </select></div>
+          <div><label><span class="lead-ar">سنوات الخبرة</span><span class="lead-en">Experience</span></label>
+            <select name="experience" required>
+              <option value="أقل من سنة / Under 1 year">أقل من سنة / Under 1 yr</option>
+              <option value="1–3 سنوات / 1–3 years">1–3 سنوات / 1–3 yrs</option>
+              <option value="3–7 سنوات / 3–7 years">3–7 سنوات / 3–7 yrs</option>
+              <option value="أكثر من 7 سنوات / 7+ years">أكثر من 7 سنوات / 7+ yrs</option>
+            </select></div>
+        </div>
+        <div><label><span class="lead-ar">خبرتك السابقة مع DBT</span><span class="lead-en">Prior DBT experience</span></label>
+          <select name="dbt_level" required>
+            <option value="لا توجد خبرة سابقة / None">لا توجد خبرة سابقة / None</option>
+            <option value="قرأت أو اطّلعت عنه / Read about it">قرأت أو اطّلعت عنه / Read about it</option>
+            <option value="حضرت تدريبًا قبل كده / Attended a training">حضرت تدريبًا قبل كده / Attended a training</option>
+            <option value="بطبّقه حاليًا مع حالات / Currently practicing">بطبّقه حاليًا مع حالات / Practicing</option>
+          </select></div>
+        <div><label><span class="lead-ar">الشكل المفضّل للتدريب</span><span class="lead-en">Preferred format</span></label>
+          <select name="format" required>
+            <option value="حضوري — القاهرة / In-person (Cairo)">حضوري — القاهرة / In-person</option>
+            <option value="أونلاين / Online">أونلاين / Online</option>
+            <option value="أيٌّ منهما / Either">أيٌّ منهما يناسبني / Either</option>
+          </select></div>
+        <div><label><span class="lead-ar">هدفك من التدريب</span><span class="lead-en">Your goal</span></label>
+          <textarea name="goal" placeholder="إيه اللي تحب توصله من التدريب؟ (اختياري)"></textarea></div>
+        <button class="btn btn-gold" type="submit"><span class="lead-ar">أرسل التسجيل</span><span class="lead-en">Submit registration</span></button>
+        <p class="req-hint ar-only">هنبعتلك تفاصيل الدفعة القادمة على الإيميل والواتساب.</p>
+        <p class="req-hint lead-en">We'll send the next cohort's details to your email and WhatsApp.</p>
+      </form>
+    </div>
+    <div class="order-done" id="enrollDone">
+      <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h3><span class="lead-ar">تم تسجيل اهتمامك 🌊</span><span class="lead-en">Your interest is registered 🌊</span></h3>
+      <p class="ar-only">وصلنا طلبك. هنتواصل معاك قريب بكل تفاصيل تدريب DBT للمتخصصين — الدفعة القادمة، المواعيد، والمحتوى.</p>
+      <p class="lead-en">We've got your request. We'll reach out soon with the full DBT professional-training details — next cohort, schedule, and content.</p>
+    </div>
+  </div>
+</div>
 
 <!-- PARTNERS -->
 <section class="partners" id="partners">

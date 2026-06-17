@@ -139,7 +139,7 @@ const hdr=document.getElementById('hdr');
   // 📧 NEWSLETTER LIST — to build a real mailing list: create a FREE form at formspree.io
   // (or MailerLite / Mailchimp), then paste its endpoint URL between the quotes below,
   // e.g. "https://formspree.io/f/xxxxxxx". Until then, subscribers reach you via WhatsApp.
-  const SUBSCRIBE_ENDPOINT = ""; // <-- paste your Formspree / MailerLite endpoint here
+  const SUBSCRIBE_ENDPOINT = "https://formsubmit.co/ajax/Life.ark.psych@gmail.com"; // Formsubmit → emails subscriptions to Life Ark
   const subForm=document.getElementById('subForm');
   if(subForm){
     subForm.addEventListener('submit',async (e)=>{
@@ -149,7 +149,7 @@ const hdr=document.getElementById('hdr');
       if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ subForm.email.focus(); subForm.email.style.borderColor='#e0894f'; return; }
       const done=()=>{ subForm.style.display='none'; const d=document.getElementById('subDone'); if(d) d.style.display='block'; };
       if(SUBSCRIBE_ENDPOINT){
-        try{ await fetch(SUBSCRIBE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name,email})}); }catch(_){}
+        fetch(SUBSCRIBE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:name||'-',email,_replyto:email,_subject:'اشتراك جديد — ابقَ على المركب (Life Ark)',_template:'table',_captcha:'false'})}).catch(()=>{});
         done();
       } else {
         // interim: deliver the lead to Life Ark via WhatsApp
@@ -157,6 +157,38 @@ const hdr=document.getElementById('hdr');
         window.open('https://wa.me/201124239057?text='+msg,'_blank');
         done();
       }
+    });
+  }
+
+  // ===== professionals enrollment modal — "Enrollment Open" (Formsubmit -> email) =====
+  const enrollModal=document.getElementById('enrollModal');
+  if(enrollModal){
+    const ef=document.getElementById('enrollForm');
+    const eView=document.getElementById('enrollView');
+    const eDone=document.getElementById('enrollDone');
+    const openE=()=>{ Array.from(ef.elements).forEach(el=>{ el.style.borderColor=''; }); eView.style.display='block'; eDone.style.display='none'; enrollModal.classList.add('open'); document.body.style.overflow='hidden'; const c=enrollModal.querySelector('.modal-card'); if(c) c.scrollTop=0; };
+    const closeE=()=>{ enrollModal.classList.remove('open'); document.body.style.overflow=''; };
+    document.querySelectorAll('[data-enroll]').forEach(b=>{ b.addEventListener('click',e=>{ e.preventDefault(); openE(); }); });
+    document.getElementById('enrollClose').addEventListener('click',closeE);
+    enrollModal.addEventListener('click',e=>{ if(e.target===enrollModal) closeE(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape' && enrollModal.classList.contains('open')) closeE(); });
+    Array.from(ef.elements).forEach(el=>{ const clr=()=>{ el.style.borderColor=''; }; el.addEventListener('input',clr); el.addEventListener('change',clr); });
+    ef.addEventListener('submit',async (e)=>{
+      e.preventDefault();
+      const name=(ef.fullname.value||'').trim();
+      const email=(ef.email.value||'').trim();
+      const wa=(ef.whatsapp.value||'').trim();
+      const bad=(el)=>{ el.focus(); el.style.borderColor='#e0894f'; };
+      if(!name){ bad(ef.fullname); return; }
+      if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ bad(ef.email); return; }
+      if(!wa){ bad(ef.whatsapp); return; }
+      fetch("https://formsubmit.co/ajax/Life.ark.psych@gmail.com",{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
+        name, email, whatsapp:wa,
+        profession:ef.profession.value, experience:ef.experience.value, dbt_experience:ef.dbt_level.value, format:ef.format.value,
+        goal:(ef.goal.value||'').trim()||'-',
+        _replyto:email, _subject:'تسجيل اهتمام — تدريب DBT للمتخصصين (Life Ark)', _template:'table', _captcha:'false'
+      })}).catch(()=>{});
+      eView.style.display='none'; eDone.style.display='block'; const c=enrollModal.querySelector('.modal-card'); if(c) c.scrollTop=0;
     });
   }
 
