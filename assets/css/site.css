@@ -291,7 +291,7 @@
   .pros ul{list-style:none;margin:24px 0 34px}
   .pros li{display:flex;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(217,182,117,.08);color:var(--ink-soft);font-weight:300}
   .pros li svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.5;flex:0 0 auto;margin-top:5px}
-  .pros-card{padding:40px;border-radius:20px;background:linear-gradient(160deg,rgba(27,48,80,.6),rgba(13,27,46,.4));border:1px solid var(--line);text-align:center}
+  .pros-card{padding:40px;border-radius:20px;background:linear-gradient(160deg,rgba(40,66,104,.6),rgba(11,23,40,.42));border:1px solid rgba(217,182,117,.28);box-shadow:0 18px 38px -24px rgba(0,0,0,.72),0 3px 10px -6px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);text-align:center}
   .pros-card .badge{font-family:var(--en);font-style:italic;color:var(--gold);letter-spacing:.14em;font-size:.85rem;margin-bottom:16px}
   .pros-card .price{font-size:2.2rem;font-weight:900;color:var(--ink)}
   .pros-card .meta{color:var(--ink-soft);font-weight:300;margin:14px 0 26px;font-size:.95rem}
@@ -312,7 +312,7 @@
   .creds{background:linear-gradient(180deg,var(--t900),var(--t950))}
   .creds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
   .creds-grid.quals{grid-template-columns:repeat(3,1fr);margin-top:18px}
-  .cred{padding:30px 22px;border-radius:16px;text-align:center;background:linear-gradient(180deg,rgba(27,48,80,.4),rgba(13,27,46,.3));border:1px solid var(--line);transition:transform .45s var(--ease),border-color .45s}
+  .cred{padding:30px 22px;border-radius:16px;text-align:center;background:linear-gradient(180deg,rgba(38,62,98,.5),rgba(11,23,40,.32));border:1px solid rgba(217,182,117,.26);box-shadow:0 14px 30px -22px rgba(0,0,0,.66),inset 0 1px 0 rgba(255,255,255,.05);transition:transform .45s var(--ease),border-color .45s,box-shadow .45s}
   .cred.alt{padding:24px 22px;background:linear-gradient(180deg,rgba(217,182,117,.06),rgba(27,48,80,.22))}
   .cred:hover{transform:translateY(-6px);border-color:var(--gold)}
   .cred b{display:block;font-size:2rem;font-weight:900;color:var(--gold-bright);font-family:var(--ar);line-height:1.1;margin-bottom:8px}
@@ -372,7 +372,7 @@
   .modal-card.modal-wide{max-width:980px}
   .prog-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px;text-align:start}
   @media(max-width:760px){.prog-cards{grid-template-columns:1fr}}
-  .prog-card{position:relative;display:flex;flex-direction:column;padding:22px 20px;border-radius:16px;background:linear-gradient(165deg,rgba(27,48,80,.5),rgba(13,27,46,.35));border:1px solid var(--line)}
+  .prog-card{position:relative;display:flex;flex-direction:column;padding:22px 20px;border-radius:16px;background:linear-gradient(165deg,rgba(40,66,104,.5),rgba(11,23,40,.36));border:1px solid rgba(217,182,117,.26);box-shadow:0 14px 30px -22px rgba(0,0,0,.66),inset 0 1px 0 rgba(255,255,255,.05)}
   .prog-card .prog-ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(217,182,117,.1);border:1px solid rgba(217,182,117,.3);margin-bottom:14px}
   .prog-card .prog-ic svg{width:24px;height:24px;stroke:var(--gold-bright);fill:none;stroke-width:1.7}
   .prog-card h4{font-size:1.12rem;color:var(--gold-bright);margin-bottom:8px;font-family:var(--ar)}
@@ -698,10 +698,10 @@
   /* ===== service accordion cards (therapy) — long content folded into cards that open in place ===== */
   .services{background:linear-gradient(180deg,var(--t900),var(--t950))}
   .svc-accordion{display:flex;flex-direction:column;gap:16px;max-width:880px;margin:0 auto}
-  .svc-card{scroll-margin-top:120px;position:relative;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(27,48,80,.4),rgba(13,27,46,.28));transition:border-color .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease)}
-  .svc-card.open{border-color:rgba(217,182,117,.5);box-shadow:0 26px 54px -30px rgba(217,182,117,.34)}
+  .svc-card{scroll-margin-top:120px;position:relative;border:1px solid rgba(217,182,117,.28);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(38,62,98,.55),rgba(11,23,40,.34));box-shadow:0 18px 38px -24px rgba(0,0,0,.72),0 3px 10px -6px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);transition:border-color .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease)}
+  .svc-card.open{border-color:rgba(217,182,117,.5);box-shadow:0 32px 58px -26px rgba(217,182,117,.34),0 12px 26px -16px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.09)}
   .svc-card-head{width:100%;display:flex;align-items:center;gap:18px;text-align:right;background:none;border:0;cursor:pointer;padding:22px 24px;color:inherit;font-family:inherit}
-  .svc-ic{flex:0 0 auto;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:rgba(217,182,117,.1);border:1px solid var(--line);transition:background .4s,border-color .4s}
+  .svc-ic{flex:0 0 auto;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(160deg,rgba(217,182,117,.20),rgba(217,182,117,.06));border:1px solid rgba(217,182,117,.30);box-shadow:0 6px 14px -8px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.10);transition:background .4s,border-color .4s}
   .svc-ic svg{width:26px;height:26px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
   .svc-card.open .svc-ic,.svc-card-head:hover .svc-ic{background:rgba(217,182,117,.18);border-color:var(--gold)}
   .svc-card-tt{flex:1 1 auto;min-width:0}
@@ -722,7 +722,7 @@
   @media(max-width:560px){.svc-card-head{gap:13px;padding:18px 16px}.svc-ic{width:46px;height:46px}.svc-card-pad{padding:2px 16px 26px}}
   /* compact book teaser (homepage — full detail lives on books.html) */
   .books-mini{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:860px;margin:0 auto}
-  .book-mini{display:flex;gap:18px;align-items:center;padding:20px;border-radius:18px;background:linear-gradient(160deg,rgba(27,48,80,.5),rgba(13,27,46,.34));border:1px solid var(--line);transition:transform .45s var(--ease),border-color .45s,box-shadow .45s}
+  .book-mini{display:flex;gap:18px;align-items:center;padding:20px;border-radius:18px;background:linear-gradient(160deg,rgba(40,66,104,.55),rgba(11,23,40,.36));border:1px solid rgba(217,182,117,.28);box-shadow:0 18px 38px -24px rgba(0,0,0,.72),0 3px 10px -6px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06);transition:transform .45s var(--ease),border-color .45s,box-shadow .45s}
   .book-mini:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 24px 46px -28px rgba(217,182,117,.4)}
   .book-mini .bm-cover{flex:0 0 auto;width:92px;aspect-ratio:2/3;border-radius:9px;overflow:hidden;border:1px solid var(--line);box-shadow:0 16px 30px -16px rgba(0,0,0,.7)}
   .book-mini .bm-cover img{width:100%;height:100%;object-fit:cover;display:block}
@@ -791,7 +791,7 @@
 
   /* the nine symptoms — numbered cards */
   .symptoms{display:flex;flex-direction:column;gap:14px;margin:28px 0 12px}
-  .symptom{display:flex;gap:18px;align-items:flex-start;padding:20px 22px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(27,48,80,.34),rgba(13,27,46,.22));transition:border-color .4s var(--ease),transform .4s var(--ease)}
+  .symptom{display:flex;gap:18px;align-items:flex-start;padding:20px 22px;border:1px solid rgba(217,182,117,.26);border-radius:16px;background:linear-gradient(180deg,rgba(34,56,90,.42),rgba(11,23,40,.26));box-shadow:0 14px 30px -22px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);transition:border-color .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease)}
   .symptom:hover{border-color:rgba(217,182,117,.4);transform:translateX(-4px)}
   .symptom .sx-n{flex:0 0 auto;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;font-family:var(--en);font-weight:800;font-size:1.3rem;color:var(--gold-bright);background:rgba(217,182,117,.1);border:1px solid var(--line)}
   .symptom .sx-c{flex:1 1 auto;min-width:0}
@@ -823,7 +823,7 @@
 
   /* end-of-article CTA */
   .article-cta{max-width:760px;margin:30px auto 0;padding:0 28px}
-  .article-cta .ac-box{text-align:center;padding:clamp(30px,5vw,46px) clamp(22px,4vw,40px);border:1px solid rgba(217,182,117,.3);border-radius:22px;background:linear-gradient(165deg,rgba(217,182,117,.08),rgba(27,48,80,.32))}
+  .article-cta .ac-box{text-align:center;padding:clamp(30px,5vw,46px) clamp(22px,4vw,40px);border:1px solid rgba(217,182,117,.3);border-radius:22px;background:linear-gradient(165deg,rgba(217,182,117,.08),rgba(27,48,80,.32));box-shadow:0 18px 38px -24px rgba(0,0,0,.7),0 3px 10px -6px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06)}
   .article-cta .ac-box h3{font-family:var(--ar);font-weight:700;font-size:clamp(1.3rem,3vw,1.7rem);color:var(--ink);margin-bottom:12px;line-height:1.45}
   .article-cta .ac-box p{color:var(--ink-soft);font-weight:300;font-size:1.04rem;line-height:1.85;max-width:520px;margin:0 auto 24px}
   .article-cta .ac-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
