@@ -99,8 +99,8 @@
   /* hero */
   .hero{position:relative;min-height:100vh;display:flex;align-items:flex-start;overflow:hidden;background:linear-gradient(180deg,var(--navy-950),var(--navy-900))}
   /* cinematic Noah's Ark — static photo is the fallback, the video plays on top */
-  .hero-photo{position:absolute;inset:0;z-index:1;background-position:center center;background-size:cover;background-repeat:no-repeat;animation:kenburns 34s ease-in-out infinite alternate;will-change:transform}
-  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:1;animation:kenburns 34s ease-in-out infinite alternate;will-change:transform}
+  .hero-photo{position:absolute;inset:0;z-index:1;background-position:center center;background-size:cover;background-repeat:no-repeat;filter:brightness(1.18) contrast(1.04) saturate(1.07);animation:kenburns 34s ease-in-out infinite alternate;will-change:transform}
+  .hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;z-index:1;filter:brightness(1.18) contrast(1.04) saturate(1.07);animation:kenburns 34s ease-in-out infinite alternate;will-change:transform}
   /* slow cinematic camera push on the hero footage (Ken Burns) */
   @keyframes kenburns{0%{transform:scale(1.04) translate3d(0,0,0)}100%{transform:scale(1.2) translate3d(-2%,-1.6%,0)}}
   .hero-scrim{position:absolute;inset:0;z-index:2;pointer-events:none;background:
@@ -664,7 +664,7 @@
      ph-photo is the always-present poster/fallback; ph-video fades in over it on
      desktop only (loaded by JS), so mobile + reduced-motion + no-JS get the still image. */
   .page-hero .ph-media{position:absolute;inset:0;z-index:0;overflow:hidden}
-  .page-hero .ph-photo,.page-hero .ph-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center;background-repeat:no-repeat}
+  .page-hero .ph-photo,.page-hero .ph-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background-size:cover;background-position:center;background-repeat:no-repeat;filter:brightness(1.18) contrast(1.04) saturate(1.07)}
   .page-hero .ph-video{opacity:0;transition:opacity 1.4s var(--ease)}
   .page-hero .ph-video.ready{opacity:1}
   .page-hero .ph-scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,14,26,.84),rgba(7,14,26,.5) 42%,rgba(7,14,26,.9))}
