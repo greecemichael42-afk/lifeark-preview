@@ -165,7 +165,7 @@ const hdr=document.getElementById('hdr');
       if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ subForm.email.focus(); subForm.email.style.borderColor='#e0894f'; return; }
       const done=()=>{ subForm.style.display='none'; const d=document.getElementById('subDone'); if(d) d.style.display='block'; };
       if(SUBSCRIBE_ENDPOINT){
-        fetch(SUBSCRIBE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:name||'-',email,_replyto:email,_subject:'اشتراك جديد — ابقَ على المركب (Life Ark)',_template:'table',_captcha:'false'})}).catch(()=>{});
+        fetch(SUBSCRIBE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:name||'-',email,_replyto:email,_subject:'اشتراك جديد — ابقَ على المركب (Life Ark)',_template:'table',_captcha:'false',_autoresponse:'أهلًا بك على المركب 🌊\n\nشكرًا لاشتراكك في Life Ark. من وقت للتاني هنبعتلك مهارة عملية من مهارات DBT، وأول خبر بأي كتاب جديد أو حلقة جديدة من «في الصالة» — من غير إزعاج، وتقدر تلغي الاشتراك في أي وقت.\n\nلو حابب تحجز جلسة أو عندك أي سؤال، إحنا موجودين على الموقع.\n\n— فريق Life Ark\nhttps://lifearkdbt.com'})}).catch(()=>{});
         done();
       } else {
         // interim: deliver the lead to Life Ark via WhatsApp
