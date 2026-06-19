@@ -115,6 +115,9 @@ const hdr=document.getElementById('hdr');
       const io=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ const o=counters.find(c=>c.el===e.target); if(o && !o.done){ o.done=true; run(o); } io.unobserve(e.target); } }); },{threshold:.6});
       counters.forEach(o=>{ o.el.textContent=o.p.pre+'0'+o.p.suf; io.observe(o.el); });
     }
+    // count-up for on-demand containers (e.g. the About modal — hidden until opened, so the
+    // scroll observer above can't reach it). Call this when such a container becomes visible.
+    window.lifeArkCountUp=(root)=>{ if(reduce||!root) return; [...root.querySelectorAll('.cred > b')].forEach(el=>{ const p=parse(el.textContent.trim()); if(!p) return; const dur=1500, s=performance.now(); const step=(now)=>{ let t=Math.min(1,(now-s)/dur); t=1-Math.pow(1-t,3); el.textContent=p.pre+fmt(Math.round(p.num*t))+p.suf; if(t<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }); };
 
     // 3) magnetic gold buttons (desktop only)
     if(fine && !reduce){
@@ -670,6 +673,7 @@ const hdr=document.getElementById('hdr');
       // reveal-on-scroll can't observe a display:none modal, so make its content
       // visible the moment it opens (fixes both the numbers and the qualifications).
       aboutModal.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'));
+      if(window.lifeArkCountUp) window.lifeArkCountUp(aboutModal); // animate the stat numbers up on open
       aboutModal.querySelector('.modal-card').scrollTop=0; };
     const closeA=()=>{ aboutModal.classList.remove('open'); document.body.style.overflow=''; };
     aboutBtn.addEventListener('click',openA);
