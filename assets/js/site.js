@@ -173,7 +173,7 @@ const hdr=document.getElementById('hdr');
   if(subForm){
     subForm.addEventListener('submit',async (e)=>{
       e.preventDefault();
-      const name=(subForm.name.value||'').trim();
+      const name=(subForm.elements.name.value||'').trim();
       const email=(subForm.email.value||'').trim();
       if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ subForm.email.focus(); subForm.email.style.borderColor='#e0894f'; return; }
       const done=()=>{ subForm.style.display='none'; const d=document.getElementById('subDone'); if(d) d.style.display='block'; };
@@ -678,28 +678,6 @@ const hdr=document.getElementById('hdr');
     document.addEventListener('keydown',e=>{ if(e.key==='Escape' && aboutModal.classList.contains('open')) closeA(); });
   }
 
-  // ===== Service detail modals (individual / group) =====
-  const detailMap={indiv:'indivModal',group:'groupModal',sud:'sudModal',workshop:'workshopModal'};
-  const detailIds=['indivModal','groupModal','sudModal','workshopModal'];
-  const openDetail=(id)=>{ const m=document.getElementById(id); if(!m) return; m.classList.add('open'); document.body.style.overflow='hidden'; m.querySelector('.modal-card').scrollTop=0; };
-  const closeDetail=(m)=>{ m.classList.remove('open'); document.body.style.overflow=''; };
-  document.querySelectorAll('[data-detail]').forEach(b=>{
-    b.addEventListener('click',(e)=>{ e.preventDefault(); openDetail(detailMap[b.getAttribute('data-detail')]); });
-  });
-  detailIds.forEach(id=>{
-    const m=document.getElementById(id); if(!m) return;
-    m.querySelector('.modal-close').addEventListener('click',()=>closeDetail(m));
-    m.addEventListener('click',e=>{ if(e.target===m) closeDetail(m); });
-  });
-  document.addEventListener('keydown',e=>{
-    if(e.key!=='Escape') return;
-    detailIds.forEach(id=>{ const m=document.getElementById(id); if(m && m.classList.contains('open')) closeDetail(m); });
-  });
-  // book button inside a detail modal: close it (the global [data-session] handler opens booking)
-  document.querySelectorAll('.detail-book').forEach(b=>{
-    b.addEventListener('click',()=>{ const m=b.closest('.modal'); if(m) closeDetail(m); });
-  });
-
   // ===== back-to-top + scroll-spy =====
   (function(){
     const toTop=document.getElementById('toTop');
@@ -819,11 +797,12 @@ const hdr=document.getElementById('hdr');
 
   // ===== FAQ accordion =====
   document.querySelectorAll('.faq-item .faq-q').forEach(q=>{
+    q.setAttribute('aria-expanded','false');
     q.addEventListener('click',()=>{
       const item=q.closest('.faq-item');
       const wasOpen=item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-      if(!wasOpen) item.classList.add('open');
+      document.querySelectorAll('.faq-item.open').forEach(i=>{ i.classList.remove('open'); const b=i.querySelector('.faq-q'); if(b) b.setAttribute('aria-expanded','false'); });
+      if(!wasOpen){ item.classList.add('open'); q.setAttribute('aria-expanded','true'); }
     });
   });
 
