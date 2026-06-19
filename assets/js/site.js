@@ -370,6 +370,11 @@ const hdr=document.getElementById('hdr');
       <p class="ar-only">الحجز لا يُعد مؤكدًا إلا بعد مراجعة الدفع وتأكيد الموعد من فريق Life Ark.</p>
       <p class="lead-en">Your booking is not confirmed until payment is reviewed and the appointment is confirmed by the Life Ark team.</p>
 
+      <div class="sp-sat" style="margin-top:16px;text-align:center"><span class="lead-ar">📅 فضل خطوة واحدة: اختر ميعادك في الكاليندر عشان نأكّد الحجز.</span><span class="lead-en">📅 One step left: pick your time in the calendar so we can confirm.</span></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px">
+        <button type="button" class="btn btn-gold" id="sessionPickTime"><span class="lead-ar">اختر ميعادك واحجز</span><span class="lead-en">Pick your time &amp; book</span></button>
+      </div>
+
       <div class="pay-box" style="text-align:right;margin-top:18px">
         <div class="pt"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg><span class="lead-ar">خطوة أخيرة — اختيارية لكنها بتوفّر وقت أول جلسة</span><span class="lead-en">Last step — optional, saves time at your first session</span></div>
         <p class="pnote ar-only">حمّل «استمارة التعريف بالعميل»، ووقّعها (أو املأها في أول جلسة)، وأرسلها على واتساب أو البريد الإلكتروني قبل موعدك.</p>
@@ -450,8 +455,12 @@ const hdr=document.getElementById('hdr');
         fd.append('_template','table');
         fetch('https://formsubmit.co/Life.ark.psych@gmail.com',{method:'POST',body:fd,mode:'no-cors'}).catch(function(){});
       }catch(_){}
-      closeS();
-      openCal({ name:name, email:email, notes:notes });
+      // Show the confirmation screen (it carries the intake-form download) instead of jumping
+      // straight to Cal; its "اختر ميعادك واحجز" button opens the calendar, prefilled.
+      const pickBtn=document.getElementById('sessionPickTime');
+      if(pickBtn) pickBtn.onclick=function(){ openCal({ name:name, email:email, notes:notes }); };
+      sView.style.display='none'; sDone.style.display='block';
+      const dcard=sessModal.querySelector('.modal-card'); if(dcard) dcard.scrollTop=0;
     });
   }
 
