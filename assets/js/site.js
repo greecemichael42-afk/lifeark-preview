@@ -250,6 +250,12 @@ const hdr=document.getElementById('hdr');
     const orderDone=document.getElementById('orderDone');
     const orderProduct=document.getElementById('orderProduct');
     const WA='201124239057';
+    // Book delivery backend (Google Apps Script). The order POSTs here with the receipt; after
+    // Michael approves from his email, the book is emailed to the buyer automatically.
+    // See book-delivery/Code.gs. Leave '' to fall back to the old WhatsApp flow.
+    const BOOK_ORDER_ENDPOINT='https://script.google.com/macros/s/AKfycbw9g6PGoRBuyK1nep1U45EoSBAI0ZUKjI2wXaTdV7Iv-7HWHz-tJNj_yWPSWD4ZBElg/exec';
+    const BOOK_KEYS=[{k:'رُكوب الموج',key:'rokoub'},{k:'العقل الصافي',key:'clear-mind'}];
+    const bookKeyFor=(product)=>{ const m=BOOK_KEYS.find(b=>(product||'').indexOf(b.k)>=0); return m?m.key:''; };
     // price shown in the modal pay-box, matched by a substring of the product name
     const ORDER_PRICES=[
       {k:'رُكوب الموج', ar:'حوّل قيمة الكتاب (1000 ج.م / $100) إلى:', en:'Transfer the book price (1000 EGP / $100) to:'},
@@ -285,21 +291,24 @@ const hdr=document.getElementById('hdr');
       if(!name){ bad(f.fullname); return; }
       if(!wa){ bad(f.whatsapp); return; }
       if(!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ bad(f.email); return; }
-      const msg=encodeURIComponent(
-        '🌊 طلب شراء من موقع Life Ark\n'+
-        '——————————————\n'+
-        'المنتج: '+f.product.value+'\n'+
-        'الاسم: '+name+'\n'+
-        'واتساب: '+wa+'\n'+
-        'البريد الإلكتروني: '+email+'\n'+
-        'طريقة الدفع: '+f.method.value+'\n'+
-        'رقم العملية: '+((f.reference.value||'').trim()||'—')+'\n'+
-        'ملاحظات: '+((f.notes.value||'').trim()||'—')+'\n'+
-        '——————————————\n'+
-        '(سأرفق صورة إيصال الدفع في هذه المحادثة)'
-      );
-      window.open('https://wa.me/'+WA+'?text='+msg,'_blank');
-      orderView.style.display='none'; orderDone.style.display='block';
+      const receipt=f.querySelector('input[type=file][name="payment_receipt"]');
+      if(!receipt || !receipt.files || !receipt.files.length){ if(receipt){ bad(receipt); receipt.scrollIntoView({block:'center'}); } return; }
+      const file=receipt.files[0];
+      const done=()=>{ orderView.style.display='none'; orderDone.style.display='block'; const c=orderModal.querySelector('.modal-card'); if(c) c.scrollTop=0; };
+      // POST the order + receipt (base64) to the Apps Script backend; it emails Michael an
+      // "approve" button, and on approval emails the book to the buyer. Fire-and-forget (no-cors).
+      const send=(dataBase64)=>{
+        const payload={ name:name, email:email, whatsapp:wa, book:bookKeyFor(f.product.value),
+          method:f.method.value, reference:(f.reference.value||'').trim()||'—',
+          receipt: dataBase64?{ name:file.name, type:file.type, dataBase64:dataBase64 }:null };
+        if(BOOK_ORDER_ENDPOINT){ try{ fetch(BOOK_ORDER_ENDPOINT,{method:'POST',body:JSON.stringify(payload),mode:'no-cors'}).catch(function(){}); }catch(_){ } }
+        else { window.open('https://wa.me/'+WA+'?text='+encodeURIComponent('🌊 طلب كتاب — '+f.product.value+'\nالاسم: '+name+'\nواتساب: '+wa+'\nالإيميل: '+email),'_blank'); }
+        done();
+      };
+      const r=new FileReader();
+      r.onload=function(){ send((String(r.result).split(',')[1]||'')); };
+      r.onerror=function(){ send(''); };
+      r.readAsDataURL(file);
     });
   }
 

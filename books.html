@@ -250,8 +250,8 @@
         <div class="prow"><b>InstaPay</b><span>sanfor2412@instapay</span></div>
         <div class="prow"><b><span class="lead-ar">اتصالات كاش</span><span class="lead-en">Etisalat Cash</span></b><span>01124239057</span></div>
         <div class="prow"><b><span class="lead-ar">تحويل بنكي</span><span class="lead-en">Bank transfer</span></b><span><span class="lead-ar">تُرسَل عند الطلب</span><span class="lead-en">sent upon request</span></span></div>
-        <p class="pnote ar-only">بعد التحويل، اكتب رقم العملية في الخانة بالأسفل، وأرسل صورة الإيصال على واتساب بعد الضغط على «إرسال الطلب».</p>
-        <p class="pnote lead-en">After transferring, enter the transaction reference below and send the receipt screenshot on WhatsApp after submitting.</p>
+        <p class="pnote ar-only">بعد التحويل، ارفع صورة الإيصال في الفورم تحت — وبعد مراجعة الدفع هيوصلك الكتاب على إيميلك تلقائيًا.</p>
+        <p class="pnote lead-en">After transferring, upload your receipt in the form below — once payment is reviewed, the book is emailed to you automatically.</p>
       </div>
 
       <form class="order-form" id="orderForm" novalidate>
@@ -271,25 +271,27 @@
           </select></div>
         <div><label><span class="lead-ar">رقم العملية / المرجع</span><span class="lead-en">Transaction reference</span></label>
           <input type="text" name="reference" placeholder="رقم العملية بعد التحويل" data-ph-ar="رقم العملية بعد التحويل" data-ph-en="Transaction number after transfer" /></div>
-        <div><label><span class="lead-ar">إيصال الدفع</span><span class="lead-en">Payment receipt</span></label>
-          <div class="file-ph"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg><span class="lead-ar">أرسل صورة الإيصال على واتساب بعد إرسال الطلب</span><span class="lead-en">Send the receipt screenshot on WhatsApp after submitting</span></div></div>
+        <div><label><span class="lead-ar">صورة إيصال الدفع (مطلوبة)</span><span class="lead-en">Payment receipt (required)</span></label>
+          <input type="file" name="payment_receipt" accept="image/*,.pdf" required />
+          <p class="req-hint ar-only" style="margin-top:6px">ارفع سكرين التحويل (إنستاباي / اتصالات كاش) — الطلب ما يكمّلش من غيرها.</p>
+          <p class="req-hint lead-en" style="margin-top:6px">Upload your transfer screenshot — the order can't proceed without it.</p></div>
         <div><label><span class="lead-ar">ملاحظات (اختياري)</span><span class="lead-en">Notes (optional)</span></label>
           <textarea name="notes" placeholder="أي تفاصيل إضافية" data-ph-ar="أي تفاصيل إضافية" data-ph-en="Any extra details"></textarea></div>
 
         <div class="protect-note"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span class="ar-only">لحماية حقوق الملكية، تُرسَل روابط التحميل بشكل خاص بعد تأكيد الدفع. يُرجى عدم مشاركة الملفات أو إعادة توزيعها بدون إذن.</span><span class="lead-en">To protect copyright, download links are sent privately after payment is confirmed. Please do not share or redistribute the files without permission.</span></div>
 
         <button class="btn btn-gold" type="submit"><span class="lead-ar">إرسال الطلب</span><span class="lead-en">Submit Request</span></button>
-        <p class="req-hint ar-only">بعد الإرسال سيُفتح واتساب ببيانات طلبك جاهزة — اضغط إرسال هناك وأرفق صورة الإيصال.</p>
-        <p class="req-hint lead-en">After submitting, WhatsApp opens with your order ready — just send it there and attach the receipt.</p>
+        <p class="req-hint ar-only">بعد الإرسال، بنراجع دفعك ونبعتلك الكتاب على إيميلك تلقائيًا.</p>
+        <p class="req-hint lead-en">After submitting, we review your payment and email you the book automatically.</p>
       </form>
     </div>
 
     <div class="order-done" id="orderDone">
       <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
       <h3><span class="lead-ar">تم استلام طلبك بنجاح</span><span class="lead-en">Request received</span></h3>
-      <p class="ar-only">سيتم مراجعة الدفع يدويًا، وبعد التأكيد سيتم إرسال رابط التحميل عبر واتساب أو البريد الإلكتروني خلال أقرب وقت ممكن.</p>
-      <p class="lead-en">Your payment will be reviewed manually, and once confirmed the download link will be sent via WhatsApp or email as soon as possible.</p>
-      <p class="ar-only" style="color:var(--ink-mute);font-size:.85rem">عادةً يتم الرد خلال أقرب وقت ممكن. لو ما فُتحش واتساب تلقائيًا، تواصل معنا على +20 112 423 9057.</p>
+      <p class="ar-only">هنراجع الدفع، وبعد التأكيد هيوصلك الكتاب تلقائيًا على بريدك الإلكتروني. تأكّد إن الإيميل اللي كتبته صحيح.</p>
+      <p class="lead-en">We'll review your payment, and once confirmed the book is emailed to you automatically. Make sure the email you entered is correct.</p>
+      <p class="ar-only" style="color:var(--ink-mute);font-size:.85rem">عادةً بنأكّد خلال أقرب وقت. لأي استفسار: +20 112 423 9057.</p>
     </div>
   </div>
 </div>
