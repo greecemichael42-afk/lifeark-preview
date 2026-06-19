@@ -447,6 +447,26 @@
   .order-form input:focus,.order-form select:focus,.order-form textarea:focus{border-color:var(--gold)}
   .order-form select option{background:var(--navy-900);color:var(--ink)}
   .order-form textarea{resize:vertical;min-height:64px}
+  .order-form label .opt{color:var(--ink-mute);font-weight:400;font-size:.82em}
+  /* academy interest modal — creative header badge + course chips */
+  .ai-badge{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;margin:0 auto 14px;background:radial-gradient(circle at 50% 35%,rgba(240,206,142,.26),rgba(217,182,117,.05));border:1px solid rgba(217,182,117,.4);box-shadow:0 0 26px -4px rgba(240,206,142,.45),inset 0 1px 0 rgba(255,255,255,.12);position:relative}
+  .ai-badge svg{width:28px;height:28px;stroke:var(--gold-bright);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .ai-badge::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(217,182,117,.2);animation:aiPulse 3.2s ease-in-out infinite}
+  @keyframes aiPulse{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.14);opacity:0}}
+  #academyInterestView{text-align:center}
+  #academyInterestView .order-form{text-align:start}
+  .ai-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .ai-chip{position:relative;overflow:hidden;flex:1 1 auto;text-align:center;padding:9px 12px;border-radius:30px;border:1px solid rgba(217,182,117,.32);background:rgba(217,182,117,.06);color:var(--ink-soft);font-family:var(--ar);font-size:.84rem;cursor:pointer;box-shadow:0 0 14px -6px rgba(240,206,142,.45),inset 0 1px 0 rgba(255,255,255,.06);transition:border-color .25s,color .25s,background .25s,transform .25s,box-shadow .25s}
+  .ai-chip::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 38%,rgba(240,206,142,.24) 48%,rgba(255,255,255,.42) 50%,rgba(240,206,142,.24) 52%,transparent 62%);transform:translateX(-140%);animation:aiChipShine 4.6s ease-in-out infinite;pointer-events:none}
+  .ai-chips .ai-chip:nth-child(2)::after{animation-delay:.9s}
+  .ai-chips .ai-chip:nth-child(3)::after{animation-delay:1.8s}
+  .ai-chips .ai-chip:nth-child(4)::after{animation-delay:2.7s}
+  .ai-chips .ai-chip:nth-child(5)::after{animation-delay:3.6s}
+  @keyframes aiChipShine{0%{transform:translateX(-140%)}16%,100%{transform:translateX(140%)}}
+  .ai-chip:hover{border-color:var(--gold);color:var(--ink);transform:translateY(-2px);box-shadow:0 8px 20px -8px rgba(240,206,142,.6)}
+  .ai-chip.sel{background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep));color:var(--navy-950);border-color:var(--gold);font-weight:700;animation:aiChipPulse 2.8s ease-in-out infinite}
+  @keyframes aiChipPulse{0%,100%{box-shadow:0 0 16px -3px rgba(240,206,142,.5)}50%{box-shadow:0 0 28px 0 rgba(240,206,142,.82)}}
+  @media(prefers-reduced-motion:reduce){.ai-badge::after,.ai-chip.sel{animation:none}.ai-chip::after{display:none}}
   .order-form .file-ph{display:flex;align-items:center;gap:10px;padding:12px 16px;border:1px dashed var(--line);border-radius:12px;color:var(--ink-mute);font-size:.85rem;background:rgba(255,255,255,.02)}
   .order-form .file-ph svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.6;flex:0 0 auto}
   .order-form .req-hint{font-size:.82rem;color:var(--ink-mute);margin-top:-4px}

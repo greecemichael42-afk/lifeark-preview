@@ -507,6 +507,51 @@ const hdr=document.getElementById('hdr');
   </div>
 </div>`);
   }
+  // ===== Academy interest (waitlist) modal — injected once, like the group modal =====
+  if(!document.getElementById('academyInterestModal')){
+    document.body.insertAdjacentHTML('beforeend', `<div class="modal" id="academyInterestModal" role="dialog" aria-modal="true" aria-labelledby="academyInterestTitle">
+  <div class="modal-card">
+    <button type="button" class="modal-close" id="academyInterestClose" aria-label="إغلاق">&times;</button>
+    <div id="academyInterestView">
+      <div class="ai-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/></svg></div>
+      <h3 id="academyInterestTitle"><span class="lead-ar">سجّل اهتمامك بالأكاديمية</span><span class="lead-en">Join the Academy Waitlist</span></h3>
+      <p class="msub"><span class="lead-ar">الأكاديمية تُطلَق قريبًا — سيب بياناتك ونبعتلك أول ما الدورات تنزل، وتكون من أوائل اللي يبدأوا. 🌊</span><span class="lead-en">The Academy launches soon — leave your details and we'll notify you the moment the courses go live, so you're among the first to start. 🌊</span></p>
+      <form class="order-form" id="academyInterestForm" novalidate>
+        <div><label><span class="lead-ar">الاسم</span><span class="lead-en">Name</span></label>
+          <input type="text" name="fullname" required autocomplete="name" placeholder="اسمك" data-ph-ar="اسمك" data-ph-en="Your name" /></div>
+        <div><label><span class="lead-ar">رقم واتساب</span><span class="lead-en">WhatsApp number</span></label>
+          <input type="tel" name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="+20 1XX XXX XXXX" /></div>
+        <div><label><span class="lead-ar">البريد الإلكتروني <span class="opt">(اختياري)</span></span><span class="lead-en">Email <span class="opt">(optional)</span></span></label>
+          <input type="email" name="email" autocomplete="email" placeholder="example@email.com" /></div>
+        <div><label><span class="lead-ar">الدورة اللي تهمّك</span><span class="lead-en">Which course interests you?</span></label>
+          <div class="ai-chips" id="aiChips" role="group" aria-label="اختر الدورة">
+            <button type="button" class="ai-chip sel" data-course="كل الدورات / All courses"><span class="lead-ar">كل الدورات</span><span class="lead-en">All courses</span></button>
+            <button type="button" class="ai-chip" data-course="اليقظة الذهنية / Mindfulness"><span class="lead-ar">اليقظة الذهنية</span><span class="lead-en">Mindfulness</span></button>
+            <button type="button" class="ai-chip" data-course="تنظيم المشاعر / Emotion Regulation"><span class="lead-ar">تنظيم المشاعر</span><span class="lead-en">Emotion Regulation</span></button>
+            <button type="button" class="ai-chip" data-course="تحمّل الضيق / Distress Tolerance"><span class="lead-ar">تحمّل الضيق</span><span class="lead-en">Distress Tolerance</span></button>
+            <button type="button" class="ai-chip" data-course="العلاقات الفعّالة / Interpersonal Effectiveness"><span class="lead-ar">العلاقات الفعّالة</span><span class="lead-en">Interpersonal Effectiveness</span></button>
+          </div>
+          <input type="hidden" name="course" value="كل الدورات / All courses" /></div>
+        <div><label><span class="lead-ar">رسالة <span class="opt">(اختياري)</span></span><span class="lead-en">Message <span class="opt">(optional)</span></span></label>
+          <textarea name="message" placeholder="أي حاجة حابب تقولها" data-ph-ar="أي حاجة حابب تقولها" data-ph-en="Anything you'd like to add"></textarea></div>
+        <button class="btn btn-gold" type="submit"><span class="lead-ar">سجّل اهتمامك</span><span class="lead-en">Join the waitlist</span></button>
+        <p class="req-hint ar-only">مفيش أي التزام — بس نعرف إنك مهتم ونبلّغك بموعد الإطلاق.</p>
+        <p class="req-hint lead-en">No commitment — we just note your interest and tell you when we launch.</p>
+      </form>
+    </div>
+    <div class="order-done" id="academyInterestDone">
+      <div class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+      <h3><span class="lead-ar">تم تسجيل اهتمامك 🌊</span><span class="lead-en">You're on the list 🌊</span></h3>
+      <p class="ar-only">هنبعتلك أول ما الدورات تنزل — وتكون من أوائل اللي يبدأوا. لو حابب تتواصل دلوقتي، إحنا هنا.</p>
+      <p class="lead-en">We'll notify you the moment the courses go live — so you're among the first to start. Reach out anytime if you'd like.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:16px">
+        <a class="btn btn-wa" href="https://wa.me/201124239057" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.5 15.2L2 22l4.9-1.5A10 10 0 1012 2zm0 18a8 8 0 01-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1112 20zm4.6-6c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 01-1.9-1.2 7.3 7.3 0 01-1.4-1.7c-.1-.2 0-.4.1-.5l.4-.4.2-.4v-.4c0-.1-.5-1.3-.7-1.8s-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.8 2.8 0 006 9.3c0 1.6 1.2 3.2 1.4 3.4s2.3 3.6 5.6 4.9c2.1.9 2.6.7 3.1.6a2.5 2.5 0 001.7-1.2 2 2 0 00.1-1.2c0-.1-.2-.2-.4-.3z"/></svg><span class="lead-ar">تواصل على واتساب</span><span class="lead-en">Chat on WhatsApp</span></a>
+        <button type="button" class="btn btn-ghost" id="academyInterestCloseDone"><span class="lead-ar">تمام</span><span class="lead-en">Done</span></button>
+      </div>
+    </div>
+  </div>
+</div>`);
+  }
   // the booking modal is injected AFTER the initial applyLang() ran — re-apply the current
   // language so its placeholders + <select> option labels swap correctly on first load.
   applyLang(body.dataset.lang||savedLang||'ar');
@@ -665,6 +710,51 @@ const hdr=document.getElementById('hdr');
     }
   }
 
+  // ===== Academy interest (waitlist) form — opens from every [data-academy] trigger; emails Life Ark via Formsubmit AJAX =====
+  const aiModal=document.getElementById('academyInterestModal');
+  if(aiModal){
+    const aif=document.getElementById('academyInterestForm');
+    const aiView=document.getElementById('academyInterestView');
+    const aiDone=document.getElementById('academyInterestDone');
+    const aiChips=document.getElementById('aiChips');
+    const setChip=(want)=>{ let matched=false; aiChips.querySelectorAll('.ai-chip').forEach(c=>{ const on=c.dataset.course===want; c.classList.toggle('sel',on); if(on) matched=true; }); const def=aiChips.querySelector('.ai-chip'); if(!matched && def) def.classList.add('sel'); aif.course.value=matched?want:(def?def.dataset.course:''); };
+    const openAi=(course)=>{
+      aif.reset();
+      Array.from(aif.elements).forEach(el=>{ el.style.borderColor=''; });
+      setChip(course||'');
+      aiView.style.display='block'; aiDone.style.display='none';
+      aiModal.classList.add('open'); document.body.style.overflow='hidden';
+      const c=aiModal.querySelector('.modal-card'); if(c) c.scrollTop=0;
+    };
+    const closeAi=()=>{ aiModal.classList.remove('open'); document.body.style.overflow=''; };
+    window.lifeArkAcademy=openAi;
+    aiChips.addEventListener('click',e=>{ const chip=e.target.closest('.ai-chip'); if(!chip) return; aiChips.querySelectorAll('.ai-chip').forEach(c=>c.classList.remove('sel')); chip.classList.add('sel'); aif.course.value=chip.dataset.course; });
+    Array.from(aif.elements).forEach(el=>{ el.addEventListener('input',()=>{ el.style.borderColor=''; }); });
+    document.querySelectorAll('[data-academy]').forEach(b=>{ b.addEventListener('click',e=>{ e.preventDefault(); openAi(b.getAttribute('data-academy')||''); }); });
+    document.getElementById('academyInterestClose').addEventListener('click',closeAi);
+    const aiDoneBtn=document.getElementById('academyInterestCloseDone'); if(aiDoneBtn) aiDoneBtn.addEventListener('click',closeAi);
+    aiModal.addEventListener('click',e=>{ if(e.target===aiModal) closeAi(); });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape' && aiModal.classList.contains('open')) closeAi(); });
+    aif.addEventListener('submit',e=>{
+      e.preventDefault();
+      const bad=(el)=>{ el.focus(); el.style.borderColor='#e0894f'; if(el.scrollIntoView) el.scrollIntoView({block:'center'}); };
+      const name=(aif.fullname.value||'').trim();
+      const wa=(aif.whatsapp.value||'').trim();
+      const email=(aif.email.value||'').trim();
+      if(!name){ bad(aif.fullname); return; }
+      if(!wa){ bad(aif.whatsapp); return; }
+      if(email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ bad(aif.email); return; }
+      try{
+        fetch('https://formsubmit.co/ajax/Life.ark.psych@gmail.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({
+          name:name, whatsapp:wa, email:email||'-', course:(aif.course.value||'كل الدورات / All courses'), message:(aif.message.value||'').trim()||'-',
+          _replyto:(email||undefined), _subject:'تسجيل اهتمام بالأكاديمية — Life Ark', _template:'table', _captcha:'false'
+        })}).catch(function(){});
+      }catch(_){}
+      aiView.style.display='none'; aiDone.style.display='block';
+      const c=aiModal.querySelector('.modal-card'); if(c) c.scrollTop=0;
+    });
+  }
+
   // ===== About Michael modal =====
   const aboutModal=document.getElementById('aboutModal');
   const aboutBtn=document.getElementById('aboutBtn');
@@ -698,10 +788,7 @@ const hdr=document.getElementById('hdr');
     }
   })();
 
-  // ===== academy waitlist (WhatsApp with prefilled interest) =====
-  document.querySelectorAll('[data-academy]').forEach(a=>{
-    a.addEventListener('click',e=>{ e.preventDefault(); const msg=encodeURIComponent('أهلاً، أرغب في تسجيل اهتمامي بأكاديمية مهارات Life Ark، وأن أعرف فور إطلاقها 🌊'); window.open('https://wa.me/201124239057?text='+msg,'_blank'); });
-  });
+  // ===== academy waitlist — [data-academy] now opens the interest-form modal (wired in the academy block above) =====
 
   // ===== DBT Pathway Quiz (9 dimensions → 8 pathways, risk-first logic) =====
   (function(){
