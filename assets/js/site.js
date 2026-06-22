@@ -35,6 +35,19 @@ const hdr=document.getElementById('hdr');
   const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Cinematic stagger — cascade the reveal of cards that sit in a grid/flex row.
+  // Skips prose (block-flow parents) and any element that already carries a manual .d1–.d6 delay.
+  if(!reduce){
+    const groups=new Map();
+    document.querySelectorAll('.reveal').forEach(el=>{ const p=el.parentElement; if(!p) return; let a=groups.get(p); if(!a){a=[];groups.set(p,a);} a.push(el); });
+    groups.forEach((els,p)=>{
+      if(els.length<2) return;
+      const disp=getComputedStyle(p).display;
+      if(disp.indexOf('flex')<0 && disp.indexOf('grid')<0) return;
+      let i=0;
+      els.forEach(el=>{ if(/\bd[1-6]\b/.test(el.className)) return; el.style.transitionDelay=(Math.min(i,6)*0.07).toFixed(2)+'s'; i++; });
+    });
+  }
   const motes=document.getElementById('motes');
   if(motes && !reduce){
     for(let i=0;i<26;i++){
@@ -786,6 +799,40 @@ const hdr=document.getElementById('hdr');
       const spy=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ Object.values(navMap).forEach(a=>a.classList.remove('active')); const a=navMap[e.target.id]; if(a) a.classList.add('active'); } }); },{rootMargin:'-45% 0px -50% 0px',threshold:0});
       secs.forEach(s=>spy.observe(s));
     }
+  })();
+
+  // ===== Article auto-TOC — a sticky .subnav pill bar generated from the article's <h2>, with scroll-spy =====
+  // Pure progressive enhancement: only runs on long-form article pages; no HTML edits needed, both
+  // article pages inherit it. Pills carry the heading's bilingual lead-ar/lead-en spans (CSS-driven swap).
+  (function(){
+    const prose=document.querySelector('.article-prose'); if(!prose) return;
+    const heads=Array.from(prose.querySelectorAll('h2')); if(heads.length<3) return;
+    const reduceM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const subnav=document.createElement('nav'); subnav.className='subnav'; subnav.setAttribute('aria-label','محتويات المقال');
+    const wrap=document.createElement('div'); wrap.className='wrap'; subnav.appendChild(wrap);
+    const links=[];
+    heads.forEach((h,i)=>{
+      if(!h.id) h.id='sec-'+(i+1);
+      h.classList.add('toc-h');
+      const a=document.createElement('a'); a.href='#'+h.id; a.innerHTML=h.innerHTML;
+      a.addEventListener('click',e=>{ e.preventDefault();
+        const y=h.getBoundingClientRect().top+scrollY-138;
+        scrollTo({top:y,behavior:reduceM?'auto':'smooth'});
+        history.replaceState(null,'','#'+h.id);
+      });
+      wrap.appendChild(a); links.push(a);
+    });
+    const art=document.querySelector('.article'); if(!art||!art.parentNode) return;
+    art.parentNode.insertBefore(subnav,art);
+    const map={}; links.forEach((a,i)=>{ map[heads[i].id]=a; });
+    const setActive=(a)=>{ links.forEach(x=>{ x.classList.remove('active'); x.removeAttribute('aria-current'); });
+      if(!a) return; a.classList.add('active'); a.setAttribute('aria-current','true');
+      const r=a.getBoundingClientRect(), wr=wrap.getBoundingClientRect();
+      const delta=(r.left+r.width/2)-(wr.left+wr.width/2);
+      if(Math.abs(delta)>4) wrap.scrollBy({left:delta,behavior:reduceM?'auto':'smooth'});
+    };
+    const spy=new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ const a=map[e.target.id]; if(a) setActive(a); } }); },{rootMargin:'-138px 0px -62% 0px',threshold:0});
+    heads.forEach(h=>spy.observe(h));
   })();
 
   // ===== academy waitlist — [data-academy] now opens the interest-form modal (wired in the academy block above) =====

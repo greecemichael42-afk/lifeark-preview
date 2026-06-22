@@ -887,3 +887,17 @@
   .art-archive{background:linear-gradient(180deg,var(--t950),var(--t900))}
   .art-archive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,360px));justify-content:center;gap:22px;max-width:1140px;margin:0 auto}
   @media(max-width:560px){.article-wrap{padding-left:18px;padding-right:18px}.symptom{padding:16px 16px;gap:13px}.symptom .sx-n{width:40px;height:40px;font-size:1.15rem}}
+
+  /* ===================== DESIGN ENHANCEMENTS (additive · design-enhancements branch) ===================== */
+  /* Cinematic dawn-glow rising behind every section heading — volumetric light that bleeds gently
+     into the seam above it. Never a flat drawn line. Sits behind the title via an isolated context. */
+  .sec-head{position:relative;isolation:isolate}
+  .sec-head::before{content:"";position:absolute;z-index:-1;pointer-events:none;
+    inset-block-start:-36px;inset-inline-start:50%;transform:translateX(-50%);
+    width:min(640px,92%);height:188px;
+    background:radial-gradient(60% 100% at 50% 0%,rgba(240,206,142,.18),rgba(217,182,117,.07) 44%,transparent 73%);
+    filter:blur(12px)}
+  @media(prefers-reduced-motion:no-preference){.sec-head::before{animation:dawnBreathe 9s ease-in-out infinite}}
+  @keyframes dawnBreathe{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.06)}}
+  /* Article auto-TOC: headings clear the sticky header + generated .subnav pill bar when jumped to. */
+  .toc-h{scroll-margin-top:140px}
