@@ -1008,7 +1008,7 @@
   .gl-card{position:fixed;bottom:144px;right:22px;z-index:246;width:min(392px,calc(100vw - 44px));max-height:calc(100vh - 160px);overflow:hidden auto;border-radius:22px;background:linear-gradient(165deg,var(--navy-800),var(--navy-950));border:1px solid rgba(217,182,117,.32);box-shadow:0 50px 100px -30px rgba(0,0,0,.9),0 0 70px -12px rgba(217,182,117,.28);opacity:0;visibility:hidden;transform:translate(10px,22px) scale(.86);transform-origin:100% 100%;transition:opacity .75s var(--ease),visibility .75s,transform .75s var(--ease),filter .75s var(--ease);filter:brightness(.55);font-family:var(--ar);direction:rtl;text-align:right;scrollbar-width:thin}
   body[data-lang="en"] .gl-card{direction:ltr;text-align:left}
   .gl-card.open{opacity:1;visibility:visible;transform:none;filter:brightness(1)}
-  .gl-media{position:relative;height:200px;flex:0 0 auto;background:url("../img/group-popup-michael.jpg?v=3") center 15%/cover no-repeat;overflow:hidden}
+  .gl-media{position:relative;height:200px;flex:0 0 auto;background:url("../img/group-popup-michael.jpg?v=4") center 40%/cover no-repeat;overflow:hidden}
   .gl-media::before{content:"";position:absolute;inset:0;background:inherit;transform-origin:60% 30%;animation:glKb 16s ease-in-out infinite alternate}
   .gl-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,14,26,0) 0,rgba(7,14,26,.15) 50%,rgba(7,14,26,.78) 82%,var(--navy-950) 100%)}
   @keyframes glKb{0%{transform:scale(1)}100%{transform:scale(1.08)}}
