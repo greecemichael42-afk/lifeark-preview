@@ -1253,3 +1253,79 @@ const hdr=document.getElementById('hdr');
       document.addEventListener('visibilitychange', function(){ if (document.hidden && !sAud.paused) sb.click(); });
     }
   })();
+
+  // ===== Group lantern — homepage-only popup (staging sample 2026-10-16) =====
+  // Lights by itself ~7s after the home page opens (or once the visitor scrolls past the hero),
+  // plays its story (the pieces arrive one after another, like the 9:16 ad), dims by itself after 11s
+  // unless the visitor touches it, and leaves a glowing dot that re-opens it.
+  // Auto-open happens once per 7 days (localStorage); the dot is always there.
+  (function(){
+    var path = location.pathname.replace(/index\.html$/, '');
+    if (!/\/$/.test(path)) return;                                  // home page only
+    if (document.getElementById('glCard')) return;
+    var KEY = 'lifeark-gl-seen', WEEK = 7 * 24 * 3600 * 1000, STAY = 11000, seen = 0;
+    try { seen = +localStorage.getItem(KEY) || 0; } catch (_) {}
+    document.body.insertAdjacentHTML('beforeend',
+      '<aside class="gl-card" id="glCard" role="dialog" aria-label="جروب مهارات DBT أونلاين" aria-hidden="true">' +
+        '<button type="button" class="gl-close" id="glClose" aria-label="إغلاق">&times;</button>' +
+        '<div class="gl-media"><span class="gl-flare"></span>' +
+          '<div class="gl-head gl-seq">' +
+            '<div class="gl-eyebrow">LIFE ARK · DBT Skills Group</div>' +
+            '<h4><span class="lead-ar">جروب مهارات DBT أونلاين</span><span class="lead-en">Online DBT Skills Group</span></h4>' +
+          '</div>' +
+        '</div>' +
+        '<div class="gl-body">' +
+          '<p class="gl-when gl-seq"><span class="lead-ar">كل أحد ٨–١١ مساءً أو كل اثنين ٧–١٠ مساءً · لمدة ١٠ شهور · مع أ. مايكل جابي</span>' +
+          '<span class="lead-en">Sundays 8–11 pm or Mondays 7–10 pm · 10 months · with Michael Gaby</span></p>' +
+          '<div class="gl-pills">' +
+            '<div class="gl-pill gl-seq"><i>✓</i><span class="lead-ar">مقابلة تقييم مجانية مع أ. مايكل جابي</span><span class="lead-en">A free assessment interview with Michael Gaby</span></div>' +
+            '<div class="gl-pill gl-seq"><i>+</i><span class="lead-ar">فصل من كتاب «ركوب الموج» هدية</span><span class="lead-en">A gift chapter from the book «Riding the Wave»</span></div>' +
+          '</div>' +
+          '<div class="gl-actions gl-seq"><button type="button" class="btn btn-gold" id="glCta"><span class="lead-ar">احجز مقابلة تقييم مجانية</span><span class="lead-en">Book a free assessment interview</span></button></div>' +
+        '</div>' +
+        '<span class="gl-timer" aria-hidden="true"></span>' +
+      '</aside>' +
+      '<button type="button" class="gl-dot" id="glDot" aria-label="جروب مهارات DBT" aria-controls="glCard" aria-expanded="false">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c2.2 3 5 5.2 5 9a5 5 0 0 1-10 0c0-2 .9-3.2 2-4.3.1 1.8.9 2.8 2 3.1 0-2.6-.2-5 1-7.8z"/></svg>' +
+      '</button>');
+    var card = document.getElementById('glCard'), dot = document.getElementById('glDot');
+    var closeT = null, fired = false;
+    var ev = function (n) { if (typeof window.gtag === 'function') window.gtag('event', n, { event_category: 'group_popup' }); };
+    var isOpen = function () { return card.classList.contains('open'); };
+    var close = function (why) {
+      if (!isOpen()) return;
+      clearTimeout(closeT);
+      card.classList.remove('open', 'auto'); card.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('gl-open');
+      dot.setAttribute('aria-expanded', 'false');
+      ev(why === 'auto' ? 'group_popup_autoclose' : 'group_popup_close');
+    };
+    var open = function (auto) {
+      if (isOpen()) return;
+      if (document.querySelector('.modal.open')) return;              // never on top of a form
+      card.classList.add('open'); card.classList.toggle('auto', !!auto); card.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('gl-open');
+      dot.classList.add('show'); dot.setAttribute('aria-expanded', 'true');
+      try { localStorage.setItem(KEY, String(Date.now())); } catch (_) {}
+      ev(auto ? 'group_popup_show' : 'group_popup_open');
+      if (auto) { clearTimeout(closeT); closeT = setTimeout(function () { close('auto'); }, STAY); }
+    };
+    // the visitor touched it -> it stays (no more auto-dim)
+    var hold = function () { if (card.classList.contains('auto')) { card.classList.remove('auto'); clearTimeout(closeT); } };
+    card.addEventListener('mouseenter', hold); card.addEventListener('touchstart', hold, { passive: true }); card.addEventListener('focusin', hold);
+    dot.addEventListener('click', function () { if (isOpen()) close('user'); else open(false); });
+    document.getElementById('glClose').addEventListener('click', function () { close('user'); });
+    document.getElementById('glCta').addEventListener('click', function () {
+      ev('group_popup_cta'); close('user');
+      if (typeof window.lifeArkGroupApply === 'function') window.lifeArkGroupApply();
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) close('user'); });
+    // the dot appears softly after the hero settles
+    setTimeout(function () { dot.classList.add('show'); }, 2500);
+    // first visit this week -> it lights by itself: after 7s, or once the hero has been scrolled past
+    if (Date.now() - seen > WEEK) {
+      var fire = function () { if (fired) return; fired = true; open(true); };
+      setTimeout(fire, 7000);
+      window.addEventListener('scroll', function () { if (!fired && window.scrollY > window.innerHeight * 0.6) fire(); }, { passive: true });
+    }
+  })();
