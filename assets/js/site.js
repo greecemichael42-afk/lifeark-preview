@@ -1438,10 +1438,11 @@ const hdr=document.getElementById('hdr');
   // «موافق إن مايكل يكلمني بعدين» checkbox gives him permission + a way to reach them; a public comment gives neither.
   // The message goes by email (Formsubmit → Life.ark.psych@gmail.com) with the article name; if the reader left an
   // email AND ticked the box, they are also logged in «قايمة المركب» (Apps Script Sheet) as a lead (no welcome email).
-  // Injected before the «ابقَ على المركب» box on article pages only.
+  // Appended at the end of <article> on article pages only (the old «ابقَ على المركب» card was removed from the
+  // articles 2026-10-16 — the subscribe checkbox here replaces it; the homepage keeps its own subscribe section).
   (function(){
-    var sub = document.querySelector('article .article-sub');
-    if (!sub || document.getElementById('wrBox')) return;
+    var art = document.querySelector('main article') || document.querySelector('article');
+    if (!art || !/^article-/.test(location.pathname.split('/').pop() || '') || document.getElementById('wrBox')) return;
     var en = document.body.dataset.lang === 'en';
     var ar = function (a, e) { return '<span class="lead-ar">' + a + '</span><span class="lead-en">' + e + '</span>'; };
     var ph = function (a, e) { return 'placeholder="' + (en ? e : a) + '" data-ph-ar="' + a + '" data-ph-en="' + e + '"'; };
@@ -1449,7 +1450,7 @@ const hdr=document.getElementById('hdr');
     var title = (h1 ? ((h1.querySelector(en ? '.lead-en' : '.lead-ar') || h1).textContent) : document.title) || document.title;
     title = title.replace(/\s+/g, ' ').trim().slice(0, 120);
     var slug = (location.pathname.split('/').pop() || 'article').replace(/\.html$/, '');
-    sub.insertAdjacentHTML('beforebegin',
+    art.insertAdjacentHTML('beforeend',
       '<div class="article-write" id="wrBox"><div class="ac-box">' +
         '<div class="kicker">Write to Life Ark</div>' +
         '<h3>' + ar('المقال ده لمس حاجة جواك؟ قولنا.', 'Did this article touch something in you? Tell us.') + '</h3>' +
@@ -1460,10 +1461,13 @@ const hdr=document.getElementById('hdr');
             '<input type="text" name="name" autocomplete="name" ' + ph('اسمك', 'Your name') + ' aria-label="الاسم" />' +
             '<input type="text" name="contact" autocomplete="email" ' + ph('بريدك أو رقم الواتساب (لو عايز رد)', 'Email or WhatsApp (if you want a reply)') + ' aria-label="وسيلة التواصل" />' +
           '</div>' +
+          '<div class="wr-checks">' +
           '<label class="wr-consent"><input type="checkbox" name="consent" value="yes" /><span>' + ar('موافق إن فريق Life Ark يتواصل معايا بعدين', 'I agree that the Life Ark team may contact me later') + '</span></label>' +
+          '<label class="wr-consent"><input type="checkbox" name="subscribe" value="yes" /><span>' + ar('عايز رسالة كل أسبوع والفصول المجانية على بريدي', 'Send me one email a week and the free chapters') + '</span></label>' +
+          '</div>' +
           '<button class="btn btn-gold" type="submit">' + ar('قول', 'Send') + '</button>' +
         '</form>' +
-        '<p class="wr-done" id="wrDone">' + ar('وصلت. الفريق هيقراها، ولو قولت موافق هيتواصل معاك.', 'Received. The team will read it, and if you said yes they will contact you.') + '</p>' +
+        '<p class="wr-done" id="wrDone">' + ar('وصلت. الفريق هيقراها، ولو قولت موافق هيتواصل معاك.', 'Received. The team will read it, and if you said yes they will contact you.') + ' <span id="wrDoneSub" style="display:none">' + ar('والفصول المجانية هتوصلك على بريدك.', 'The free chapters are on their way to your email.') + '</span></p>' +
         '<p class="wr-note ar-only">الرسالة دي مش بديل عن العلاج. لو في خطر على حياتك دلوقتي، كلّم الطوارئ أو أقرب مستشفى.</p>' +
         '<p class="wr-note lead-en">This message is not a substitute for therapy. If your life is in danger right now, call emergency services or go to the nearest hospital.</p>' +
       '</div></div>');
@@ -1473,20 +1477,23 @@ const hdr=document.getElementById('hdr');
     var isEmail = function (v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); };
     f.addEventListener('submit', function (e) {
       e.preventDefault();
-      var msg = (f.message.value || '').trim(), name = (f.elements.name.value || '').trim(), contact = (f.contact.value || '').trim(), consent = !!f.consent.checked;
+      var msg = (f.message.value || '').trim(), name = (f.elements.name.value || '').trim(), contact = (f.contact.value || '').trim(), consent = !!f.consent.checked, subscribe = !!f.subscribe.checked;
       if (msg.length < 5) { bad(f.message); return; }
       if (consent && !contact) { bad(f.contact); return; }
       var email = isEmail(contact) ? contact : '';
+      if (subscribe && !email) { bad(f.contact); return; }          // the weekly email needs an email address
       var payload = {
-        'الرسالة': msg, 'الاسم': name || '-', 'التواصل': contact || '-', 'موافق على التواصل': consent ? 'نعم' : 'لا',
+        'الرسالة': msg, 'الاسم': name || '-', 'التواصل': contact || '-', 'موافق على التواصل': consent ? 'نعم' : 'لا', 'اشتراك في الرسالة الأسبوعية': subscribe ? 'نعم' : 'لا',
         'المقال': title, 'الرابط': location.href,
         _subject: 'رسالة من قارئ — ' + title, _template: 'table', _captcha: 'false'
       };
       if (email) payload._replyto = email;
       try { fetch('https://formsubmit.co/ajax/Life.ark.psych@gmail.com', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) }).catch(function () {}); } catch (_) {}
-      if (email && consent && typeof window.lifeArkToList === 'function') window.lifeArkToList({ name: name, email: email, welcome: false, source: 'article:' + slug });
+      // subscribe → full subscription (welcome + free chapters); consent only → silent lead
+      if (email && (consent || subscribe) && typeof window.lifeArkToList === 'function') window.lifeArkToList({ name: name, email: email, welcome: subscribe, source: 'article:' + slug });
       if (typeof window.gtag === 'function') window.gtag('event', 'article_message_submit', { event_category: 'article', event_label: slug, consent: consent ? 'yes' : 'no' });
       f.style.display = 'none'; done.style.display = 'block';
+      if (subscribe) document.getElementById('wrDoneSub').style.display = 'inline';
       if (done.scrollIntoView) done.scrollIntoView({ block: 'center', behavior: 'smooth' });
     });
   })();

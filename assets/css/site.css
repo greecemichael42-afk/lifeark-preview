@@ -1093,7 +1093,8 @@
   .wr-form textarea:focus,.wr-form input:focus{border-color:var(--gold)}
   .wr-row{display:flex;gap:10px;flex-wrap:wrap}
   .wr-row input{flex:1 1 200px}
-  .wr-consent{display:flex;align-items:center;justify-content:center;gap:10px;font-size:.9rem;color:var(--ink-soft);cursor:pointer;margin:2px 0 4px;user-select:none}
+  .wr-checks{display:flex;flex-direction:column;align-items:center;gap:8px;margin:2px 0 6px}
+  .wr-consent{display:flex;align-items:center;justify-content:center;gap:10px;font-size:.9rem;color:var(--ink-soft);cursor:pointer;user-select:none;text-align:start}
   .wr-consent input{width:18px;height:18px;flex:0 0 auto;accent-color:var(--gold);cursor:pointer}
   .wr-form .btn{align-self:center;min-width:160px;justify-content:center}
   .wr-done{display:none;color:var(--gold-bright);font-weight:600;font-size:1.1rem;line-height:1.8;padding:14px 8px 4px}
