@@ -188,6 +188,7 @@ const hdr=document.getElementById('hdr');
   // «قايمة المركب»: every lead also goes to the Apps Script (same /exec as book orders) → Google Sheet + welcome email.
   const LIST_ENDPOINT = "https://script.google.com/macros/s/AKfycbw9g6PGoRBuyK1nep1U45EoSBAI0ZUKjI2wXaTdV7Iv-7HWHz-tJNj_yWPSWD4ZBElg/exec";
   const toList=(o)=>{ try{ fetch(LIST_ENDPOINT,{method:"POST",body:JSON.stringify(Object.assign({action:"subscribe",source:(location.pathname.split("/").pop()||"index.html")},o)),mode:"no-cors"}).catch(()=>{}); }catch(_){ } };
+  window.lifeArkToList=toList;   // used by the group lantern + the article write-box
   const subForm=document.getElementById('subForm');
   if(subForm){
     subForm.addEventListener('submit',async (e)=>{
@@ -1399,6 +1400,7 @@ const hdr=document.getElementById('hdr');
           'مواعيد الجروب: كل أحد ٨–١١ مساءً أو كل اثنين ٧–١٠ مساءً، لمدة ١٠ شهور، مع أ. مايكل جابي.\n\n' +
           '— فريق Life Ark\nhttps://lifearkdbt.com'
       });
+      if (typeof window.lifeArkToList === 'function') window.lifeArkToList({ name: name, email: email, welcome: false, source: 'popup:interview' });
       ev('group_popup_interview_submit'); done('interview'); f.reset();
     });
     document.getElementById('glChapterForm').addEventListener('submit', function (e) {
@@ -1418,6 +1420,7 @@ const hdr=document.getElementById('hdr');
           'سجّل من هنا: https://lifearkdbt.com\n\n' +
           '— فريق Life Ark\nhttps://lifearkdbt.com'
       });
+      if (typeof window.lifeArkToList === 'function') window.lifeArkToList({ name: name, email: email, welcome: false, source: 'popup:chapter' });
       ev('group_popup_chapter_submit'); done('chapter'); f.reset();
     });
     // the dot appears softly after the hero settles
@@ -1428,4 +1431,62 @@ const hdr=document.getElementById('hdr');
       setTimeout(fire, 7000);
       window.addEventListener('scroll', function () { if (!fired && window.scrollY > window.innerHeight * 0.6) fire(); }, { passive: true });
     }
+  })();
+
+  // ===== Article write-box — a PRIVATE message to Michael under every article (staging sample 2026-10-16) =====
+  // Why not public comments: Michael's goal is to reach readers afterwards. A private box with an explicit
+  // «موافق إن مايكل يكلمني بعدين» checkbox gives him permission + a way to reach them; a public comment gives neither.
+  // The message goes by email (Formsubmit → Life.ark.psych@gmail.com) with the article name; if the reader left an
+  // email AND ticked the box, they are also logged in «قايمة المركب» (Apps Script Sheet) as a lead (no welcome email).
+  // Injected before the «ابقَ على المركب» box on article pages only.
+  (function(){
+    var sub = document.querySelector('article .article-sub');
+    if (!sub || document.getElementById('wrBox')) return;
+    var en = document.body.dataset.lang === 'en';
+    var ar = function (a, e) { return '<span class="lead-ar">' + a + '</span><span class="lead-en">' + e + '</span>'; };
+    var ph = function (a, e) { return 'placeholder="' + (en ? e : a) + '" data-ph-ar="' + a + '" data-ph-en="' + e + '"'; };
+    var h1 = document.querySelector('article h1') || document.querySelector('h1');
+    var title = (h1 ? ((h1.querySelector(en ? '.lead-en' : '.lead-ar') || h1).textContent) : document.title) || document.title;
+    title = title.replace(/\s+/g, ' ').trim().slice(0, 120);
+    var slug = (location.pathname.split('/').pop() || 'article').replace(/\.html$/, '');
+    sub.insertAdjacentHTML('beforebegin',
+      '<div class="article-write" id="wrBox"><div class="ac-box">' +
+        '<div class="kicker">Write to Michael</div>' +
+        '<h3>' + ar('المقال ده لمس حاجة جواك؟ قولي.', 'Did this article touch something in you? Tell me.') + '</h3>' +
+        '<p>' + ar('اكتب اللي حصل معاك. الكلام ده بيوصلني أنا بس، ولا حد غيري بيقراه.', 'Write what happened with you. This reaches me only; nobody else reads it.') + '</p>' +
+        '<form class="wr-form" id="wrForm" novalidate>' +
+          '<textarea name="message" required rows="4" ' + ph('اكتب هنا..', 'Write here..') + ' aria-label="الرسالة"></textarea>' +
+          '<div class="wr-row">' +
+            '<input type="text" name="name" autocomplete="name" ' + ph('اسمك', 'Your name') + ' aria-label="الاسم" />' +
+            '<input type="text" name="contact" autocomplete="email" ' + ph('بريدك أو رقم الواتساب (لو عايز رد)', 'Email or WhatsApp (if you want a reply)') + ' aria-label="وسيلة التواصل" />' +
+          '</div>' +
+          '<label class="wr-consent"><input type="checkbox" name="consent" value="yes" /><span>' + ar('موافق إن مايكل يكلمني بعدين', 'I agree that Michael may contact me later') + '</span></label>' +
+          '<button class="btn btn-gold" type="submit">' + ar('قول', 'Send') + '</button>' +
+        '</form>' +
+        '<p class="wr-done" id="wrDone">' + ar('وصلت. هقراها بنفسي، ولو قولت موافق أكلمك.', 'Received. I will read it myself, and if you said yes I will contact you.') + '</p>' +
+        '<p class="wr-note ar-only">الرسالة دي مش بديل عن العلاج. لو في خطر على حياتك دلوقتي، كلّم الطوارئ أو أقرب مستشفى.</p>' +
+        '<p class="wr-note lead-en">This message is not a substitute for therapy. If your life is in danger right now, call emergency services or go to the nearest hospital.</p>' +
+      '</div></div>');
+    var f = document.getElementById('wrForm'), done = document.getElementById('wrDone');
+    var bad = function (el) { el.focus(); el.style.borderColor = '#e0894f'; if (el.scrollIntoView) el.scrollIntoView({ block: 'center' }); };
+    Array.prototype.forEach.call(f.querySelectorAll('textarea,input'), function (el) { el.addEventListener('input', function () { el.style.borderColor = ''; }); });
+    var isEmail = function (v) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); };
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var msg = (f.message.value || '').trim(), name = (f.elements.name.value || '').trim(), contact = (f.contact.value || '').trim(), consent = !!f.consent.checked;
+      if (msg.length < 5) { bad(f.message); return; }
+      if (consent && !contact) { bad(f.contact); return; }
+      var email = isEmail(contact) ? contact : '';
+      var payload = {
+        'الرسالة': msg, 'الاسم': name || '-', 'التواصل': contact || '-', 'موافق على التواصل': consent ? 'نعم' : 'لا',
+        'المقال': title, 'الرابط': location.href,
+        _subject: 'رسالة من قارئ — ' + title, _template: 'table', _captcha: 'false'
+      };
+      if (email) payload._replyto = email;
+      try { fetch('https://formsubmit.co/ajax/Life.ark.psych@gmail.com', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(payload) }).catch(function () {}); } catch (_) {}
+      if (email && consent && typeof window.lifeArkToList === 'function') window.lifeArkToList({ name: name, email: email, welcome: false, source: 'article:' + slug });
+      if (typeof window.gtag === 'function') window.gtag('event', 'article_message_submit', { event_category: 'article', event_label: slug, consent: consent ? 'yes' : 'no' });
+      f.style.display = 'none'; done.style.display = 'block';
+      if (done.scrollIntoView) done.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
   })();
