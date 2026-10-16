@@ -1433,7 +1433,7 @@ const hdr=document.getElementById('hdr');
     }
   })();
 
-  // ===== Article write-box — a PRIVATE message to Michael under every article (staging sample 2026-10-16) =====
+  // ===== Article write-box — a PRIVATE message to the Life Ark team under every article (staging sample 2026-10-16) =====
   // Why not public comments: Michael's goal is to reach readers afterwards. A private box with an explicit
   // «موافق إن مايكل يكلمني بعدين» checkbox gives him permission + a way to reach them; a public comment gives neither.
   // The message goes by email (Formsubmit → Life.ark.psych@gmail.com) with the article name; if the reader left an
@@ -1451,19 +1451,19 @@ const hdr=document.getElementById('hdr');
     var slug = (location.pathname.split('/').pop() || 'article').replace(/\.html$/, '');
     sub.insertAdjacentHTML('beforebegin',
       '<div class="article-write" id="wrBox"><div class="ac-box">' +
-        '<div class="kicker">Write to Michael</div>' +
-        '<h3>' + ar('المقال ده لمس حاجة جواك؟ قولي.', 'Did this article touch something in you? Tell me.') + '</h3>' +
-        '<p>' + ar('اكتب اللي حصل معاك. الكلام ده بيوصلني أنا بس، ولا حد غيري بيقراه.', 'Write what happened with you. This reaches me only; nobody else reads it.') + '</p>' +
+        '<div class="kicker">Write to Life Ark</div>' +
+        '<h3>' + ar('المقال ده لمس حاجة جواك؟ قولنا.', 'Did this article touch something in you? Tell us.') + '</h3>' +
+        '<p>' + ar('اكتب اللي حصل معاك. الكلام ده بيوصل لفريق Life Ark بس، ومحدش غيرهم بيقراه.', 'Write what happened with you. This reaches the Life Ark team only; nobody else reads it.') + '</p>' +
         '<form class="wr-form" id="wrForm" novalidate>' +
           '<textarea name="message" required rows="4" ' + ph('اكتب هنا..', 'Write here..') + ' aria-label="الرسالة"></textarea>' +
           '<div class="wr-row">' +
             '<input type="text" name="name" autocomplete="name" ' + ph('اسمك', 'Your name') + ' aria-label="الاسم" />' +
             '<input type="text" name="contact" autocomplete="email" ' + ph('بريدك أو رقم الواتساب (لو عايز رد)', 'Email or WhatsApp (if you want a reply)') + ' aria-label="وسيلة التواصل" />' +
           '</div>' +
-          '<label class="wr-consent"><input type="checkbox" name="consent" value="yes" /><span>' + ar('موافق إن مايكل يكلمني بعدين', 'I agree that Michael may contact me later') + '</span></label>' +
+          '<label class="wr-consent"><input type="checkbox" name="consent" value="yes" /><span>' + ar('موافق إن فريق Life Ark يتواصل معايا بعدين', 'I agree that the Life Ark team may contact me later') + '</span></label>' +
           '<button class="btn btn-gold" type="submit">' + ar('قول', 'Send') + '</button>' +
         '</form>' +
-        '<p class="wr-done" id="wrDone">' + ar('وصلت. هقراها بنفسي، ولو قولت موافق أكلمك.', 'Received. I will read it myself, and if you said yes I will contact you.') + '</p>' +
+        '<p class="wr-done" id="wrDone">' + ar('وصلت. الفريق هيقراها، ولو قولت موافق هيتواصل معاك.', 'Received. The team will read it, and if you said yes they will contact you.') + '</p>' +
         '<p class="wr-note ar-only">الرسالة دي مش بديل عن العلاج. لو في خطر على حياتك دلوقتي، كلّم الطوارئ أو أقرب مستشفى.</p>' +
         '<p class="wr-note lead-en">This message is not a substitute for therapy. If your life is in danger right now, call emergency services or go to the nearest hospital.</p>' +
       '</div></div>');
